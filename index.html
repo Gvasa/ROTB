@@ -88,10 +88,10 @@ function spawnBoard(){
 			//var barrel = barrels.create(i*BARREL_SIZE_SPACED, j*BARREL_SIZE_SPACED, 'barrel');
 			var barrel;
 			var rand = Math.random();
-			if (rand > 0.3 && rand < 0.6)
+			if (rand > 0.5)
 				barrel = game.add.sprite(i*BARREL_WIDTH, j*BARREL_HEIGHT, 'barrel5');
-			else if(rand >0.6)
-				barrel = game.add.sprite(i*BARREL_WIDTH, j*BARREL_HEIGHT, 'barrel6');
+			/*else if(rand >0.6)
+				barrel = game.add.sprite(i*BARREL_WIDTH, j*BARREL_HEIGHT, 'barrel6');*/
 			else
 				barrel = game.add.sprite(i*BARREL_WIDTH, j*BARREL_HEIGHT, 'barrel4');
 
