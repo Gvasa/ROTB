@@ -1,0 +1,133 @@
+<!doctype html> 
+<html lang="en"> 
+<head> 
+	<meta charset="UTF-8" />
+    <title>RoTB</title>
+	<script type="text/javascript" src="js/phaser.min.js"></script>
+    <style type="text/css">
+        body {
+            margin: 0;
+            background: #333;
+        }
+    </style>
+</head>
+<body>
+<div style="width: 60%; margin: 0px auto;">
+
+<script type="text/javascript">
+
+var game = new Phaser.Game(640, 960, Phaser.AUTO, 'ROTB', { preload: preload, create: create, update: update });
+
+var text;
+
+var BOARD_COLS;
+var BOARD_ROWS;
+var counter = 0;
+
+var TEST_CONSTANT = 6;
+var BARREL_WIDTH = 80;
+var BARREL_HEIGHT = 100;
+
+
+var barrels;
+var selectedbarrel;
+var selectedBarrelStartPos;
+var selectedBarrelTween;
+var tempShiftedBarrel;
+var tempShiftedBarrelTween;
+var allowInput;
+
+
+function preload() {
+	console.log('preload');
+    game.load.image('background', 'assets/bg.png');
+    game.load.image('barrel', 'assets/barrel_base_small_101_128.png');
+    game.load.image('barrel2', 'assets/barrel_BLUE_TEST_51_64.png');
+    game.load.image('barrel3', 'assets/barrel_BLUE_TEST_101_128.png');
+    game.load.image('barrel4', 'assets/barrel_BLUE_TEST_76_96.png');
+    game.load.image('barrel5', 'assets/barrel_reveal_up_green_76_96.png');
+    game.load.image('barrel6', 'assets/barrel_charge_yellow_76_96.png');
+
+
+
+}
+
+
+
+function create() {
+
+    //  A simple background for our game
+
+	console.log('create');
+  //	game.add.sprite(0, 0, 'background');
+
+    text = game.add.text(250, 16, '', { fill: '#ffffff' });
+   
+   	//game.add.sprite(0, 0, 'barrel');
+
+   	spawnBoard();
+}
+
+function update() {
+	console.log('update');
+
+}
+
+
+
+function spawnBoard(){
+	
+	console.log('spawnboard()');
+	//BOARD_COLS = Phaser.Math.floor(game.world.width / BARREL_SIZE_SPACED);
+	//oard_ROWS = Phaser.Math.floor(game.world.height / BARREL_SIZE_SPACED);
+	//barrels = game.add.group();
+
+	for (var i = 0; i < TEST_CONSTANT; i++) {
+		console.log
+		for(var j = 0; j < TEST_CONSTANT; j++) {
+			//var barrel = barrels.create(i*BARREL_SIZE_SPACED, j*BARREL_SIZE_SPACED, 'barrel');
+			var barrel;
+			var rand = Math.random();
+			if (rand > 0.3 && rand < 0.6)
+				barrel = game.add.sprite(i*BARREL_WIDTH, j*BARREL_HEIGHT, 'barrel5');
+			else if(rand >0.6)
+				barrel = game.add.sprite(i*BARREL_WIDTH, j*BARREL_HEIGHT, 'barrel6');
+			else
+				barrel = game.add.sprite(i*BARREL_WIDTH, j*BARREL_HEIGHT, 'barrel4');
+
+			//barrel.anchor.set(0.5);
+			barrel.inputEnabled = true;
+			barrel.events.onInputDown.add(listener,this);
+			console.log('skapar here');
+			//barrel.inputEnabled = true;
+			//barrel.events.onInputDown.add(selectedBarrel);
+			//setBarrelPos(barrel, i, j);
+		}
+		console.log('i första forloop');
+		
+	};
+	console.log('efter foorloop');
+}
+
+function listener() {
+	counter++;
+	text.text = "you fucked up son " + counter + "  times";
+
+}
+
+function setBarrelPos(barrel, posX, posY) {
+	barrel.posX = posX;
+	barrel.posY = posY;
+	barrel.id = calcBarrelId(posX, posY);
+}
+
+function calcBarrelId(posX, posY)
+{
+	return posX + posY * BOARD_COLS;
+}
+
+
+</script>
+</div>
+</body>
+</html>
