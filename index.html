@@ -28,6 +28,12 @@ var TEST_CONSTANT = 6;
 var BARREL_WIDTH = 80;
 var BARREL_HEIGHT = 100;
 
+var ADD_BARREL_UP = 1;
+var ADD_BARREL_DOWN = 2;
+var MOVE_ROW_BELLOW = 3;
+var MOVE_ROW_LEFT = 4;
+var CHARGE = 5;
+
 
 var barrels;
 var selectedbarrel;
@@ -62,46 +68,36 @@ function create() {
   //	game.add.sprite(0, 0, 'background');
 
     text = game.add.text(250, 16, '', { fill: '#ffffff' });
-   
-   	//game.add.sprite(0, 0, 'barrel');
 
    	spawnBoard();
 }
 
 function update() {
-	console.log('update');
+	//console.log('update');
 
 }
 
-
-
-function spawnBoard(){
+function spawnBoard() {
 	
 	console.log('spawnboard()');
-	//BOARD_COLS = Phaser.Math.floor(game.world.width / BARREL_SIZE_SPACED);
-	//oard_ROWS = Phaser.Math.floor(game.world.height / BARREL_SIZE_SPACED);
-	//barrels = game.add.group();
 
 	for (var i = 0; i < TEST_CONSTANT; i++) {
 		console.log
 		for(var j = 0; j < TEST_CONSTANT; j++) {
-			//var barrel = barrels.create(i*BARREL_SIZE_SPACED, j*BARREL_SIZE_SPACED, 'barrel');
 			var barrel;
 			var rand = Math.random();
-			if (rand > 0.5)
-				barrel = game.add.sprite(i*BARREL_WIDTH, j*BARREL_HEIGHT, 'barrel5');
-			/*else if(rand >0.6)
-				barrel = game.add.sprite(i*BARREL_WIDTH, j*BARREL_HEIGHT, 'barrel6');*/
-			else
+			if (rand > 0.5) {
 				barrel = game.add.sprite(i*BARREL_WIDTH, j*BARREL_HEIGHT, 'barrel4');
+                barrel.alpha = false;
+            }
+			else
+				barrel = game.add.sprite(i*BARREL_WIDTH, j*BARREL_HEIGHT, 'barrel5');
 
-			//barrel.anchor.set(0.5);
 			barrel.inputEnabled = true;
-			barrel.events.onInputDown.add(listener,this);
-			console.log('skapar here');
-			//barrel.inputEnabled = true;
-			//barrel.events.onInputDown.add(selectedBarrel);
-			//setBarrelPos(barrel, i, j);
+            if(barrel.alpha == true) {
+			    barrel.events.onInputDown.add(listener,this);
+			    console.log('skapar here');
+            }
 		}
 		console.log('i första forloop');
 		
