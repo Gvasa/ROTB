@@ -20,6 +20,15 @@ var game = new Phaser.Game(640, 960, Phaser.AUTO, 'ROTB', { preload: preload, cr
 
 var text;
 
+
+//------------------!!!!!!-----------------J ÄR X POS ----------- I ÄR Y POS----------!!!! -------------------//
+
+var BARREL_REVEAL_ABOVE = 'Barrel Reveal Above';
+var BARREL_REVEAL_BELOW = 'Barrel Reveal Below';
+var BARREL_CHARGE = 'Barrel Charge';
+var BARREL_MOVE_ROW_BELOW = 'Barrel Move Row Below';
+var BARREL_MOVE_ROW_RIGHT = 'Barrel Move Row To The Right';
+
 var BOARD_COLS;
 var BOARD_ROWS;
 var counter = 0;
@@ -35,7 +44,12 @@ var MOVE_ROW_LEFT = 4;
 var CHARGE = 5;
 
 
-var barrels;
+var gameBoard;
+
+
+
+
+
 var selectedbarrel;
 var selectedBarrelStartPos;
 var selectedBarrelTween;
@@ -59,17 +73,49 @@ function preload() {
 }
 
 
+function Barrel(barreltype, posx, posy, id, sprite) {
+	this.barrelType = barreltype;
+	this.posX = posx;
+	this.posY = posy;
+	this.barrelId = id;
+	this.barrelSprite = sprite;
+}
+
+
+Barrel.prototype.barrelInfo = function() {
+	console.log("I am the one and only barrel number:  " + this.barrelId + "  My posy is:  " + this.posX + "-" + this.posY + "  I am a mother fucking: " + this.barrelType);
+}
 
 function create() {
 
     //  A simple background for our game
 
+    var barrel1 = new Barrel('typ1', 3, 6, 1);
+ 
+
 	console.log('create');
   //	game.add.sprite(0, 0, 'background');
 
     text = game.add.text(250, 16, '', { fill: '#ffffff' });
+    gameBoard = new Array(6);
+    for(var i = 0; i < TEST_CONSTANT; i++)
+    	gameBoard[i] = new Array(6);
+
+
+ //   gameBoard[4][5] = "ras är fedt fin";
+   // console.log(gameBoard[4][5]);
 
    	spawnBoard();
+
+
+ /*  	for (var j = 0; j < TEST_CONSTANT; j++) {
+   		for (var k = 0; k < TEST_CONSTANT; k++) {
+   			gameBoard[j][k].barrelInfo();
+
+   		}
+   	}*/
+
+
 }
 
 function update() {
@@ -82,39 +128,79 @@ function spawnBoard() {
 	console.log('spawnboard()');
 
 	for (var i = 0; i < TEST_CONSTANT; i++) {
-		console.log
 		for(var j = 0; j < TEST_CONSTANT; j++) {
 			var barrel;
-			var rand = Math.random();
-			if (rand > 0.5) {
+			var rand = Math.round(Math.random()*2);
+			if(rand === 0) {
 				barrel = game.add.sprite(i*BARREL_WIDTH, j*BARREL_HEIGHT, 'barrel4');
-                barrel.alpha = false;
-            }
-			else
+				gameBoard[i][j] = new Barrel(BARREL_MOVE_ROW_RIGHT, j, i, counter, barrel);
+			} else if (rand === 1) {
 				barrel = game.add.sprite(i*BARREL_WIDTH, j*BARREL_HEIGHT, 'barrel5');
-
-			barrel.inputEnabled = true;
-            if(barrel.alpha == true) {
-			    barrel.events.onInputDown.add(listener,this);
-			    console.log('skapar here');
-            }
-		}
-		console.log('i första forloop');
+				gameBoard[i][j] = new Barrel(BARREL_REVEAL_ABOVE, j, i, counter, barrel);
+			} else {
+				barrel = game.add.sprite(i*BARREL_WIDTH, j*BARREL_HEIGHT, 'barrel6');
+				gameBoard[i][j] = new Barrel(BARREL_CHARGE, j, i, counter, barrel);
+			}
 		
-	};
-	console.log('efter foorloop');
+			barrel.inputEnabled = true;
+
+            if(barrel.alpha == true) {
+			    gameBoard[i][j].barrelSprite.events.onInputDown.add(listener,gameBoard[i][j]);
+            }
+            counter++;
+		}
+	}
 }
 
 function listener() {
 	counter++;
-	text.text = "you fucked up son " + counter + "  times";
+	this.barrelInfo();
+	console.log(this.barrelType);
+	var expr;
+	switch(expr) {
+		
+		case BARREL_REVEAL_ABOVE:
+			showBarrelAbove();
+			break;
+
+		case BARREL_REVEAL_BELOW:
+			showBarrelBellow();
+			break;
+
+		case BARREL_MOVE_ROW_BELOW:
+			moveRowBellow();
+			break;
+
+		case BARREL_MOVE_ROW_RIGHT:
+			moveRowLeft();
+			break;
+
+		case BARREL_CHARGE:
+			addCharge();
+			break;
+	}
+
 
 }
 
-function setBarrelPos(barrel, posX, posY) {
-	barrel.posX = posX;
-	barrel.posY = posY;
-	barrel.id = calcBarrelId(posX, posY);
+function showBarrelAbove() {
+	console.log('shwo above!');
+}
+
+function showBarrelBellow () {
+	console.log('show bellow!');
+}
+
+function moveRowBellow () {
+	console.log('move bellow!');
+}
+
+function moveRowLeft () {
+	console.log('move left!');
+}
+
+function addCharge () {
+	console.log('add charge!');
 }
 
 function calcBarrelId(posX, posY)
