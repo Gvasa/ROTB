@@ -27,7 +27,7 @@ var BARREL_REVEAL_ABOVE = 'Barrel Reveal Above';
 var BARREL_REVEAL_BELOW = 'Barrel Reveal Below';
 var BARREL_CHARGE = 'Barrel Charge';
 var BARREL_MOVE_ROW_BELOW = 'Barrel Move Row Below';
-var BARREL_MOVE_ROW_RIGHT = 'Barrel Move Row To The Right';
+var BARREL_MOVE_ROW_LEFT = 'Barrel Move Row To The left';
 
 var BOARD_COLS;
 var BOARD_ROWS;
@@ -107,13 +107,8 @@ function create() {
 
    	spawnBoard();
 
+   	//printBoard();
 
- /*  	for (var j = 0; j < TEST_CONSTANT; j++) {
-   		for (var k = 0; k < TEST_CONSTANT; k++) {
-   			gameBoard[j][k].barrelInfo();
-
-   		}
-   	}*/
 
 
 }
@@ -133,7 +128,7 @@ function spawnBoard() {
 			var rand = Math.round(Math.random()*2);
 			if(rand === 0) {
 				barrel = game.add.sprite(i*BARREL_WIDTH, j*BARREL_HEIGHT, 'barrel4');
-				gameBoard[i][j] = new Barrel(BARREL_MOVE_ROW_RIGHT, j, i, counter, barrel);
+				gameBoard[i][j] = new Barrel(BARREL_MOVE_ROW_LEFT, j, i, counter, barrel);
 			} else if (rand === 1) {
 				barrel = game.add.sprite(i*BARREL_WIDTH, j*BARREL_HEIGHT, 'barrel5');
 				gameBoard[i][j] = new Barrel(BARREL_REVEAL_ABOVE, j, i, counter, barrel);
@@ -154,9 +149,9 @@ function spawnBoard() {
 
 function listener() {
 	counter++;
-	this.barrelInfo();
-	console.log(this.barrelType);
-	var expr;
+	//this.barrelInfo();
+	//console.log(this.barrelType);
+	var expr = this.barrelType;
 	switch(expr) {
 		
 		case BARREL_REVEAL_ABOVE:
@@ -171,8 +166,8 @@ function listener() {
 			moveRowBellow();
 			break;
 
-		case BARREL_MOVE_ROW_RIGHT:
-			moveRowLeft();
+		case BARREL_MOVE_ROW_LEFT:
+			moveRowLeft(this);
 			break;
 
 		case BARREL_CHARGE:
@@ -195,20 +190,64 @@ function moveRowBellow () {
 	console.log('move bellow!');
 }
 
-function moveRowLeft () {
-	console.log('move left!');
+function moveRowLeft (tmpBarrel) {
+	console.log(tmpBarrel.barrelType);
+
+	
+	var tmpPosx = tmpBarrel.posX;
+	var tmpPosy = tmpBarrel.posY;
+	var tmp = gameBoard[0][tmpPosx+1];
+	console.log('innan');
+	printRow(tmpPosx+1);
+	for(i = 1; i < TEST_CONSTANT; i++)
+	{
+		//console.log('hehe');
+		if(i = TEST_CONSTANT-1)
+		{
+			//console.log('inne i första if');
+			gameBoard[i][tmpPosx+1] = tmp;
+		} else {
+			gameBoard[i][tmpPosx].barrelSprite.loadTexture(gameBoard[i+1][tmpPosx+1].barrelSprite, 0);
+			gameBoard[i][tmpPosx+1] = gameBoard[i+1][tmpPosx+1];
+
+			//updateBarrelInfo();
+		}
+
+	}
+	console.log(tmpBarrel.barrelSprite);
+	console.log('efter');
+	printRow(tmpPosx+1);
 }
 
 function addCharge () {
 	console.log('add charge!');
 }
 
-function calcBarrelId(posX, posY)
-{
-	return posX + posY * BOARD_COLS;
+function uppdateBarrelInfo() {
+	console.log('ska uppdatera info');
 }
 
+function printRow(rowId) {
+	for (var i = 0; i < TEST_CONSTANT; i++) {
+   		gameBoard[i][rowId].barrelInfo();
+   	}
+}
 
+function printCol(colId) {
+
+   	for (var i = 0; i < TEST_CONSTANT; i++) {
+   		gameBoard[colId][i].barrelInfo();
+   	}
+}
+
+function printBoard() {
+	for (var j = 0; j < TEST_CONSTANT; j++) {
+   	for (var k = 0; k < TEST_CONSTANT; k++) {
+   			gameBoard[j][k].barrelInfo();
+
+   		}
+   	}
+}
 </script>
 </div>
 </body>
