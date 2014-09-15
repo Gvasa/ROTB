@@ -3,7 +3,7 @@
 <head> 
 	<meta charset="UTF-8" />
     <title>RoTB</title>
-	<script type="text/javascript" src="js/phaser.min.js"></script>
+	<script type="text/javascript" src="js/phaser.min.js?n=1"></script>
     <style type="text/css">
         body {
             margin: 0;
@@ -60,25 +60,27 @@ var allowInput;
 
 function preload() {
 	console.log('preload');
-    game.load.image('background', 'assets/bg.png');
+   /* game.load.image('background', 'assets/bg.png');
     game.load.image('barrel', 'assets/barrel_base_small_101_128.png');
     game.load.image('barrel2', 'assets/barrel_BLUE_TEST_51_64.png');
     game.load.image('barrel3', 'assets/barrel_BLUE_TEST_101_128.png');
-    game.load.image('barrel4', 'assets/barrel_BLUE_TEST_76_96.png');
-    game.load.image('barrel5', 'assets/barrel_reveal_up_green_76_96.png');
-    game.load.image('barrel6', 'assets/barrel_charge_yellow_76_96.png');
-
+    game.load.image('spriteMoveRowLeft', 'assets/barrel_BLUE_TEST_76_96.png');
+    game.load.image('spriteRevealAbove', 'assets/barrel_reveal_up_green_76_96.png');
+    game.load.image('spriteCharge', 'assets/barrel_charge_yellow_76_96.png');
+*/	
+	game.load.spritesheet('barrel_sheet', '/assets/sprite_sheet.png', 85, 100);
 
 
 }
 
 
-function Barrel(barreltype, posx, posy, id, sprite) {
+function Barrel(barreltype, posx, posy, id, sprite, frameid) {
 	this.barrelType = barreltype;
 	this.posX = posx;
 	this.posY = posy;
 	this.barrelId = id;
 	this.barrelSprite = sprite;
+	this.frameID = frameid;
 }
 
 
@@ -125,15 +127,18 @@ function spawnBoard() {
 			var barrel;
 			var rand = Math.round(Math.random()*2);
 			if(rand === 0) {
-				barrel = game.add.sprite(i*BARREL_WIDTH, j*BARREL_HEIGHT, 'barrel4');
-				gameBoard[i][j] = new Barrel(BARREL_MOVE_ROW_LEFT, j, i, counter, barrel);
+				barrel = game.add.sprite(i*BARREL_WIDTH, j*BARREL_HEIGHT, 'barrel_sheet', 0);
+				
+				gameBoard[i][j] = new Barrel(BARREL_MOVE_ROW_LEFT, j, i, counter, barrel, 0);
 			} else if (rand === 1) {
-				barrel = game.add.sprite(i*BARREL_WIDTH, j*BARREL_HEIGHT, 'barrel5');
-				gameBoard[i][j] = new Barrel(BARREL_REVEAL_ABOVE, j, i, counter, barrel);
+				barrel = game.add.sprite(i*BARREL_WIDTH, j*BARREL_HEIGHT, 'barrel_sheet',2);
+				gameBoard[i][j] = new Barrel(BARREL_REVEAL_ABOVE, j, i, counter, barrel, 2);
 			} else {
-				barrel = game.add.sprite(i*BARREL_WIDTH, j*BARREL_HEIGHT, 'barrel6');
-				gameBoard[i][j] = new Barrel(BARREL_CHARGE, j, i, counter, barrel);
+				barrel = game.add.sprite(i*BARREL_WIDTH, j*BARREL_HEIGHT, 'barrel_sheet', 1);
+				gameBoard[i][j] = new Barrel(BARREL_CHARGE, j, i, counter, barrel, 1);
 			}
+
+			
 		
 			barrel.inputEnabled = true;
 
@@ -189,35 +194,68 @@ function moveRowBellow () {
 }
 
 function moveRowLeft (tmpBarrel) {
-	console.log(tmpBarrel.barrelSprite.key);
+	//console.log(tmpBarrel.barrelSprite.key);
 
 	//gameBoard[0][0].barrelSprite.loadTexture(tmpBarrel.barrelSprite.key);
 	
 	var tmpPosx = tmpBarrel.posX;
 	var tmpPosy = tmpBarrel.posY;
-	var tmp = gameBoard[0][tmpPosx+1];
-//	console.log('innan');
+	var tmp = new Barrel(tmpBarrel.barrelType, tmpBarrel.posX, tmpBarrel.posY, tmpBarrel.barrelId, tmpBarrel.barrelSprite, tmpBarrel.frameID);
+	//console.log(tmp.barrelSprite);
+	//var test = tmp.barrelSprite.key;
+	
+	/*console.log(gameBoard[0][4] === tmp);
+
+	//console.log('innan');
+	//console.log(tmp.spriteKey);
+	//console.log(tmp === test);
+	gameBoard[0][4].barrelSprite.frame = gameBoard[1][4].frameID;
+	gameBoard[0][4] = gameBoard[1][4];
+
+	gameBoard[1][4].barrelSprite.frame = gameBoard[2][4].frameID;
+	gameBoard[1][4] = gameBoard[2][4];
+
+	gameBoard[2][4].barrelSprite.frame = gameBoard[3][4].frameID;
+	gameBoard[2][4] = gameBoard[3][4];
+
+	gameBoard[3][4].barrelSprite.frame = gameBoard[4][4].frameID;
+	gameBoard[3][4] = gameBoard[4][4];
+
+	gameBoard[4][4] = gameBoard[5][4];
+	gameBoard[4][4].barrelSprite.frame = gameBoard[5][4].frameID;
+
+	gameBoard[5][4].barrelSprite.frame = tmp.frameID;
+	gameBoard[5][4] = tmp;
+*/
+	///console.log(tmp.spriteKey);
+	//console.log(gameBoard[4][4].spriteKey);
+	//console.log(tmp === test);
 	//printRow(tmpPosx+1);
-	for(i = 1; i < TEST_CONSTANT; i++)
+	for(i = 0; i < TEST_CONSTANT; i++)
 	{
 		//console.log('hehe');
 		if(i == TEST_CONSTANT-1)
-		{
-			console.log('jag aer: ' + i + "," + (tmpPosx+1) + "  ska bli: " + (i+1) + ',' + (tmpPosx+1));
-			//console.log('inne i första if');
+		{	
+			console.log(tmp.frameID);
+			console.log(gameBoard[i][tmpPosx+1].frameID);
+			gameBoard[i][tmpPosx+1].barrelSprite.frame = tmp.frameID;
 			gameBoard[i][tmpPosx+1] = tmp;
-		} else {
-			console.log('jag aer: ' + i + "," + (tmpPosx+1) + "  ska bli: " + (i+1) + ',' + (tmpPosx+1));
+			console.log(gameBoard[i][tmpPosx+1].frameID);
 
-			gameBoard[i][tmpPosx+1].barrelSprite.loadTexture(gameBoard[i+1][tmpPosx+1].barrelSprite.key);
+		} else {
+			//console.log('jag aer: ' + i + "," + (tmpPosx+1) + "  ska bli: " + (i+1) + ',' + (tmpPosx+1));
+
+			gameBoard[i][tmpPosx+1].barrelSprite.frame = gameBoard[i+1][tmpPosx+1].frameID;
+			//console.log(gameBoard[i][tmpPosx+1]);
 			gameBoard[i][tmpPosx+1] = gameBoard[i+1][tmpPosx+1];
+			//console.log(gameBoard[i][tmpPosx+1]);
 
 			//updateBarrelInfo();
 		}
 
 	}
 //	console.log(tmpBarrel.barrelSprite);
-//	console.log('efter');
+	//console.log('efter');
 	//printRow(tmpPosx+1);
 }
 
