@@ -189,33 +189,44 @@ function moveRowBellow () {
 }
 
 function moveRowLeft (tmpBarrel) {
-	console.log(tmpBarrel.barrelSprite.key);
+	//console.log(tmpBarrel.barrelSprite.key);
 
 	//gameBoard[0][0].barrelSprite.loadTexture(tmpBarrel.barrelSprite.key);
+	//tmpBarrel.barrelInfo();
 	
-	var tmpPosx = tmpBarrel.posX;
-	var tmpPosy = tmpBarrel.posY;
-	var tmp = gameBoard[0][tmpPosx+1];
-//	console.log('innan');
-	//printRow(tmpPosx+1);
-	for(i = 1; i < TEST_CONSTANT; i++)
-	{
-		//console.log('hehe');
-		if(i == TEST_CONSTANT-1)
-		{
-			console.log('jag aer: ' + i + "," + (tmpPosx+1) + "  ska bli: " + (i+1) + ',' + (tmpPosx+1));
-			//console.log('inne i första if');
-			gameBoard[i][tmpPosx+1] = tmp;
+	var col = tmpBarrel.posY;
+	var row = tmpBarrel.posX+1;
+	var text = gameBoard[0][row].barrelSprite.key;
+	var barrel = gameBoard[0][row];
+	gameBoard[0][row].barrelSprite.loadTexture(gameBoard[1][row].barrelSprite.key);
+	gameBoard[1][row].barrelSprite.loadTexture(gameBoard[2][row].barrelSprite.key);
+	gameBoard[2][row].barrelSprite.loadTexture(gameBoard[3][row].barrelSprite.key);
+	gameBoard[3][row].barrelSprite.loadTexture(gameBoard[4][row].barrelSprite.key);
+	gameBoard[4][row].barrelSprite.loadTexture(gameBoard[5][row].barrelSprite.key);
+	gameBoard[5][row].barrelSprite.loadTexture(text);
+
+	printRow(row);
+
+	for(var i = 0; i < TEST_CONSTANT; i++) {
+		if(i == TEST_CONSTANT-1) {
+			gameBoard[5][row].barrelType = barrel.barrelType;
+			gameBoard[5][row].barrelId = barrel.barrelId;
+			gameBoard[5][row].barrelSprite = barrel.barrelSprite;
 		} else {
-			console.log('jag aer: ' + i + "," + (tmpPosx+1) + "  ska bli: " + (i+1) + ',' + (tmpPosx+1));
-
-			gameBoard[i][tmpPosx+1].barrelSprite.loadTexture(gameBoard[i+1][tmpPosx+1].barrelSprite.key);
-			gameBoard[i][tmpPosx+1] = gameBoard[i+1][tmpPosx+1];
-
-			//updateBarrelInfo();
+			gameBoard[i][row].barrelType = gameBoard[i+1][row].barrelType;
+			gameBoard[i][row].barrelId = gameBoard[i+1][row].barrelId;
+			gameBoard[i][row].barrelSprite = gameBoard[i+1][row].barrelSprite;
 		}
-
 	}
+	console.log('---------------');
+	printRow(row);
+	/*
+	gameBoard[0][row] = gameBoard[1][row];
+	gameBoard[1][row] = gameBoard[2][row];
+	gameBoard[2][row] = gameBoard[3][row];
+	gameBoard[3][row] = gameBoard[4][row];
+	gameBoard[4][row] = gameBoard[5][row];
+	gameBoard[5][row] = barrel;*/
 //	console.log(tmpBarrel.barrelSprite);
 //	console.log('efter');
 	//printRow(tmpPosx+1);
