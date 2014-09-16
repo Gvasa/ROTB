@@ -206,12 +206,16 @@ function moveRowLeft (tmpBarrel) {
 	gameBoard[5][row].barrelSprite.loadTexture(text);
 
 	printRow(row);
+    
+    var fooType = gameBoard[0][row].barrelType;
+    var fooId = gameBoard[0][row].barrelId;
+    var fooSprite = gameBoard[0][row].barrelSprite;
 
 	for(var i = 0; i < TEST_CONSTANT; i++) {
 		if(i == TEST_CONSTANT-1) {
-			gameBoard[5][row].barrelType = barrel.barrelType;
-			gameBoard[5][row].barrelId = barrel.barrelId;
-			gameBoard[5][row].barrelSprite = barrel.barrelSprite;
+			gameBoard[5][row].barrelType = fooType;
+			gameBoard[5][row].barrelId = fooId;
+			gameBoard[5][row].barrelSprite = fooSprite;
 		} else {
 			gameBoard[i][row].barrelType = gameBoard[i+1][row].barrelType;
 			gameBoard[i][row].barrelId = gameBoard[i+1][row].barrelId;
