@@ -161,7 +161,7 @@ function listener() {
 			break;
 
 		case BARREL_MOVE_ROW_BELOW:
-			moveRowBellow(this);
+			moveColUp(this);
 			break;
 
 		case BARREL_MOVE_ROW_LEFT:
@@ -170,7 +170,7 @@ function listener() {
 
 		case BARREL_CHARGE:
 			//addCharge();
-			moveRowBellow(this);
+			moveColUp(this);
 			break;
 	}
 
@@ -185,7 +185,7 @@ function showBarrelBellow () {
 	console.log('show bellow!');
 }
 
-function moveRowBellow (tmpBarrel) {
+function moveColUp (tmpBarrel) {
 	console.log('move bellow!');
 	var col = tmpBarrel.posY-1;
 	var row = tmpBarrel.posX;
@@ -207,11 +207,11 @@ function moveRowBellow (tmpBarrel) {
 		if(i == TEST_CONSTANT-1) {
 			gameBoard[col][5].barrelType = fooType;
 			gameBoard[col][5].barrelId = fooId;
-			gameBoard[col][5].barrelSprite = fooSprite;
+			//gameBoard[col][5].barrelSprite = fooSprite;
 		} else {
 			gameBoard[col][i].barrelType = gameBoard[col][i+1].barrelType;
 			gameBoard[col][i].barrelId = gameBoard[col][i+1].barrelId;
-			gameBoard[col][i].barrelSprite = gameBoard[col][i+1].barrelSprite;
+			//gameBoard[col][i].barrelSprite = gameBoard[col][i+1].barrelSprite;
 		}
 	}
 
@@ -245,11 +245,11 @@ function moveRowLeft (tmpBarrel) {
 		if(i == TEST_CONSTANT-1) {
 			gameBoard[5][row].barrelType = fooType;
 			gameBoard[5][row].barrelId = fooId;
-			gameBoard[5][row].barrelSprite = fooSprite;
+		//	gameBoard[5][row].barrelSprite = fooSprite;
 		} else {
 			gameBoard[i][row].barrelType = gameBoard[i+1][row].barrelType;
 			gameBoard[i][row].barrelId = gameBoard[i+1][row].barrelId;
-			gameBoard[i][row].barrelSprite = gameBoard[i+1][row].barrelSprite;
+			//gameBoard[i][row].barrelSprite = gameBoard[i+1][row].barrelSprite;
 		}
 	}
 	console.log('---------------');
