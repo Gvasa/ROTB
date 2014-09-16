@@ -60,13 +60,14 @@ function preload() {
 }
 
 
-function Barrel(barreltype, posx, posy, id, sprite, charge) {
+function Barrel(barreltype, posx, posy, id, sprite, charge, visible) {
 	this.barrelType = barreltype;
 	this.posX = posx;
 	this.posY = posy;
 	this.barrelId = id;
 	this.barrelSprite = sprite;
 	this.charges = charge;
+    this.visible = visible;
 }
 
 Barrel.prototype.barrelInfo = function() {
@@ -99,16 +100,19 @@ function spawnBoard() {
 			var rand = Math.round(Math.random()*3);
 			if(rand === 0) {
 				barrel = game.add.sprite(i*BARREL_WIDTH, j*BARREL_HEIGHT, 'spriteMoveRowLeft');
-				gameBoard[i][j] = new Barrel(BARREL_MOVE_ROW_LEFT, j, i, counter, barrel, 1);
+				gameBoard[i][j] = new Barrel(BARREL_MOVE_ROW_LEFT, j, i, counter, barrel, 2, false);
+                barrel.alpha = false;
 			} else if (rand === 1) {
 				barrel = game.add.sprite(i*BARREL_WIDTH, j*BARREL_HEIGHT, 'spriteRevealAbove');
-				gameBoard[i][j] = new Barrel(BARREL_REVEAL_ABOVE, j, i, counter, barrel, 1);
+				gameBoard[i][j] = new Barrel(BARREL_REVEAL_ABOVE, j, i, counter, barrel, 2, true);
 			} else if (rand == 2) {
 				barrel = game.add.sprite(i*BARREL_WIDTH, j*BARREL_HEIGHT, 'spriteCharge');
-				gameBoard[i][j] = new Barrel(BARREL_CHARGE, j, i, counter, barrel, 1);
+				gameBoard[i][j] = new Barrel(BARREL_CHARGE, j, i, counter, barrel, 2, false);
+                barrel.alpha = false;
 			} else {
 				barrel = game.add.sprite(i*BARREL_WIDTH, j*BARREL_HEIGHT, 'spriteMoveColUp');
-				gameBoard[i][j] = new Barrel(BARREL_MOVE_COL_UP, j, i, counter, barrel, 1);
+				gameBoard[i][j] = new Barrel(BARREL_MOVE_COL_UP, j, i, counter, barrel, 2, false);
+                barrel.alpha = false;
 			}
 		
 			barrel.inputEnabled = true;
@@ -126,7 +130,10 @@ function listener() {
 	switch(expr) {
 		
 		case BARREL_REVEAL_ABOVE:
-			showBarrelAbove();
+            if(this.posX == 0 || this.charges <= 0 || gameBoard[this.posY][this.posX-1].barrelSprite.alpha == true)
+                break;
+			showBarrelAbove(this);
+            this.charges--;
 			break;
 
 		case BARREL_REVEAL_BELOW:
@@ -153,8 +160,13 @@ function listener() {
 	}
 }
 
-function showBarrelAbove() {
-	console.log('shwo above!');
+function showBarrelAbove(tmpBarrel) {
+    console.log('shwo above!');
+    var row = tmpBarrel.posX;
+    var col = tmpBarrel.posY;
+    gameBoard[col][row-1].barrelSprite.alpha = true;
+    gameBoard[col][row-1].barrelSprite.inputEnabled = true;
+    gameBoard[col][row-1].barrelSprite.events.onInputDown.add(listener, gameBoard[col][row-1]);
 }
 
 function showBarrelBellow () {
@@ -178,18 +190,22 @@ function moveColUp (tmpBarrel) {
     var fooId = gameBoard[col][0].barrelId;
     var fooSprite = gameBoard[col][0].barrelSprite; 
     var fooCharges = gameBoard[col][0].charges;
+    var fooVisible = gameBoard[col][0].visible;
 
     for(var i = 0; i < TEST_CONSTANT; i++) {
 		if(i == TEST_CONSTANT-1) {
 			gameBoard[col][5].barrelType = fooType;
 			gameBoard[col][5].barrelId = fooId;
 			gameBoard[col][5].charges = fooCharges;
+            gameBoard[col][5].visible = fooVisible;
 		} else {
 			gameBoard[col][i].barrelType = gameBoard[col][i+1].barrelType;
 			gameBoard[col][i].barrelId = gameBoard[col][i+1].barrelId;
 			gameBoard[col][i].charges = gameBoard[col][i+1].charges;
+            gameBoard[col][i].visible = gameBoard[col][i+1].visible;
 		}
 	}
+    uppdateBarrelVisibility(col, true/*this is col*/);
 }
 
 function moveRowLeft (tmpBarrel) {
@@ -209,18 +225,22 @@ function moveRowLeft (tmpBarrel) {
     var fooId = gameBoard[0][row].barrelId;
     var fooSprite = gameBoard[0][row].barrelSprite;
     var fooCharges = gameBoard[0][row].charges;
+    var fooVisible = gameBoard[0][row].visible;
 
 	for(var i = 0; i < TEST_CONSTANT; i++) {
 		if(i == TEST_CONSTANT-1) {
 			gameBoard[5][row].barrelType = fooType;
 			gameBoard[5][row].barrelId = fooId;
 			gameBoard[5][row].charges = fooCharges;
+            gameBoard[5][row].visible = fooVisible;
 		} else {
 			gameBoard[i][row].barrelType = gameBoard[i+1][row].barrelType;
 			gameBoard[i][row].barrelId = gameBoard[i+1][row].barrelId;
 			gameBoard[i][row].charges = gameBoard[i+1][row].charges;
+            gameBoard[i][row].visible = gameBoard[i+1][row].visible;
 		}
 	}
+    uppdateBarrelVisibility(row, false/*this is row*/);
 }
 
 function addCharge (tmpBarrel) {
@@ -247,8 +267,18 @@ function addCharge (tmpBarrel) {
 
 }
 
-function uppdateBarrelInfo() {
-	console.log('ska uppdatera info');
+function uppdateBarrelVisibility(tmpPos, isCol) {
+	if(isCol) {
+        for(var i = 0; i < TEST_CONSTANT; i++) {
+            gameBoard[tmpPos][i].barrelSprite.alpha = gameBoard[tmpPos][i].visible;
+            gameBoard[tmpPos][i].barrelSprite.inputEnabled = gameBoard[tmpPos][i].visible;
+        }
+    } else {
+        for(var i = 0; i < TEST_CONSTANT; i++) {
+            gameBoard[i][tmpPos].barrelSprite.alpha = gameBoard[i][tmpPos].visible;
+            gameBoard[i][tmpPos].barrelSprite.alpha = gameBoard[i][tmpPos].visible;
+        }
+    }
 }
 
 function printRow(rowId) {
