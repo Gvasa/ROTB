@@ -60,18 +60,18 @@ function preload() {
 }
 
 
-function Barrel(barreltype, posx, posy, id, sprite, charge, visible) {
-	this.barrelType = barreltype;
-	this.posX = posx;
-	this.posY = posy;
-	this.barrelId = id;
-	this.barrelSprite = sprite;
-	this.charges = charge;
-    this.visible = visible;
+function Barrel(_barreltype, _posx, _posy, _id, _sprite, _charge, _visible) {
+	this.barrelType = _barreltype;
+	this.posX = _posx;
+	this.posY = _posy;
+	this.barrelId = _id;
+	this.barrelSprite = _sprite;
+	this.charges = _charge;
+    this.visible = _visible;
 }
 
 Barrel.prototype.barrelInfo = function() {
-	console.log("I am the one and only barrel number:  " + this.barrelId + "  My posy is:  " + this.posX + "-" + this.posY + "  I am a mother fucking: " + this.barrelType);
+	console.log("BarrelId:  " + this.barrelId + "  row:  " + this.posX + " col: " + this.posY + "  Type: " + this.barrelType + " Charges: " + this.charges + " visible: " + this.visible);
 }
 
 function create() {
@@ -117,9 +117,10 @@ function spawnBoard() {
 		
 			barrel.inputEnabled = true;
 
-            if(barrel.alpha == true) {
-			    gameBoard[i][j].barrelSprite.events.onInputDown.add(listener,gameBoard[i][j]);
-            }
+            gameBoard[i][j].barrelSprite.events.onInputDown.add(listener,gameBoard[i][j]);
+            if(!gameBoard[i][j].visible)
+                gameBoard[i][j].barrelSprite.inputEnabled = false;
+
             counter++;
 		}
 	}
@@ -130,14 +131,18 @@ function listener() {
 	switch(expr) {
 		
 		case BARREL_REVEAL_ABOVE:
-            if(this.posX == 0 || this.charges <= 0 || gameBoard[this.posY][this.posX-1].barrelSprite.alpha == true)
+            if(this.posX == 0 || this.charges <= 0 || gameBoard[this.posY][this.posX-1].visible == true) {
+                console.log('IF');
                 break;
+            }
 			showBarrelAbove(this);
             this.charges--;
+            this.barrelInfo();
 			break;
 
 		case BARREL_REVEAL_BELOW:
 			showBarrelBellow();
+            this.barrelInfo();
 			break;
 
 		case BARREL_MOVE_COL_UP:
@@ -145,6 +150,7 @@ function listener() {
 				break;
 			moveColUp(this);
 			this.charges--;
+            this.barrelInfo();
 			break;
 
 		case BARREL_MOVE_ROW_LEFT:
@@ -152,10 +158,12 @@ function listener() {
 				break;
 			moveRowLeft(this);
 			this.charges--;
+            this.barrelInfo();
 			break;
 
 		case BARREL_CHARGE:
 			addCharge(this);
+            this.barrelInfo();
 			break;
 	}
 }
@@ -164,9 +172,10 @@ function showBarrelAbove(tmpBarrel) {
     console.log('shwo above!');
     var row = tmpBarrel.posX;
     var col = tmpBarrel.posY;
-    gameBoard[col][row-1].barrelSprite.alpha = true;
-    gameBoard[col][row-1].barrelSprite.inputEnabled = true;
-    gameBoard[col][row-1].barrelSprite.events.onInputDown.add(listener, gameBoard[col][row-1]);
+    
+    gameBoard[col][row-1].visible = true;
+    gameBoard[col][row-1].barrelInfo();
+    uppdateBarrelVisibility(row-1, false);
 }
 
 function showBarrelBellow () {
@@ -276,7 +285,7 @@ function uppdateBarrelVisibility(tmpPos, isCol) {
     } else {
         for(var i = 0; i < TEST_CONSTANT; i++) {
             gameBoard[i][tmpPos].barrelSprite.alpha = gameBoard[i][tmpPos].visible;
-            gameBoard[i][tmpPos].barrelSprite.alpha = gameBoard[i][tmpPos].visible;
+            gameBoard[i][tmpPos].barrelSprite.inputEnabled = gameBoard[i][tmpPos].visible;
         }
     }
 }
@@ -296,7 +305,7 @@ function printCol(colId) {
 
 function printBoard() {
 	for (var j = 0; j < TEST_CONSTANT; j++) {
-   	for (var k = 0; k < TEST_CONSTANT; k++) {
+   	    for (var k = 0; k < TEST_CONSTANT; k++) {
    			gameBoard[j][k].barrelInfo();
 
    		}
