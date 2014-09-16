@@ -161,7 +161,7 @@ function listener() {
 			break;
 
 		case BARREL_MOVE_ROW_BELOW:
-			moveRowBellow();
+			moveRowBellow(this);
 			break;
 
 		case BARREL_MOVE_ROW_LEFT:
@@ -169,7 +169,8 @@ function listener() {
 			break;
 
 		case BARREL_CHARGE:
-			addCharge();
+			//addCharge();
+			moveRowBellow(this);
 			break;
 	}
 
@@ -184,8 +185,37 @@ function showBarrelBellow () {
 	console.log('show bellow!');
 }
 
-function moveRowBellow () {
+function moveRowBellow (tmpBarrel) {
 	console.log('move bellow!');
+	var col = tmpBarrel.posY-1;
+	var row = tmpBarrel.posX;
+	var text = gameBoard[col][0].barrelSprite.key;
+	var barrel = gameBoard[col][0];
+	
+	gameBoard[col][0].barrelSprite.loadTexture(gameBoard[col][1].barrelSprite.key);
+	gameBoard[col][1].barrelSprite.loadTexture(gameBoard[col][2].barrelSprite.key);
+	gameBoard[col][2].barrelSprite.loadTexture(gameBoard[col][3].barrelSprite.key);
+	gameBoard[col][3].barrelSprite.loadTexture(gameBoard[col][4].barrelSprite.key);
+	gameBoard[col][4].barrelSprite.loadTexture(gameBoard[col][5].barrelSprite.key);
+	gameBoard[col][5].barrelSprite.loadTexture(text);
+
+	var fooType = gameBoard[col][0].barrelType;
+    var fooId = gameBoard[col][0].barrelId;
+    var fooSprite = gameBoard[col][0].barrelSprite; 
+
+    for(var i = 0; i < TEST_CONSTANT; i++) {
+		if(i == TEST_CONSTANT-1) {
+			gameBoard[col][5].barrelType = fooType;
+			gameBoard[col][5].barrelId = fooId;
+			gameBoard[col][5].barrelSprite = fooSprite;
+		} else {
+			gameBoard[col][i].barrelType = gameBoard[col][i+1].barrelType;
+			gameBoard[col][i].barrelId = gameBoard[col][i+1].barrelId;
+			gameBoard[col][i].barrelSprite = gameBoard[col][i+1].barrelSprite;
+		}
+	}
+
+
 }
 
 function moveRowLeft (tmpBarrel) {
