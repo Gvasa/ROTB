@@ -60,12 +60,13 @@ function preload() {
 }
 
 
-function Barrel(barreltype, posx, posy, id, sprite) {
+function Barrel(barreltype, posx, posy, id, sprite, charge) {
 	this.barrelType = barreltype;
 	this.posX = posx;
 	this.posY = posy;
 	this.barrelId = id;
 	this.barrelSprite = sprite;
+	this.charges = charge;
 }
 
 Barrel.prototype.barrelInfo = function() {
@@ -98,16 +99,16 @@ function spawnBoard() {
 			var rand = Math.round(Math.random()*3);
 			if(rand === 0) {
 				barrel = game.add.sprite(i*BARREL_WIDTH, j*BARREL_HEIGHT, 'spriteMoveRowLeft');
-				gameBoard[i][j] = new Barrel(BARREL_MOVE_ROW_LEFT, j, i, counter, barrel);
+				gameBoard[i][j] = new Barrel(BARREL_MOVE_ROW_LEFT, j, i, counter, barrel, 1);
 			} else if (rand === 1) {
 				barrel = game.add.sprite(i*BARREL_WIDTH, j*BARREL_HEIGHT, 'spriteRevealAbove');
-				gameBoard[i][j] = new Barrel(BARREL_REVEAL_ABOVE, j, i, counter, barrel);
+				gameBoard[i][j] = new Barrel(BARREL_REVEAL_ABOVE, j, i, counter, barrel, 1);
 			} else if (rand == 2) {
 				barrel = game.add.sprite(i*BARREL_WIDTH, j*BARREL_HEIGHT, 'spriteCharge');
-				gameBoard[i][j] = new Barrel(BARREL_CHARGE, j, i, counter, barrel);
+				gameBoard[i][j] = new Barrel(BARREL_CHARGE, j, i, counter, barrel, 1);
 			} else {
 				barrel = game.add.sprite(i*BARREL_WIDTH, j*BARREL_HEIGHT, 'spriteMoveColUp');
-				gameBoard[i][j] = new Barrel(BARREL_MOVE_COL_UP, j, i, counter, barrel);
+				gameBoard[i][j] = new Barrel(BARREL_MOVE_COL_UP, j, i, counter, barrel, 1);
 			}
 		
 			barrel.inputEnabled = true;
@@ -133,19 +134,21 @@ function listener() {
 			break;
 
 		case BARREL_MOVE_COL_UP:
-			if(this.posY == 0)
+			if(this.posY == 0 || this.charges <= 0)
 				break;
 			moveColUp(this);
+			this.charges--;
 			break;
 
 		case BARREL_MOVE_ROW_LEFT:
-			if(this.posX == TEST_CONSTANT-1)
+			if(this.posX == TEST_CONSTANT-1 || this.charges <= 0)
 				break;
 			moveRowLeft(this);
+			this.charges--;
 			break;
 
 		case BARREL_CHARGE:
-			addCharge();
+			addCharge(this);
 			break;
 	}
 }
@@ -174,14 +177,17 @@ function moveColUp (tmpBarrel) {
 	var fooType = gameBoard[col][0].barrelType;
     var fooId = gameBoard[col][0].barrelId;
     var fooSprite = gameBoard[col][0].barrelSprite; 
+    var fooCharges = gameBoard[col][0].charges;
 
     for(var i = 0; i < TEST_CONSTANT; i++) {
 		if(i == TEST_CONSTANT-1) {
 			gameBoard[col][5].barrelType = fooType;
 			gameBoard[col][5].barrelId = fooId;
+			gameBoard[col][5].charges = fooCharges;
 		} else {
 			gameBoard[col][i].barrelType = gameBoard[col][i+1].barrelType;
 			gameBoard[col][i].barrelId = gameBoard[col][i+1].barrelId;
+			gameBoard[col][i].charges = gameBoard[col][i+1].charges;
 		}
 	}
 }
@@ -202,22 +208,43 @@ function moveRowLeft (tmpBarrel) {
     var fooType = gameBoard[0][row].barrelType;
     var fooId = gameBoard[0][row].barrelId;
     var fooSprite = gameBoard[0][row].barrelSprite;
+    var fooCharges = gameBoard[0][row].charges;
 
 	for(var i = 0; i < TEST_CONSTANT; i++) {
 		if(i == TEST_CONSTANT-1) {
 			gameBoard[5][row].barrelType = fooType;
 			gameBoard[5][row].barrelId = fooId;
-		//	gameBoard[5][row].barrelSprite = fooSprite;
+			gameBoard[5][row].charges = fooCharges;
 		} else {
 			gameBoard[i][row].barrelType = gameBoard[i+1][row].barrelType;
 			gameBoard[i][row].barrelId = gameBoard[i+1][row].barrelId;
-			//gameBoard[i][row].barrelSprite = gameBoard[i+1][row].barrelSprite;
+			gameBoard[i][row].charges = gameBoard[i+1][row].charges;
 		}
 	}
 }
 
-function addCharge () {
+function addCharge (tmpBarrel) {
 	console.log('add charge!');
+	col = tmpBarrel.posY;
+	row = tmpBarrel.posX;
+
+	if(row > 0) {
+		gameBoard[col][row-1].charges++;
+		console.log('barrel over: ' + col + ',' + (row-1));
+	}
+	if(row < 5) {
+		gameBoard[col][row+1].charges++;
+		console.log('barrel under: ' + col + ',' + (row+1));
+	}
+	if(col > 0) {
+		gameBoard[col-1][row].charges++;
+		console.log('barrel venster: ' + (col-1) + ',' + row);
+	}
+	if(col < 5) {
+		gameBoard[col+1][row].charges++;
+		console.log('barrel hoeger: ' + (col+1) + ',' + row);
+	}
+
 }
 
 function uppdateBarrelInfo() {
