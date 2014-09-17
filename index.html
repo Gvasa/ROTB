@@ -30,6 +30,8 @@ var BARREL_MOVE_COL_UP = 'Barrel Move Col Up';
 var BARREL_MOVE_COL_DOWN = 'Barrel Move Col Down';
 var BARREL_MOVE_ROW_LEFT = 'Barrel Move Row To The Left';
 var BARREL_MOVE_ROW_RIGHT = 'Barrel Move Row To The Right';
+var BARREL_EMPTY = 'Barrel Empty';
+var BARREL_WIN = 'Barrel Win';
 
 var BOARD_COLS;
 var BOARD_ROWS;
@@ -46,6 +48,8 @@ var MOVE_ROW_LEFT = 4;
 var CHARGE = 5;
 
 var gameBoard;
+var winBarrelCol;
+var winBarrelRow;
 
 var selectedbarrel;
 var selectedBarrelStartPos;
@@ -56,9 +60,13 @@ var allowInput;
 
 var bClick;
 
+
+
 function preload() {
 	console.log('preload');
     game.load.image('background', 'assets/bg.png');
+    game.load.image('spriteInvisBarrel', 'assets/barrel_invis_76_96.png');
+    game.load.image('spriteWinBarrel', 'assets/barrel_win_76_96.png');
     game.load.image('spriteMoveRowLeft', 'assets/barrel_move_row_left_76_96.png');
     game.load.image('spriteMoveRowRight', 'assets/barrel_move_row_right_76_96.png');
     game.load.image('spriteMoveColUp', 'assets/barrel_move_col_up_76_96.png');
@@ -98,11 +106,104 @@ function create() {
     for(var i = 0; i < TEST_CONSTANT; i++)
     	gameBoard[i] = new Array(6);
 
-   	spawnBoard();
+  
+   	emptyBoard();
+   	createLevel1();	
+   	//spawnBoard();
 }
 
 function update() {
 	//console.log('update');
+}
+function levelComplete() {
+
+	//var text = "- Gratz! -\n Level Complete";
+    //var style = { font: "65px Arial", fill: "#ffd700", align: "center" };
+    //var t = game.add.text(game.world.centerX-280, 0, text, style);
+  
+    ceateLevel2();
+
+}
+function createLevel1() {
+
+	
+
+	gameBoard[2][3].barrelSprite.loadTexture('spriteMoveRowRight');
+	gameBoard[2][4].barrelSprite.loadTexture('spriteRevealAbove');
+	gameBoard[4][4].barrelSprite.loadTexture('spriteWinBarrel');
+	winBarrelCol = 4;
+	winBarrelRow = 4;
+
+	gameBoard[2][3].visible = false;
+	gameBoard[2][4].visible = true;
+	gameBoard[4][4].visible = true;
+
+	gameBoard[2][3].barrelType = BARREL_MOVE_ROW_RIGHT;
+	gameBoard[2][4].barrelType = BARREL_REVEAL_ABOVE;
+	gameBoard[4][4].barrelType = BARREL_WIN;
+
+	uppdateBarrelVisibility(2, true);
+	uppdateBarrelVisibility(4, false);
+}
+
+function createLevel2() {
+	for (var i = 0; i < TEST_CONSTANT; i++) {
+			for(var j = 0; j < TEST_CONSTANT; j++) {
+				gameBoard[i][j].barrelSprite.loadTexture('spriteInvisBarrel');
+				gameBoard[i][j].barrelType = BARREL_EMPTY;
+				gameBoard[i][j].visible = false;
+				gameBoard[i][j].charges = 3;
+		}
+	}
+
+	gameBoard[2][3].barrelSprite.loadTexture('spriteRevealRight');
+	gameBoard[2][4].barrelSprite.loadTexture('spriteRevealAbove');
+	gameBoard[3][3].barrelSprite.loadTexture('spriteMoveColUp');
+	gameBoard[2][2].barrelSprite.loadTexture('spriteWinBarrel');
+
+	winBarrelCol = 2;
+	winBarrelRow = 2;
+
+	gameBoard[2][3].visible = false;
+	gameBoard[2][4].visible = true;
+	gameBoard[3][3].visible = false;
+	gameBoard[2][2].visible = true;
+
+	gameBoard[2][3].barrelType = BARREL_REVEAL_RIGHT;
+	gameBoard[2][4].barrelType = BARREL_REVEAL_ABOVE;
+	gameBoard[3][3].barrelType = BARREL_MOVE_COL_UP;
+	gameBoard[2][2].barrelType = BARREL_WIN;
+
+	uppdateBarrelVisibility(2, true);
+	uppdateBarrelVisibility(4, true);
+	uppdateBarrelVisibility(3, true);
+
+}
+
+function emptyBoard() {
+	for (var i = 0; i < TEST_CONSTANT; i++) {
+			for(var j = 0; j < TEST_CONSTANT; j++) {
+				var barrel;
+				
+				barrel = game.add.sprite(i*BARREL_WIDTH, j*BARREL_HEIGHT, 'spriteInvisBarrel');
+				gameBoard[i][j] = new Barrel(BARREL_EMPTY, j, i, counter, barrel, 2, true);
+	            barrel.alpha = true;
+				barrel.inputEnabled = true;
+	            gameBoard[i][j].barrelSprite.events.onInputDown.add(listener,gameBoard[i][j]);
+	          	gameBoard[i][j].barrelSprite.inputEnabled = false;
+	            counter++;
+		}
+	}
+}
+
+function resetBoard() {
+	for (var i = 0; i < TEST_CONSTANT; i++) {
+			for(var j = 0; j < TEST_CONSTANT; j++) {
+				gameBoard[i][j].barrelSprite.loadTexture('spriteInvisBarrel');
+				gameBoard[i][j].barrelType = BARREL_EMPTY;
+				gameBoard[i][j].visible = false;
+		}
+	}
 }
 
 function spawnBoard() {
@@ -156,6 +257,7 @@ function listener() {
 		case BARREL_REVEAL_ABOVE:
             if(this.posX == 0 || this.charges <= 0 || gameBoard[this.posY][this.posX-1].visible == true) {
                 console.log('If barrel reveal above');
+                this.barrelInfo();
                 break;
             }
             bClick.play();
@@ -280,12 +382,22 @@ function moveColUp (tmpBarrel) {
 	var text = gameBoard[col][0].barrelSprite.key;
 	var barrel = gameBoard[col][0];
 	
-	gameBoard[col][0].barrelSprite.loadTexture(gameBoard[col][1].barrelSprite.key);
-	gameBoard[col][1].barrelSprite.loadTexture(gameBoard[col][2].barrelSprite.key);
-	gameBoard[col][2].barrelSprite.loadTexture(gameBoard[col][3].barrelSprite.key);
-	gameBoard[col][3].barrelSprite.loadTexture(gameBoard[col][4].barrelSprite.key);
-	gameBoard[col][4].barrelSprite.loadTexture(gameBoard[col][5].barrelSprite.key);
-	gameBoard[col][5].barrelSprite.loadTexture(text);
+	if(winBarrelCol == col && gameBoard[winBarrelCol][winBarrelRow+1].barrelType != BARREL_EMPTY) {
+		console.log('WINGINGINGIGNG');
+		gameBoard[winBarrelCol][winBarrelRow+1].barrelSprite.loadTexture('spriteInvisBarrel');
+		levelComplete();
+		return;
+	}
+
+	for(var i = 0; i <TEST_CONSTANT-1 ; i++) {
+		if(i == TEST_CONSTANT-1) 
+			gameBoard[col][i].barrelSprite.loadTexture(text);
+		else if(gameBoard[col][i+1].barrelType == BARREL_WIN) {
+			gameBoard[col][i].barrelSprite.loadTexture(gameBoard[col][i+2].barrelSprite.key);
+			i++;
+		} else 
+			gameBoard[col][i].barrelSprite.loadTexture(gameBoard[col][i+1].barrelSprite.key);
+	}
 
 	var fooType = gameBoard[col][0].barrelType;
     var fooId = gameBoard[col][0].barrelId;
@@ -299,7 +411,13 @@ function moveColUp (tmpBarrel) {
 			gameBoard[col][5].barrelId = fooId;
 			gameBoard[col][5].charges = fooCharges;
             gameBoard[col][5].visible = fooVisible;
-		} else {
+		} else if(gameBoard[col][i+1].barrelType == BARREL_WIN) {	
+        	gameBoard[col][i].barrelType = gameBoard[col][i+2].barrelType;
+			gameBoard[col][i].barrelId = gameBoard[col][i+2].barrelId;
+			gameBoard[col][i].charges = gameBoard[col][i+2].charges;
+            gameBoard[col][i].visible = gameBoard[col][i+2].visible;
+            i++;
+        }else {
 			gameBoard[col][i].barrelType = gameBoard[col][i+1].barrelType;
 			gameBoard[col][i].barrelId = gameBoard[col][i+1].barrelId;
 			gameBoard[col][i].charges = gameBoard[col][i+1].charges;
@@ -315,12 +433,15 @@ function moveColDown (tmpBarrel) {
 	var text = gameBoard[col][5].barrelSprite.key;
 	var barrel = gameBoard[col][5];
 	
-	gameBoard[col][5].barrelSprite.loadTexture(gameBoard[col][4].barrelSprite.key);
-	gameBoard[col][4].barrelSprite.loadTexture(gameBoard[col][3].barrelSprite.key);
-	gameBoard[col][3].barrelSprite.loadTexture(gameBoard[col][2].barrelSprite.key);
-	gameBoard[col][2].barrelSprite.loadTexture(gameBoard[col][1].barrelSprite.key);
-	gameBoard[col][1].barrelSprite.loadTexture(gameBoard[col][0].barrelSprite.key);
-	gameBoard[col][0].barrelSprite.loadTexture(text);
+	for(var i = 5; i >= 0; i--) {
+		if(i == 0) 
+			gameBoard[col][i].barrelSprite.loadTexture(text);
+		else if(gameBoard[col][i-1].barrelType == BARREL_WIN) {
+			gameBoard[col][i].barrelSprite.loadTexture(gameBoard[col][i-2].barrelSprite.key);
+			i--;
+		} else 
+			gameBoard[col][i].barrelSprite.loadTexture(gameBoard[col][i-1].barrelSprite.key);
+	}
 
 	var fooType = gameBoard[col][5].barrelType;
     var fooId = gameBoard[col][5].barrelId;
@@ -334,7 +455,13 @@ function moveColDown (tmpBarrel) {
 			gameBoard[col][0].barrelId = fooId;
 			gameBoard[col][0].charges = fooCharges;
             gameBoard[col][0].visible = fooVisible;
-		} else {
+		} else if(gameBoard[col][i-1].barrelType == BARREL_WIN) {	
+        	gameBoard[col][i].barrelType = gameBoard[col][i-2].barrelType;
+			gameBoard[col][i].barrelId = gameBoard[col][i-2].barrelId;
+			gameBoard[col][i].charges = gameBoard[col][i-2].charges;
+            gameBoard[col][i].visible = gameBoard[col][i-2].visible;
+            i--;
+        }else {
 			gameBoard[col][i].barrelType = gameBoard[col][i-1].barrelType;
 			gameBoard[col][i].barrelId = gameBoard[col][i-1].barrelId;
 			gameBoard[col][i].charges = gameBoard[col][i-1].charges;
@@ -345,17 +472,28 @@ function moveColDown (tmpBarrel) {
 }
 
 function moveRowRight (tmpBarrel) {
+
 	var col = tmpBarrel.posY;
 	var row = tmpBarrel.posX+1;
 	var text = gameBoard[5][row].barrelSprite.key;
 	var barrelSprite = gameBoard[5][row];
 
-	gameBoard[5][row].barrelSprite.loadTexture(gameBoard[4][row].barrelSprite.key);
-	gameBoard[4][row].barrelSprite.loadTexture(gameBoard[3][row].barrelSprite.key);
-	gameBoard[3][row].barrelSprite.loadTexture(gameBoard[2][row].barrelSprite.key);
-	gameBoard[2][row].barrelSprite.loadTexture(gameBoard[1][row].barrelSprite.key);
-	gameBoard[1][row].barrelSprite.loadTexture(gameBoard[0][row].barrelSprite.key);
-	gameBoard[0][row].barrelSprite.loadTexture(text);
+	if(winBarrelRow == row && gameBoard[winBarrelCol-1][winBarrelRow].barrelType != BARREL_EMPTY) {
+		console.log('WINGINGINGIGNG');
+		gameBoard[winBarrelCol-1][winBarrelRow].barrelSprite.loadTexture('spriteInvisBarrel');
+		createLevel2();
+		return;
+	}
+	
+	for(var i = 5; i >= 0; i--) {
+		if(i == 0) 
+			gameBoard[i][row].barrelSprite.loadTexture(text);
+		else if(gameBoard[i-1][row].barrelType == BARREL_WIN) {
+			gameBoard[i][row].barrelSprite.loadTexture(gameBoard[i-2][row].barrelSprite.key);
+			i--;
+		} else 
+			gameBoard[i][row].barrelSprite.loadTexture(gameBoard[i-1][row].barrelSprite.key);
+	}
 
 	var fooType = gameBoard[5][row].barrelType;
     var fooId = gameBoard[5][row].barrelId;
@@ -364,17 +502,25 @@ function moveRowRight (tmpBarrel) {
     var fooVisible = gameBoard[5][row].visible;
 
     for(var i = 5; i >= 0; i--) {
+    	
     	if(i == 0) {
     		gameBoard[0][row].barrelType = fooType;
 			gameBoard[0][row].barrelId = fooId;
 			gameBoard[0][row].charges = fooCharges;
             gameBoard[0][row].visible = fooVisible;
+        } else if(gameBoard[i-1][row].barrelType == BARREL_WIN) {	
+        	gameBoard[i][row].barrelType = gameBoard[i-2][row].barrelType;
+			gameBoard[i][row].barrelId = gameBoard[i-2][row].barrelId;
+			gameBoard[i][row].charges = gameBoard[i-2][row].charges;
+            gameBoard[i][row].visible = gameBoard[i-2][row].visible;
+            i--;
         } else {
         	gameBoard[i][row].barrelType = gameBoard[i-1][row].barrelType;
 			gameBoard[i][row].barrelId = gameBoard[i-1][row].barrelId;
 			gameBoard[i][row].charges = gameBoard[i-1][row].charges;
             gameBoard[i][row].visible = gameBoard[i-1][row].visible;
         }
+    
     }
     uppdateBarrelVisibility(row, false/*this is row*/);
 
@@ -384,14 +530,17 @@ function moveRowLeft (tmpBarrel) {
 	var row = tmpBarrel.posX+1;
 	var text = gameBoard[0][row].barrelSprite.key;
 	var barrel = gameBoard[0][row];
+	
+	for(var i = 0; i < TEST_CONSTANT-1; i++) {
+		if(i == TEST_CONSTANT-1) 
+			gameBoard[i][row].barrelSprite.loadTexture(text);
+		else if(gameBoard[i+1][row].barrelType == BARREL_WIN) {
+			gameBoard[i][row].barrelSprite.loadTexture(gameBoard[i+2][row].barrelSprite.key);
+			i++;
+		} else 
+			gameBoard[i][row].barrelSprite.loadTexture(gameBoard[i+1][row].barrelSprite.key);
+	}
 
-	gameBoard[0][row].barrelSprite.loadTexture(gameBoard[1][row].barrelSprite.key);
-	gameBoard[1][row].barrelSprite.loadTexture(gameBoard[2][row].barrelSprite.key);
-	gameBoard[2][row].barrelSprite.loadTexture(gameBoard[3][row].barrelSprite.key);
-	gameBoard[3][row].barrelSprite.loadTexture(gameBoard[4][row].barrelSprite.key);
-	gameBoard[4][row].barrelSprite.loadTexture(gameBoard[5][row].barrelSprite.key);
-	gameBoard[5][row].barrelSprite.loadTexture(text);
-    
     var fooType = gameBoard[0][row].barrelType;
     var fooId = gameBoard[0][row].barrelId;
     var fooSprite = gameBoard[0][row].barrelSprite;
@@ -404,7 +553,13 @@ function moveRowLeft (tmpBarrel) {
 			gameBoard[5][row].barrelId = fooId;
 			gameBoard[5][row].charges = fooCharges;
             gameBoard[5][row].visible = fooVisible;
-		} else {
+		} else if(gameBoard[i+1][row].barrelType == BARREL_WIN) {	
+        	gameBoard[i][row].barrelType = gameBoard[i+2][row].barrelType;
+			gameBoard[i][row].barrelId = gameBoard[i+2][row].barrelId;
+			gameBoard[i][row].charges = gameBoard[i+2][row].charges;
+            gameBoard[i][row].visible = gameBoard[i+2][row].visible;
+            i++;
+        } else {
 			gameBoard[i][row].barrelType = gameBoard[i+1][row].barrelType;
 			gameBoard[i][row].barrelId = gameBoard[i+1][row].barrelId;
 			gameBoard[i][row].charges = gameBoard[i+1][row].charges;
@@ -437,6 +592,7 @@ function addCharge (tmpBarrel) {
 	}
 
 }
+
 
 function uppdateBarrelVisibility(tmpPos, isCol) {
 	if(isCol) {
