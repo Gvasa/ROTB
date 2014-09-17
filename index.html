@@ -1,8 +1,9 @@
 <!doctype html> 
 <html lang="en"> 
 <head> 
-	<meta charset="UTF-8" />
+	<meta charset="UTF-8"/>
     <title>RoTB</title>
+    <link rel="stylesheet" media="screen" href="css/style.css">
 	<script type="text/javascript" src="js/phaser.min.js"></script>
     <style type="text/css">
         body {
@@ -12,19 +13,23 @@
     </style>
 </head>
 <body>
-<div style="width: 60%; margin: 0px auto;">
+
 
 <script type="text/javascript">
 
-var game = new Phaser.Game(640, 960, Phaser.AUTO, 'ROTB', { preload: preload, create: create, update: update });
+var game = new Phaser.Game(640, 960, Phaser.AUTO, 'gameCentered', { preload: preload, create: create, update: update });
 
 //------------------!!!!!!-----------------J ÄR X POS ----------- I ÄR Y POS----------!!!! -------------------//
 
 var BARREL_REVEAL_ABOVE = 'Barrel Reveal Above';
 var BARREL_REVEAL_BELOW = 'Barrel Reveal Below';
+var BARREL_REVEAL_LEFT = 'Barrel Reveal Left';
+var BARREL_REVEAL_RIGHT = 'Barrel Reveal Right';
 var BARREL_CHARGE = 'Barrel Charge';
-var BARREL_MOVE_COL_UP = 'Barrel Move Row Below';
-var BARREL_MOVE_ROW_LEFT = 'Barrel Move Row To The left';
+var BARREL_MOVE_COL_UP = 'Barrel Move Col Up';
+var BARREL_MOVE_COL_DOWN = 'Barrel Move Col Down';
+var BARREL_MOVE_ROW_LEFT = 'Barrel Move Row To The Left';
+var BARREL_MOVE_ROW_RIGHT = 'Barrel Move Row To The Right';
 
 var BOARD_COLS;
 var BOARD_ROWS;
@@ -49,14 +54,22 @@ var tempShiftedBarrel;
 var tempShiftedBarrelTween;
 var allowInput;
 
+var bClick;
 
 function preload() {
 	console.log('preload');
     game.load.image('background', 'assets/bg.png');
     game.load.image('spriteMoveRowLeft', 'assets/barrel_move_row_left_76_96.png');
+    game.load.image('spriteMoveRowRight', 'assets/barrel_move_row_right_76_96.png');
     game.load.image('spriteMoveColUp', 'assets/barrel_move_col_up_76_96.png');
-    game.load.image('spriteRevealAbove', 'assets/barrel_reveal_up_green_76_96.png');
-    game.load.image('spriteCharge', 'assets/barrel_charge_yellow_76_96.png');
+    game.load.image('spriteMoveColDown', 'assets/barrel_move_col_down_76_96.png');
+    game.load.image('spriteRevealAbove', 'assets/barrel_reveal_up_76_96.png');
+    game.load.image('spriteRevealBelow', 'assets/barrel_reveal_below_76_96.png');
+    game.load.image('spriteRevealLeft', 'assets/barrel_reveal_left_76_96.png');
+    game.load.image('spriteRevealRight', 'assets/barrel_reveal_right_76_96.png');
+    game.load.image('spriteCharge', 'assets/barrel_add_charge_76_96.png');
+
+    game.load.audio('sfx', 'assets/sound/barrelclick.wav');
 }
 
 
@@ -78,6 +91,8 @@ function create() {
 
 	console.log('create');
 
+	bClick = game.add.audio('sfx');
+
     text = game.add.text(250, 16, '', { fill: '#ffffff' });
     gameBoard = new Array(6);
     for(var i = 0; i < TEST_CONSTANT; i++)
@@ -97,7 +112,7 @@ function spawnBoard() {
 	for (var i = 0; i < TEST_CONSTANT; i++) {
 		for(var j = 0; j < TEST_CONSTANT; j++) {
 			var barrel;
-			var rand = Math.round(Math.random()*3);
+			var rand = Math.round(Math.random()*9);
 			if(rand === 0) {
 				barrel = game.add.sprite(i*BARREL_WIDTH, j*BARREL_HEIGHT, 'spriteMoveRowLeft');
 				gameBoard[i][j] = new Barrel(BARREL_MOVE_ROW_LEFT, j, i, counter, barrel, 2, false);
@@ -109,9 +124,17 @@ function spawnBoard() {
 				barrel = game.add.sprite(i*BARREL_WIDTH, j*BARREL_HEIGHT, 'spriteCharge');
 				gameBoard[i][j] = new Barrel(BARREL_CHARGE, j, i, counter, barrel, 2, false);
                 barrel.alpha = false;
-			} else {
-				barrel = game.add.sprite(i*BARREL_WIDTH, j*BARREL_HEIGHT, 'spriteMoveColUp');
-				gameBoard[i][j] = new Barrel(BARREL_MOVE_COL_UP, j, i, counter, barrel, 2, false);
+			} else if (rand == 3) {
+				barrel = game.add.sprite(i*BARREL_WIDTH, j*BARREL_HEIGHT, 'spriteMoveRowRight');
+				gameBoard[i][j] = new Barrel(BARREL_MOVE_ROW_RIGHT, j, i, counter, barrel, 2, false);
+                barrel.alpha = false;
+             } else if (rand == 4) {
+				barrel = game.add.sprite(i*BARREL_WIDTH, j*BARREL_HEIGHT, 'spriteRevealLeft');
+				gameBoard[i][j] = new Barrel(BARREL_REVEAL_LEFT, j, i, counter, barrel, 2, true);
+                barrel.alpha = true;
+			}  else {
+				barrel = game.add.sprite(i*BARREL_WIDTH, j*BARREL_HEIGHT, 'spriteMoveColDown');
+				gameBoard[i][j] = new Barrel(BARREL_MOVE_COL_DOWN, j, i, counter, barrel, 2, false);
                 barrel.alpha = false;
 			}
 		
@@ -132,16 +155,45 @@ function listener() {
 		
 		case BARREL_REVEAL_ABOVE:
             if(this.posX == 0 || this.charges <= 0 || gameBoard[this.posY][this.posX-1].visible == true) {
-                console.log('IF');
+                console.log('If barrel reveal above');
                 break;
             }
+            bClick.play();
 			showBarrelAbove(this);
             this.charges--;
             this.barrelInfo();
 			break;
 
 		case BARREL_REVEAL_BELOW:
-			showBarrelBellow();
+			if(this.posX == TEST_CONSTANT-1 || this.charges <= 0 ||gameBoard[this.posY][this.posX+1].visible == true) {
+				console.log('If barrel reveal below');
+				break;
+			}
+			bClick.play();
+			showBarrelBellow(this);
+			this.charges--;
+            this.barrelInfo();
+			break;
+		
+		case BARREL_REVEAL_RIGHT:
+			if(this.posY == TEST_CONSTANT-1 || this.charges <= 0 ||gameBoard[this.posY+1][this.posX+1].visible == true) {
+				console.log('If barrel reveal RIGHT');
+				break;
+			}
+			bClick.play();
+			showBarrelRight(this);
+			this.charges--;
+            this.barrelInfo();
+			break;
+		
+		case BARREL_REVEAL_LEFT:
+			if(this.posY == 0 || this.charges <= 0 ||gameBoard[this.posY-1][this.posX].visible == true) {
+				console.log('If barrel reveal LEFT');
+				break;
+			}
+			bClick.play();
+			showBarrelLeft(this);
+			this.charges--;
             this.barrelInfo();
 			break;
 
@@ -153,6 +205,14 @@ function listener() {
             this.barrelInfo();
 			break;
 
+		case BARREL_MOVE_COL_DOWN:
+			if(this.posY == 0 || this.charges <= 0)
+				break;
+			moveColDown(this);
+			this.charges--;
+			this.barrelInfo();
+			break;
+
 		case BARREL_MOVE_ROW_LEFT:
 			if(this.posX == TEST_CONSTANT-1 || this.charges <= 0)
 				break;
@@ -161,11 +221,37 @@ function listener() {
             this.barrelInfo();
 			break;
 
+		case BARREL_MOVE_ROW_RIGHT:
+			if(this.posX == TEST_CONSTANT-1 || this.charges <= 0)
+				break;
+			moveRowRight(this);
+			this.charges--;
+			this.barrelInfo();
+			break;
+
 		case BARREL_CHARGE:
 			addCharge(this);
             this.barrelInfo();
 			break;
 	}
+}
+
+function showBarrelRight(tmpBarrel) {
+	var row = tmpBarrel.posX;
+    var col = tmpBarrel.posY;
+
+    gameBoard[col+1][row].visible = true;
+    gameBoard[col+1][row].barrelInfo();
+    uppdateBarrelVisibility(col+1, true);
+}
+
+function showBarrelLeft(tmpBarrel) {
+	var row = tmpBarrel.posX;
+    var col = tmpBarrel.posY;
+
+    gameBoard[col-1][row].visible = true;
+    gameBoard[col-1][row].barrelInfo();
+    uppdateBarrelVisibility(col-1, true);
 }
 
 function showBarrelAbove(tmpBarrel) {
@@ -178,8 +264,14 @@ function showBarrelAbove(tmpBarrel) {
     uppdateBarrelVisibility(row-1, false);
 }
 
-function showBarrelBellow () {
+function showBarrelBellow (tmpBarrel) {
 	console.log('show bellow!');
+	var row = tmpBarrel.posX;
+	var col = tmpBarrel.posY;
+
+	gameBoard[col][row+1].visible = true;
+	gameBoard[col][row+1].barrelInfo();
+	uppdateBarrelVisibility(row+1, false);
 }
 
 function moveColUp (tmpBarrel) {
@@ -217,6 +309,76 @@ function moveColUp (tmpBarrel) {
     uppdateBarrelVisibility(col, true/*this is col*/);
 }
 
+function moveColDown (tmpBarrel) {
+	var col = tmpBarrel.posY-1;
+	var row = tmpBarrel.posX;
+	var text = gameBoard[col][5].barrelSprite.key;
+	var barrel = gameBoard[col][5];
+	
+	gameBoard[col][5].barrelSprite.loadTexture(gameBoard[col][4].barrelSprite.key);
+	gameBoard[col][4].barrelSprite.loadTexture(gameBoard[col][3].barrelSprite.key);
+	gameBoard[col][3].barrelSprite.loadTexture(gameBoard[col][2].barrelSprite.key);
+	gameBoard[col][2].barrelSprite.loadTexture(gameBoard[col][1].barrelSprite.key);
+	gameBoard[col][1].barrelSprite.loadTexture(gameBoard[col][0].barrelSprite.key);
+	gameBoard[col][0].barrelSprite.loadTexture(text);
+
+	var fooType = gameBoard[col][5].barrelType;
+    var fooId = gameBoard[col][5].barrelId;
+    var fooSprite = gameBoard[col][5].barrelSprite; 
+    var fooCharges = gameBoard[col][5].charges;
+    var fooVisible = gameBoard[col][5].visible;
+
+    for(var i = 5; i >= 0; i--) {
+		if(i == 0) {
+			gameBoard[col][0].barrelType = fooType;
+			gameBoard[col][0].barrelId = fooId;
+			gameBoard[col][0].charges = fooCharges;
+            gameBoard[col][0].visible = fooVisible;
+		} else {
+			gameBoard[col][i].barrelType = gameBoard[col][i-1].barrelType;
+			gameBoard[col][i].barrelId = gameBoard[col][i-1].barrelId;
+			gameBoard[col][i].charges = gameBoard[col][i-1].charges;
+            gameBoard[col][i].visible = gameBoard[col][i-1].visible;
+		}
+	}
+    uppdateBarrelVisibility(col, true/*this is col*/);
+}
+
+function moveRowRight (tmpBarrel) {
+	var col = tmpBarrel.posY;
+	var row = tmpBarrel.posX+1;
+	var text = gameBoard[5][row].barrelSprite.key;
+	var barrelSprite = gameBoard[5][row];
+
+	gameBoard[5][row].barrelSprite.loadTexture(gameBoard[4][row].barrelSprite.key);
+	gameBoard[4][row].barrelSprite.loadTexture(gameBoard[3][row].barrelSprite.key);
+	gameBoard[3][row].barrelSprite.loadTexture(gameBoard[2][row].barrelSprite.key);
+	gameBoard[2][row].barrelSprite.loadTexture(gameBoard[1][row].barrelSprite.key);
+	gameBoard[1][row].barrelSprite.loadTexture(gameBoard[0][row].barrelSprite.key);
+	gameBoard[0][row].barrelSprite.loadTexture(text);
+
+	var fooType = gameBoard[5][row].barrelType;
+    var fooId = gameBoard[5][row].barrelId;
+    var fooSprite = gameBoard[5][row].barrelSprite;
+    var fooCharges = gameBoard[5][row].charges;
+    var fooVisible = gameBoard[5][row].visible;
+
+    for(var i = 5; i >= 0; i--) {
+    	if(i == 0) {
+    		gameBoard[0][row].barrelType = fooType;
+			gameBoard[0][row].barrelId = fooId;
+			gameBoard[0][row].charges = fooCharges;
+            gameBoard[0][row].visible = fooVisible;
+        } else {
+        	gameBoard[i][row].barrelType = gameBoard[i-1][row].barrelType;
+			gameBoard[i][row].barrelId = gameBoard[i-1][row].barrelId;
+			gameBoard[i][row].charges = gameBoard[i-1][row].charges;
+            gameBoard[i][row].visible = gameBoard[i-1][row].visible;
+        }
+    }
+    uppdateBarrelVisibility(row, false/*this is row*/);
+
+}
 function moveRowLeft (tmpBarrel) {
 	var col = tmpBarrel.posY;
 	var row = tmpBarrel.posX+1;
@@ -312,6 +474,6 @@ function printBoard() {
    	}
 }
 </script>
-</div>
+<div id="gameCentered"></div>
 </body>
 </html>
