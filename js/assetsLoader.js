@@ -24,7 +24,10 @@ game.load.image('buttonl2', 'assets/button_level_2_96_48.png');
 game.load.image('buttonl3', 'assets/button_level_3_96_48.png');
 game.load.image('buttonl4', 'assets/button_level_4_96_48.png');
 
-game.load.image('menuButtonSprite', 'assets/menu/menuButton_150_105.png');
+game.load.image('header', 'assets/menu/menu_wood_chains_header.png');
+game.load.image('menuLowerButtonSprite', 'assets/menu/menuLowerButton_150_111.png');
+game.load.image('menuUpperButtonSprite', 'assets/menu/menuUpperButton_150_138.png');
+game.load.image('menuButtonSprite', 'assets/menu/menuButton_150_111.png');
 game.load.image('menuButtonWood2', 'assets/menu/menuButton_200_141.png');
 game.load.image('resetButtonSprite', 'assets/menu/menuButtonRestart_150_105.png');
 }

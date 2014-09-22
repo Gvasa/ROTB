@@ -34,3 +34,4 @@ var menuButton1;
 var menuButton2;
 var menuButton3;
 var menuButton4;
+var header;

@@ -6,10 +6,11 @@
 
 function createMenu() {
 	resetBoard();
-	var button1 = game.add.sprite(245, 270, 'menuButtonSprite');
-	var button2 = game.add.sprite(245, 360, 'menuButtonSprite');
-	var button3 = game.add.sprite(245, 450, 'menuButtonSprite');
-	var button4 = game.add.sprite(245, 540, 'menuButtonSprite');
+	header = game.add.sprite(114,-20,'header');
+	var button1 = game.add.sprite(252, 265, 'menuButtonSprite');
+	var button2 = game.add.sprite(252, 365, 'menuButtonSprite');
+	var button3 = game.add.sprite(252, 465, 'menuButtonSprite');
+	var button4 = game.add.sprite(252, 565, 'menuLowerButtonSprite');
 	var resetButtonSprite = game.add.sprite(30, 850, 'resetButtonSprite');
  	
 
@@ -37,6 +38,8 @@ function createMenu() {
 function showMenu() {
 	resetBoard();
 
+	header.alpha = true;
+
 	menuButton1.buttonSprite.inputEnabled = true;
 	menuButton1.buttonSprite.alpha = true;
 
@@ -54,6 +57,8 @@ function showMenu() {
 }
 
 function hideMenu() {
+	header.alpha = false;
+
 	menuButton1.buttonSprite.inputEnabled = false;
 	menuButton1.buttonSprite.alpha = false;
 

@@ -191,7 +191,7 @@ function moveRowRight (tmpBarrel) {
         }
     
     }
-    uppdateBarrelVisibility(row, false/*this is row*/);
+    uppdateBarrelVisibility(row, false);
 
 }
 function moveRowLeft (tmpBarrel) {
