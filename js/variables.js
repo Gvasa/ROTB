@@ -23,6 +23,8 @@ var gameBoard;
 var winBarrelCol;
 var winBarrelRow;
 
+var currentLevel = '';
+
 
 var bClick;
 

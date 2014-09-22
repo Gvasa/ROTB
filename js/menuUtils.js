@@ -4,28 +4,53 @@
 }
 
 
-function showMenu() {
+function createMenu() {
 	resetBoard();
-	
-	var button1 = game.add.sprite(40, 40, 'buttonl1');
-	var button2 = game.add.sprite(40, 108, 'buttonl2');
-	var button3 = game.add.sprite(40, 176, 'buttonl3');
-	var button4 = game.add.sprite(40, 244, 'buttonl4');
+	var button1 = game.add.sprite(245, 270, 'menuButtonSprite');
+	var button2 = game.add.sprite(245, 360, 'menuButtonSprite');
+	var button3 = game.add.sprite(245, 450, 'menuButtonSprite');
+	var button4 = game.add.sprite(245, 540, 'menuButtonSprite');
+	var resetButtonSprite = game.add.sprite(30, 850, 'resetButtonSprite');
+ 	
 
 	button1.inputEnabled = true;
 	button2.inputEnabled = true;
 	button3.inputEnabled = true;
 	button4.inputEnabled = true;
+	resetButtonSprite.inputEnabled = true;
 
 	menuButton1 = new Button('level1', button1);
 	menuButton2 = new Button('level2', button2);
 	menuButton3 = new Button('level3', button3);
 	menuButton4 = new Button('level4', button4);
+	resetButton = new Button('resetButton', resetButtonSprite);
+	resetButton.buttonSprite.alpha = false;
 
 	button1.events.onInputDown.add(menuListener, menuButton1);	
 	button2.events.onInputDown.add(menuListener, menuButton2);
 	button3.events.onInputDown.add(menuListener, menuButton3);
 	button4.events.onInputDown.add(menuListener, menuButton4);
+	resetButtonSprite.events.onInputDown.add(menuListener, resetButton);
+	resetButton.buttonSprite.inputEnabled = false;
+}
+
+function showMenu() {
+	resetBoard();
+
+	menuButton1.buttonSprite.inputEnabled = true;
+	menuButton1.buttonSprite.alpha = true;
+
+	menuButton2.buttonSprite.inputEnabled = true;
+	menuButton2.buttonSprite.alpha = true;
+	
+	menuButton3.buttonSprite.inputEnabled = true;
+	menuButton3.buttonSprite.alpha = true;
+	
+	menuButton4.buttonSprite.inputEnabled = true;
+	menuButton4.buttonSprite.alpha = true;
+
+	resetButton.buttonSprite.inputEnabled = false;
+	resetButton.buttonSprite.alpha = false;
 }
 
 function hideMenu() {
@@ -41,6 +66,8 @@ function hideMenu() {
 	menuButton4.buttonSprite.inputEnabled = false;
 	menuButton4.buttonSprite.alpha = false;
 
+	resetButton.buttonSprite.inputEnabled = true;
+	resetButton.buttonSprite.alpha = true;
 }
 
 

@@ -23,4 +23,8 @@ game.load.image('buttonl1', 'assets/button_level_1_96_48.png');
 game.load.image('buttonl2', 'assets/button_level_2_96_48.png');
 game.load.image('buttonl3', 'assets/button_level_3_96_48.png');
 game.load.image('buttonl4', 'assets/button_level_4_96_48.png');
+
+game.load.image('menuButtonSprite', 'assets/menu/menuButton_150_105.png');
+game.load.image('menuButtonWood2', 'assets/menu/menuButton_200_141.png');
+game.load.image('resetButtonSprite', 'assets/menu/menuButtonRestart_150_105.png');
 }

@@ -96,22 +96,31 @@ function menuListener() {
 	switch(type) {
 
 		case 'level1':
+			currentLevel = 'level1';
 			readLevelsFromFile('level1');
 			hideMenu();
 			break;
 
 		case 'level2':
+			currentLevel = 'level2';
 			readLevelsFromFile('level2');
 			hideMenu();
 			break;
 
 		case 'level3':
+			currentLevel = 'level3';
 			readLevelsFromFile('level3');
 			hideMenu();
 			break;
 
 		case 'level4':
+			currentLevel = 'level4';
 			readLevelsFromFile('level4');
+			hideMenu();
+			break;
+
+		case 'resetButton':
+			readLevelsFromFile(currentLevel);
 			hideMenu();
 			break;
 	}

@@ -146,6 +146,7 @@ function moveRowRight (tmpBarrel) {
 	var text = gameBoard[5][row].barrelSprite.key;
 	var barrelSprite = gameBoard[5][row];
 
+	console.log('right');
 	if(winBarrelRow == row && gameBoard[winBarrelCol-1][winBarrelRow].barrelType != BARREL_EMPTY) {
 		console.log('WINGINGINGIGNG');
 		gameBoard[winBarrelCol-1][winBarrelRow].barrelSprite.loadTexture('spriteInvisBarrel');
@@ -199,9 +200,19 @@ function moveRowLeft (tmpBarrel) {
 	var text = gameBoard[0][row].barrelSprite.key;
 	var barrel = gameBoard[0][row];
 	
-	for(var i = 0; i < TEST_CONSTANT-1; i++) {
-		if(i == TEST_CONSTANT-1) 
+	console.log('left');
+	if(winBarrelRow == row && gameBoard[winBarrelCol+1][winBarrelRow].barrelType != BARREL_EMPTY) {
+		console.log('WINGINGINGIGNG');
+		gameBoard[winBarrelCol+1][winBarrelRow].barrelSprite.loadTexture('spriteInvisBarrel');
+		levelComplete();
+		return;
+	}
+
+	for(var i = 0; i < TEST_CONSTANT; i++) {
+		if(i == 5) {
+			console.log('if-for');
 			gameBoard[i][row].barrelSprite.loadTexture(text);
+		}
 		else if(gameBoard[i+1][row].barrelType == BARREL_WIN) {
 			gameBoard[i][row].barrelSprite.loadTexture(gameBoard[i+2][row].barrelSprite.key);
 			i++;

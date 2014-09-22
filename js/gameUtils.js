@@ -18,14 +18,14 @@ function readLevelsFromFile(fileName) {
 	var fooBarrelSprite;
 	var fooBarrelType;
 	var fooVisible;
-	console.log(fileText);
+	//console.log(fileText);
 	for(var i = 0; i < TEST_CONSTANT; i++) {
 
 		for(var j = 0; j < TEST_CONSTANT*2; j++)
 		{
 			if(j%2 == 0) {
 				colCounter++;
-				console.log(colCounter);
+				//console.log(colCounter);
 			}
 				
 			//console.log(fileText[i][j] + fileText[i][j+1]);
@@ -103,7 +103,7 @@ function readLevelsFromFile(fileName) {
 					fooVisible = canSee;
 					break;
 			}
-			console.log(winBarrelCol + ' , ' + winBarrelRow);
+		//	console.log(winBarrelCol + ' , ' + winBarrelRow);
 			gameBoard[colCounter-1][i].visible = canSee;
 			gameBoard[colCounter-1][i].barrelSprite.inputEnabled = canSee;
 			gameBoard[colCounter-1][i].barrelSprite.alpha = canSee;
