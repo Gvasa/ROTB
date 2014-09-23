@@ -4,6 +4,7 @@ function levelComplete() {
     //var style = { font: "65px Arial", fill: "#ffd700", align: "center" };
     //var t = game.add.text(game.world.centerX-280, 0, text, style);
   	//emptyBoard();
+  	clearTutorials();
     showMenu();
 
 }

@@ -1,34 +1,38 @@
 function assetsLoader() {
-game.load.image('background', 'assets/bg_copy.png');
-game.load.image('spriteInvisBarrel', 'assets/barrel_invis_76_96.png');
-game.load.image('spriteWinBarrel', 'assets/barrel_win_76_96.png');
-game.load.image('spriteMoveRowLeft', 'assets/barrel_move_row_left_76_96.png');
-game.load.image('spriteMoveRowRight', 'assets/barrel_move_row_right_76_96.png');
-game.load.image('spriteMoveColUp', 'assets/barrel_move_col_up_76_96.png');
-game.load.image('spriteMoveColDown', 'assets/barrel_move_col_down_76_96.png');
-game.load.image('spriteRevealAbove', 'assets/barrel_reveal_up_76_96.png');
-game.load.image('spriteRevealBelow', 'assets/barrel_reveal_below_76_96.png');
-game.load.image('spriteRevealLeft', 'assets/barrel_reveal_left_76_96.png');
-game.load.image('spriteRevealRight', 'assets/barrel_reveal_right_76_96.png');
-game.load.image('spriteCharge', 'assets/barrel_add_charge_76_96.png');
-game.load.image('spriteFadedBarrel', 'assets/barrel_tinted_black_76_96.png');
+    game.load.image('background', 'assets/bg_copy.png');
+    game.load.image('spriteInvisBarrel', 'assets/barrel_invis_76_96.png');
+    game.load.image('spriteWinBarrel', 'assets/barrel_win_76_96.png');
+    game.load.image('spriteMoveRowLeft', 'assets/barrel_move_row_left_76_96.png');
+    game.load.image('spriteMoveRowRight', 'assets/barrel_move_row_right_76_96.png');
+    game.load.image('spriteMoveColUp', 'assets/barrel_move_col_up_76_96.png');
+    game.load.image('spriteMoveColDown', 'assets/barrel_move_col_down_76_96.png');
+    game.load.image('spriteRevealAbove', 'assets/barrel_reveal_up_76_96.png');
+    game.load.image('spriteRevealBelow', 'assets/barrel_reveal_below_76_96.png');
+    game.load.image('spriteRevealLeft', 'assets/barrel_reveal_left_76_96.png');
+    game.load.image('spriteRevealRight', 'assets/barrel_reveal_right_76_96.png');
+    game.load.image('spriteCharge', 'assets/barrel_add_charge_76_96.png');
+    game.load.image('spriteFadedBarrel', 'assets/barrel_tinted_black_76_96.png');
 
-game.load.audio('sfx', 'assets/sound/barrelclick.wav');
+    game.load.audio('sfx', 'assets/sound/barrelclick.wav');
 
-game.load.text('level1', 'assets/level1.txt');
-game.load.text('level2', 'assets/level2.txt');
-game.load.text('level3', 'assets/level3.txt');
-game.load.text('level4', 'assets/level4.txt');
+    game.load.text('level1', 'assets/level1.txt');
+    game.load.text('level2', 'assets/level2.txt');
+    game.load.text('level3', 'assets/level3.txt');
+    game.load.text('level4', 'assets/level4.txt');
 
-game.load.image('buttonl1', 'assets/button_level_1_96_48.png');
-game.load.image('buttonl2', 'assets/button_level_2_96_48.png');
-game.load.image('buttonl3', 'assets/button_level_3_96_48.png');
-game.load.image('buttonl4', 'assets/button_level_4_96_48.png');
+    game.load.image('buttonl1', 'assets/button_level_1_96_48.png');
+    game.load.image('buttonl2', 'assets/button_level_2_96_48.png');
+    game.load.image('buttonl3', 'assets/button_level_3_96_48.png');
+    game.load.image('buttonl4', 'assets/button_level_4_96_48.png');
 
-game.load.image('header', 'assets/menu/menu_wood_chains_rotb.png');
-game.load.image('menuLowerButtonSprite', 'assets/menu/menuLowerButton_150_111.png');
-game.load.image('menuUpperButtonSprite', 'assets/menu/menuUpperButton_150_138.png');
-game.load.image('menuButtonSprite', 'assets/menu/menuButton_150_111.png');
-game.load.image('menuButtonWood2', 'assets/menu/menuButton_200_141.png');
-game.load.image('resetButtonSprite', 'assets/menu/menuButtonRestart_150_105.png');
+    game.load.image('header', 'assets/menu/menu_wood_chains_rotb.png');
+    game.load.image('menuLowerButtonSprite', 'assets/menu/menuLowerButton_150_111.png');
+    game.load.image('menuUpperButtonSprite', 'assets/menu/menuUpperButton_150_138.png');
+    game.load.image('menuButtonSprite', 'assets/menu/menuButton_150_111.png');
+    game.load.image('menuButtonWood2', 'assets/menu/menuButton_200_141.png');
+    game.load.image('resetButtonSprite', 'assets/menu/menuButtonRestart_150_105.png');
+
+    game.load.image('tutorial_1_1', 'assets/tutorials/tutorial_1_1_420_310.png');
+    game.load.image('tutorial_1_2', 'assets/tutorials/tutorial_1_2_420_310.png');
+    game.load.image('tutorial_1_3', 'assets/tutorials/tutorial_1_3_420_310.png');
 }

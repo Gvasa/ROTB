@@ -9,6 +9,8 @@ function listener() {
                 this.barrelInfo();
                 break;
             }
+            if(currentLevel == 'level1')
+            	swapTutorials(3);
             bClick.play();
 			showBarrelAbove(this);
             //this.charges--;
@@ -99,6 +101,7 @@ function menuListener() {
 			currentLevel = 'level1';
 			readLevelsFromFile('level1');
 			hideMenu();
+			loadTutorials();
 			break;
 
 		case 'level2':

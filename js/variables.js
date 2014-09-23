@@ -35,3 +35,7 @@ var menuButton2;
 var menuButton3;
 var menuButton4;
 var header;
+
+var tutorial_1_1;
+var tutorial_1_2;
+var tutorial_1_3;
