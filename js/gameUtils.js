@@ -102,7 +102,7 @@ function readLevelsFromFile(fileName) {
 		//	console.log(winBarrelCol + ' , ' + winBarrelRow);
 			gameBoard[colCounter-1][i].visible = canSee;
 			gameBoard[colCounter-1][i].barrelSprite.inputEnabled = canSee;
-			//gameBoard[colCounter-1][i].barrelSprite.alpha = canSee;
+			gameBoard[colCounter-1][i].barrelSprite.alpha = canSee;
 			gameBoard[colCounter-1][i].barrelSprite.loadTexture(fooBarrelSprite);
 			gameBoard[colCounter-1][i].barrelType = fooBarrelType;
 			gameBoard[colCounter-1][i].charges = 2;
