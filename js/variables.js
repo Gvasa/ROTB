@@ -1,14 +1,14 @@
-var BARREL_REVEAL_ABOVE = 'Barrel Reveal Above';
-var BARREL_REVEAL_BELOW = 'Barrel Reveal Below';
-var BARREL_REVEAL_LEFT = 'Barrel Reveal Left';
-var BARREL_REVEAL_RIGHT = 'Barrel Reveal Right';
-var BARREL_CHARGE = 'Barrel Charge';
-var BARREL_MOVE_COL_UP = 'Barrel Move Col Up';
-var BARREL_MOVE_COL_DOWN = 'Barrel Move Col Down';
-var BARREL_MOVE_ROW_LEFT = 'Barrel Move Row To The Left';
-var BARREL_MOVE_ROW_RIGHT = 'Barrel Move Row To The Right';
-var BARREL_EMPTY = 'Barrel Empty';
-var BARREL_WIN = 'Barrel Win';
+var BARREL_REVEAL_ABOVE = 'spriteRevealAbove';
+var BARREL_REVEAL_BELOW = 'spriteRevealBelow';
+var BARREL_REVEAL_LEFT = 'spriteRevealLeft';
+var BARREL_REVEAL_RIGHT = 'spriteRevealRight';
+var BARREL_CHARGE = 'spriteCharge';
+var BARREL_MOVE_COL_UP = 'spriteMoveColUp';
+var BARREL_MOVE_COL_DOWN = 'spriteMoveColDown';
+var BARREL_MOVE_ROW_LEFT = 'spriteMoveRowLeft';
+var BARREL_MOVE_ROW_RIGHT = 'spriteMoveRowRight';
+var BARREL_EMPTY = 'spriteInvisBarrel';
+var BARREL_WIN = 'spriteWinBarrel';
 
 var BOARD_COLS;
 var BOARD_ROWS;

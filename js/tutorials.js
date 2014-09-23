@@ -2,11 +2,14 @@ function loadTutorials() {
     tutorial_1_1 = game.add.sprite(114,-20,'tutorial_1_1');
     tutorial_1_2 = game.add.sprite(113,-20,'tutorial_1_2');
     tutorial_1_3 = game.add.sprite(115,-20,'tutorial_1_3');
-    
+
+    clearTutorials();
+}
+
+function showTutorials () {
     tutorial_1_1.alpha = false;
     tutorial_1_2.alpha = true;
     tutorial_1_3.alpha = false;
-
 }
 
 function swapTutorials(index) {

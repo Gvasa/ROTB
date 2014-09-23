@@ -101,7 +101,7 @@ function menuListener() {
 			currentLevel = 'level1';
 			readLevelsFromFile('level1');
 			hideMenu();
-			loadTutorials();
+			showTutorials();
 			break;
 
 		case 'level2':

@@ -30,6 +30,7 @@ var game = new Phaser.Game(640, 960, Phaser.AUTO, 'gameCentered', { preload: pre
 function preload() {
 	console.log('preload');
     assetsLoader();
+
 }
 
 function create() {
@@ -46,6 +47,7 @@ function create() {
 
     emptyBoard();
     createMenu();
+    loadTutorials();
 }
 
 function update() {

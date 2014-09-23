@@ -103,10 +103,16 @@ function readLevelsFromFile(fileName) {
 		//	console.log(winBarrelCol + ' , ' + winBarrelRow);
 			gameBoard[colCounter-1][i].visible = canSee;
 			gameBoard[colCounter-1][i].barrelSprite.inputEnabled = canSee;
-			gameBoard[colCounter-1][i].barrelSprite.alpha = canSee;
-			gameBoard[colCounter-1][i].barrelSprite.loadTexture(fooBarrelSprite);
+			//gameBoard[colCounter-1][i].barrelSprite.alpha = canSee;
+			//gameBoard[colCounter-1][i].barrelSprite.loadTexture(fooBarrelSprite);
 			gameBoard[colCounter-1][i].barrelType = fooBarrelType;
 			gameBoard[colCounter-1][i].charges = 2;
+
+			if(fooBarrelType != BARREL_EMPTY && canSee == false)
+				gameBoard[colCounter-1][i].barrelSprite.loadTexture('spriteFadedBarrel');
+			else 
+				gameBoard[colCounter-1][i].barrelSprite.loadTexture(fooBarrelSprite);
+
 
 			j++;
 		}	
@@ -193,13 +199,16 @@ function spawnBoard() {
 function uppdateBarrelVisibility(tmpPos, isCol) {
 	if(isCol) {
         for(var i = 0; i < TEST_CONSTANT; i++) {
-            gameBoard[tmpPos][i].barrelSprite.alpha = gameBoard[tmpPos][i].visible;
-            gameBoard[tmpPos][i].barrelSprite.inputEnabled = gameBoard[tmpPos][i].visible;
+           // gameBoard[tmpPos][i].barrelSprite.alpha = gameBoard[tmpPos][i].visible;
+           gameBoard[tmpPos][i].barrelSprite.inputEnabled = gameBoard[tmpPos][i].visible;
+
+
         }
     } else {
         for(var i = 0; i < TEST_CONSTANT; i++) {
-            gameBoard[i][tmpPos].barrelSprite.alpha = gameBoard[i][tmpPos].visible;
-            gameBoard[i][tmpPos].barrelSprite.inputEnabled = gameBoard[i][tmpPos].visible;
+            //gameBoard[i][tmpPos].barrelSprite.alpha = gameBoard[i][tmpPos].visible;
+           gameBoard[i][tmpPos].barrelSprite.inputEnabled = gameBoard[i][tmpPos].visible;
+
         }
     }
 }

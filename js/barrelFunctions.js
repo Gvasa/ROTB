@@ -3,6 +3,8 @@ function showBarrelRight(tmpBarrel) {
 	var row = tmpBarrel.posX;
     var col = tmpBarrel.posY;
 
+
+   	gameBoard[col+1][row].barrelSprite.loadTexture(gameBoard[col+1][row].barrelType);
     gameBoard[col+1][row].visible = true;
     gameBoard[col+1][row].barrelInfo();
     uppdateBarrelVisibility(col+1, true);
@@ -11,7 +13,8 @@ function showBarrelRight(tmpBarrel) {
 function showBarrelLeft(tmpBarrel) {
 	var row = tmpBarrel.posX;
     var col = tmpBarrel.posY;
-
+   	
+   	gameBoard[col-1][row].barrelSprite.loadTexture(gameBoard[col-1][row].barrelType);
     gameBoard[col-1][row].visible = true;
     gameBoard[col-1][row].barrelInfo();
     uppdateBarrelVisibility(col-1, true);
@@ -21,7 +24,8 @@ function showBarrelAbove(tmpBarrel) {
     console.log('shwo above!');
     var row = tmpBarrel.posX;
     var col = tmpBarrel.posY;
-    
+
+   	gameBoard[col][row-1].barrelSprite.loadTexture(gameBoard[col][row-1].barrelType);
     gameBoard[col][row-1].visible = true;
     gameBoard[col][row-1].barrelInfo();
     uppdateBarrelVisibility(row-1, false);
@@ -32,6 +36,7 @@ function showBarrelBellow (tmpBarrel) {
 	var row = tmpBarrel.posX;
 	var col = tmpBarrel.posY;
 
+   	gameBoard[col][row+1].barrelSprite.loadTexture(gameBoard[col][row+1].barrelType);
 	gameBoard[col][row+1].visible = true;
 	gameBoard[col][row+1].barrelInfo();
 	uppdateBarrelVisibility(row+1, false);
