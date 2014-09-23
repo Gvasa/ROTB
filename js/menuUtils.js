@@ -7,10 +7,10 @@
 function createMenu() {
 	resetBoard();
 	header = game.add.sprite(114,-20,'header');
-	var button1 = game.add.sprite(252, 265, 'menuButtonSprite');
-	var button2 = game.add.sprite(252, 365, 'menuButtonSprite');
-	var button3 = game.add.sprite(252, 465, 'menuButtonSprite');
-	var button4 = game.add.sprite(252, 565, 'menuLowerButtonSprite');
+	var button1 = game.add.sprite(255, 266, 'menuButtonSprite');
+	var button2 = game.add.sprite(255, 366, 'menuButtonSprite');
+	var button3 = game.add.sprite(255, 466, 'menuButtonSprite');
+	var button4 = game.add.sprite(255, 566, 'menuLowerButtonSprite');
 	var resetButtonSprite = game.add.sprite(30, 850, 'resetButtonSprite');
  	
 

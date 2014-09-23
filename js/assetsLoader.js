@@ -11,6 +11,7 @@ game.load.image('spriteRevealBelow', 'assets/barrel_reveal_below_76_96.png');
 game.load.image('spriteRevealLeft', 'assets/barrel_reveal_left_76_96.png');
 game.load.image('spriteRevealRight', 'assets/barrel_reveal_right_76_96.png');
 game.load.image('spriteCharge', 'assets/barrel_add_charge_76_96.png');
+game.load.image('spriteFadedBarrel', 'assets/barrel_tinted_black_76_96.png');
 
 game.load.audio('sfx', 'assets/sound/barrelclick.wav');
 
@@ -24,7 +25,7 @@ game.load.image('buttonl2', 'assets/button_level_2_96_48.png');
 game.load.image('buttonl3', 'assets/button_level_3_96_48.png');
 game.load.image('buttonl4', 'assets/button_level_4_96_48.png');
 
-game.load.image('header', 'assets/menu/menu_wood_chains_header.png');
+game.load.image('header', 'assets/menu/menu_wood_chains_rotb.png');
 game.load.image('menuLowerButtonSprite', 'assets/menu/menuLowerButton_150_111.png');
 game.load.image('menuUpperButtonSprite', 'assets/menu/menuUpperButton_150_138.png');
 game.load.image('menuButtonSprite', 'assets/menu/menuButton_150_111.png');
