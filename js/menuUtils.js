@@ -14,6 +14,9 @@ function createMenu() {
 	var resetButtonSprite = game.add.sprite(30, 850, 'resetButtonSprite');
  	
 
+	var test = game.add.sprite(0,0,'resetButtonSprite');
+	header.addChild(test);
+
 	button1.inputEnabled = true;
 	button2.inputEnabled = true;
 	button3.inputEnabled = true;

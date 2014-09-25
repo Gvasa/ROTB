@@ -7,6 +7,7 @@ function showBarrelRight(tmpBarrel) {
    	gameBoard[col+1][row].barrelSprite.loadTexture(gameBoard[col+1][row].barrelType);
     gameBoard[col+1][row].visible = true;
     gameBoard[col+1][row].barrelInfo();
+    uppdateBarrelVisibility(col, true);
     uppdateBarrelVisibility(col+1, true);
 }
 
@@ -17,6 +18,7 @@ function showBarrelLeft(tmpBarrel) {
    	gameBoard[col-1][row].barrelSprite.loadTexture(gameBoard[col-1][row].barrelType);
     gameBoard[col-1][row].visible = true;
     gameBoard[col-1][row].barrelInfo();
+    uppdateBarrelVisibility(col, true);
     uppdateBarrelVisibility(col-1, true);
 }
 
@@ -28,6 +30,7 @@ function showBarrelAbove(tmpBarrel) {
    	gameBoard[col][row-1].barrelSprite.loadTexture(gameBoard[col][row-1].barrelType);
     gameBoard[col][row-1].visible = true;
     gameBoard[col][row-1].barrelInfo();
+    uppdateBarrelVisibility(row, false);
     uppdateBarrelVisibility(row-1, false);
 }
 
@@ -39,6 +42,7 @@ function showBarrelBellow (tmpBarrel) {
    	gameBoard[col][row+1].barrelSprite.loadTexture(gameBoard[col][row+1].barrelType);
 	gameBoard[col][row+1].visible = true;
 	gameBoard[col][row+1].barrelInfo();
+	uppdateBarrelVisibility(row, false);
 	uppdateBarrelVisibility(row+1, false);
 }
 
@@ -90,6 +94,7 @@ function moveColUp (tmpBarrel) {
             gameBoard[col][i].visible = gameBoard[col][i+1].visible;
 		}
 	}
+	uppdateBarrelVisibility(col+1, true/*this is col*/);
     uppdateBarrelVisibility(col, true/*this is col*/);
 }
 
@@ -141,6 +146,7 @@ function moveColDown (tmpBarrel) {
             gameBoard[col][i].visible = gameBoard[col][i-1].visible;
 		}
 	}
+	uppdateBarrelVisibility(col+1, true/*this is col*/);
     uppdateBarrelVisibility(col, true/*this is col*/);
 }
 
@@ -196,6 +202,7 @@ function moveRowRight (tmpBarrel) {
         }
     
     }
+    uppdateBarrelVisibility(row-1, false/*this is col*/);
     uppdateBarrelVisibility(row, false);
 
 }
@@ -250,6 +257,7 @@ function moveRowLeft (tmpBarrel) {
             gameBoard[i][row].visible = gameBoard[i+1][row].visible;
 		}
 	}
+	uppdateBarrelVisibility(row-1, false/*this is col*/);
     uppdateBarrelVisibility(row, false/*this is row*/);
 }
 
@@ -274,5 +282,8 @@ function addCharge (tmpBarrel) {
 		gameBoard[col+1][row].charges++;
 		console.log('barrel hoeger: ' + (col+1) + ',' + row);
 	}
+
+	uppdateBarrelVisibility(col,true);
+	uppdateBarrelVisibility(row, false);
 
 }

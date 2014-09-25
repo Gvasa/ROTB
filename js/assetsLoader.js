@@ -1,29 +1,24 @@
 function assetsLoader() {
-    game.load.image('background', 'assets/bg_copy.png');
-    game.load.image('spriteInvisBarrel', 'assets/barrel_invis_76_96.png');
-    game.load.image('spriteWinBarrel', 'assets/barrel_win_76_96.png');
-    game.load.image('spriteMoveRowLeft', 'assets/barrel_move_row_left_76_96.png');
-    game.load.image('spriteMoveRowRight', 'assets/barrel_move_row_right_76_96.png');
-    game.load.image('spriteMoveColUp', 'assets/barrel_move_col_up_76_96.png');
-    game.load.image('spriteMoveColDown', 'assets/barrel_move_col_down_76_96.png');
-    game.load.image('spriteRevealAbove', 'assets/barrel_reveal_up_76_96.png');
-    game.load.image('spriteRevealBelow', 'assets/barrel_reveal_below_76_96.png');
-    game.load.image('spriteRevealLeft', 'assets/barrel_reveal_left_76_96.png');
-    game.load.image('spriteRevealRight', 'assets/barrel_reveal_right_76_96.png');
-    game.load.image('spriteCharge', 'assets/barrel_add_charge_76_96.png');
-    game.load.image('spriteFadedBarrel', 'assets/barrel_tinted_black_76_96.png');
+    game.load.image('background', 'assets/backgrounds/bg_copy.png');
+    game.load.image('spriteInvisBarrel', 'assets/barrels/barrel_invis_76_96.png');
+    game.load.image('spriteWinBarrel', 'assets/barrels/barrel_win_76_96.png');
+    game.load.image('spriteMoveRowLeft', 'assets/barrels/barrel_move_row_left_76_96.png');
+    game.load.image('spriteMoveRowRight', 'assets/barrels/barrel_move_row_right_76_96.png');
+    game.load.image('spriteMoveColUp', 'assets/barrels/barrel_move_col_up_76_96.png');
+    game.load.image('spriteMoveColDown', 'assets/barrels/barrel_move_col_down_76_96.png');
+    game.load.image('spriteRevealAbove', 'assets/barrels/barrel_reveal_up_76_96.png');
+    game.load.image('spriteRevealBelow', 'assets/barrels/barrel_reveal_below_76_96.png');
+    game.load.image('spriteRevealLeft', 'assets/barrels/barrel_reveal_left_76_96.png');
+    game.load.image('spriteRevealRight', 'assets/barrels/barrel_reveal_right_76_96.png');
+    game.load.image('spriteCharge', 'assets/barrels/barrel_add_charge_76_96.png');
+    game.load.image('spriteFadedBarrel', 'assets/barrels/barrel_tinted_black_76_96.png');
 
     game.load.audio('sfx', 'assets/sound/barrelclick.wav');
 
-    game.load.text('level1', 'assets/level1.txt');
-    game.load.text('level2', 'assets/level2.txt');
-    game.load.text('level3', 'assets/level3.txt');
-    game.load.text('level4', 'assets/level4.txt');
-
-    game.load.image('buttonl1', 'assets/button_level_1_96_48.png');
-    game.load.image('buttonl2', 'assets/button_level_2_96_48.png');
-    game.load.image('buttonl3', 'assets/button_level_3_96_48.png');
-    game.load.image('buttonl4', 'assets/button_level_4_96_48.png');
+    game.load.text('level1', 'assets/levels/level1.txt');
+    game.load.text('level2', 'assets/levels/level2.txt');
+    game.load.text('level3', 'assets/levels/level3.txt');
+    game.load.text('level4', 'assets/levels/level4.txt');
 
     game.load.image('header', 'assets/menu/menu_wood_chains_rotb.png');
     game.load.image('menuLowerButtonSprite', 'assets/menu/menuLowerButton_150_111.png');
@@ -35,4 +30,8 @@ function assetsLoader() {
     game.load.image('tutorial_1_1', 'assets/tutorials/tutorial_1_1_420_310.png');
     game.load.image('tutorial_1_2', 'assets/tutorials/tutorial_1_2_420_310.png');
     game.load.image('tutorial_1_3', 'assets/tutorials/tutorial_1_3_420_310.png');
+
+    game.load.image('spriteStar', 'assets/barrelIcons/chargeFlash_25_37.png');
+    game.load.image('spriteChargeUpper', 'assets/barrelIcons/charge_upper_76_96.png');
+    game.load.image('spriteChargeLower', 'assets/barrelIcons/charge_lower_76_96.png');
 }

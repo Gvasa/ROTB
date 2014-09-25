@@ -101,6 +101,7 @@ function readLevelsFromFile(fileName) {
 					break;
 			}
 		//	console.log(winBarrelCol + ' , ' + winBarrelRow);
+			console.log(canSee);
 			gameBoard[colCounter-1][i].visible = canSee;
 			gameBoard[colCounter-1][i].barrelSprite.inputEnabled = canSee;
 			//gameBoard[colCounter-1][i].barrelSprite.alpha = canSee;
@@ -108,11 +109,15 @@ function readLevelsFromFile(fileName) {
 			gameBoard[colCounter-1][i].barrelType = fooBarrelType;
 			gameBoard[colCounter-1][i].charges = 2;
 
-			if(fooBarrelType != BARREL_EMPTY && canSee == false)
+				if(fooBarrelType != BARREL_EMPTY && canSee == false)
 				gameBoard[colCounter-1][i].barrelSprite.loadTexture('spriteFadedBarrel');
 			else 
 				gameBoard[colCounter-1][i].barrelSprite.loadTexture(fooBarrelSprite);
 
+			if(fooBarrelType != BARREL_EMPTY && canSee == true && fooBarrelType != BARREL_WIN) {
+				gameBoard[colCounter-1][i].chargeSprite1.alpha = true;
+				gameBoard[colCounter-1][i].chargeSprite2.alpha = true;
+			}
 
 			j++;
 		}	
@@ -127,11 +132,24 @@ function emptyBoard() {
 	for (var i = 0; i < TEST_CONSTANT; i++) {
 			for(var j = 0; j < TEST_CONSTANT; j++) {
 				var barrel;
+				var chargeSprite1;
+				var chargeSprite2;
+				
 				
 				barrel = game.add.sprite(i*BARREL_WIDTH, j*BARREL_HEIGHT, 'spriteInvisBarrel');
-				gameBoard[i][j] = new Barrel(BARREL_EMPTY, j, i, counter, barrel, 2, true);
+				chargeSprite1 = game.add.sprite(5,0, 'spriteStar');
+				chargeSprite2 = game.add.sprite(30, 0, 'spriteStar');
+
+				gameBoard[i][j] = new Barrel(BARREL_EMPTY, j, i, counter, barrel, 2, false, chargeSprite1, chargeSprite2);
+	            
 	            barrel.alpha = true;
 				barrel.inputEnabled = true;
+				chargeSprite1.alpha = false;
+				chargeSprite2.alpha = false;
+			
+				barrel.addChild(chargeSprite1);
+				barrel.addChild(chargeSprite2);
+			
 	            gameBoard[i][j].barrelSprite.events.onInputDown.add(listener,gameBoard[i][j]);
 	          	gameBoard[i][j].barrelSprite.inputEnabled = false;
 	            counter++;
@@ -199,16 +217,37 @@ function spawnBoard() {
 function uppdateBarrelVisibility(tmpPos, isCol) {
 	if(isCol) {
         for(var i = 0; i < TEST_CONSTANT; i++) {
-           // gameBoard[tmpPos][i].barrelSprite.alpha = gameBoard[tmpPos][i].visible;
-           gameBoard[tmpPos][i].barrelSprite.inputEnabled = gameBoard[tmpPos][i].visible;
-
-
+           	gameBoard[tmpPos][i].barrelSprite.inputEnabled = gameBoard[tmpPos][i].visible;
+           	
+           	if(gameBoard[tmpPos][i].barrelType != BARREL_WIN) {
+           		if(gameBoard[tmpPos][i].charges == 2) {
+           			gameBoard[tmpPos][i].chargeSprite1.alpha = gameBoard[tmpPos][i].visible;
+           			gameBoard[tmpPos][i].chargeSprite2.alpha = gameBoard[tmpPos][i].visible;
+           		} else if (gameBoard[tmpPos][i].charges == 1) {
+           			gameBoard[tmpPos][i].chargeSprite1.alpha = gameBoard[tmpPos][i].visible;
+           			gameBoard[tmpPos][i].chargeSprite2.alpha = false;
+           		} else {
+           			gameBoard[tmpPos][i].chargeSprite1.alpha = false;
+           			gameBoard[tmpPos][i].chargeSprite2.alpha = false;
+           		}
+           	}           
         }
     } else {
-        for(var i = 0; i < TEST_CONSTANT; i++) {
-            //gameBoard[i][tmpPos].barrelSprite.alpha = gameBoard[i][tmpPos].visible;
-           gameBoard[i][tmpPos].barrelSprite.inputEnabled = gameBoard[i][tmpPos].visible;
-
+        for(var i = 0; i < TEST_CONSTANT; i++) {  
+           	gameBoard[i][tmpPos].barrelSprite.inputEnabled = gameBoard[i][tmpPos].visible;
+           	
+           		if(gameBoard[i][tmpPos].barrelType != BARREL_WIN) {
+           		if(gameBoard[i][tmpPos].charges == 2) {
+           			gameBoard[i][tmpPos].chargeSprite1.alpha = gameBoard[i][tmpPos].visible;
+           			gameBoard[i][tmpPos].chargeSprite2.alpha = gameBoard[i][tmpPos].visible;
+           		} else if (gameBoard[i][tmpPos].charges == 1) {
+           			gameBoard[i][tmpPos].chargeSprite1.alpha = gameBoard[i][tmpPos].visible;
+           			gameBoard[i][tmpPos].chargeSprite2.alpha = false;
+           		} else {
+           			gameBoard[i][tmpPos].chargeSprite1.alpha = false;
+           			gameBoard[i][tmpPos].chargeSprite2.alpha = false;
+           		}
+           	} 
         }
     }
 }

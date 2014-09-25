@@ -11,9 +11,10 @@ function listener() {
             }
             if(currentLevel == 'level1')
             	swapTutorials(3);
+        
             bClick.play();
+            this.charges--;
 			showBarrelAbove(this);
-            //this.charges--;
             this.barrelInfo();
 			break;
 
@@ -23,8 +24,8 @@ function listener() {
 				break;
 			}
 			bClick.play();
+			this.charges--;
 			showBarrelBellow(this);
-			//this.charges--;
             this.barrelInfo();
 			break;
 		
@@ -34,8 +35,8 @@ function listener() {
 				break;
 			}
 			bClick.play();
+			this.charges--;
 			showBarrelRight(this);
-			//this.charges--;
             this.barrelInfo();
 			break;
 		
@@ -45,40 +46,40 @@ function listener() {
 				break;
 			}
 			bClick.play();
+			this.charges--;
 			showBarrelLeft(this);
-			//this.charges--;
             this.barrelInfo();
 			break;
 
 		case BARREL_MOVE_COL_UP:
 			if(this.posY == 0 || this.charges <= 0)
 				break;
+			this.charges--;
 			moveColUp(this);
-			//this.charges--;
             this.barrelInfo();
 			break;
 
 		case BARREL_MOVE_COL_DOWN:
 			if(this.posY == 0 || this.charges <= 0)
 				break;
+			this.charges--;
 			moveColDown(this);
-			//this.charges--;
 			this.barrelInfo();
 			break;
 
 		case BARREL_MOVE_ROW_LEFT:
 			if(this.posX == TEST_CONSTANT-1 || this.charges <= 0)
 				break;
+			this.charges--;
 			moveRowLeft(this);
-			//this.charges--;
             this.barrelInfo();
 			break;
 
 		case BARREL_MOVE_ROW_RIGHT:
 			if(this.posX == TEST_CONSTANT-1 || this.charges <= 0)
 				break;
+			this.charges--;
 			moveRowRight(this);
-			//this.charges--;
 			this.barrelInfo();
 			break;
 
