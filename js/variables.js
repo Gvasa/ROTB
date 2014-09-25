@@ -39,3 +39,5 @@ var header;
 var tutorial_1_1;
 var tutorial_1_2;
 var tutorial_1_3;
+var tutorialFaded;
+var tutorialContinue;

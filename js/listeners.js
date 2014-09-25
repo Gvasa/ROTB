@@ -78,6 +78,9 @@ function listener() {
 		case BARREL_MOVE_ROW_RIGHT:
 			if(this.posX == TEST_CONSTANT-1 || this.charges <= 0)
 				break;
+			if(currentLevel == 'level1')
+					swapTutorials(4);
+
 			this.charges--;
 			moveRowRight(this);
 			this.barrelInfo();
@@ -102,7 +105,7 @@ function menuListener() {
 			currentLevel = 'level1';
 			readLevelsFromFile('level1');
 			hideMenu();
-			showTutorials();
+			swapTutorials(1);
 			break;
 
 		case 'level2':
@@ -128,5 +131,12 @@ function menuListener() {
 			hideMenu();
 			break;
 	}
+
+}
+
+function tutorialListener() {
+
+	console.log(this);
+	swapTutorials(2);
 
 }
