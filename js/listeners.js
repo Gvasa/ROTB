@@ -70,6 +70,7 @@ function listener() {
 		case BARREL_MOVE_ROW_LEFT:
 			if(this.posX == TEST_CONSTANT-1 || this.charges <= 0)
 				break;
+
 			this.charges--;
 			moveRowLeft(this);
             this.barrelInfo();
@@ -138,5 +139,6 @@ function tutorialListener() {
 
 	console.log(this);
 	swapTutorials(2);
+	this.inputEnabled = false;
 
 }
