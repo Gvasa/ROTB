@@ -4,7 +4,7 @@ function listener() {
 	switch(expr) {
 		
 		case BARREL_REVEAL_ABOVE:
-            if(this.posX == 0 || this.charges <= 0 || gameBoard[this.posY][this.posX-1].visible == true) {
+            if(this.posX == 0 || this.charges <= 0 || gameBoard[this.posY][this.posX-1].visible == true || gameBoard[this.posY][this.posX-1].barrelType == BARREL_EMPTY) {
                 console.log('If barrel reveal above');
                 this.barrelInfo();
                 break;
@@ -19,7 +19,7 @@ function listener() {
 			break;
 
 		case BARREL_REVEAL_BELOW:
-			if(this.posX == TEST_CONSTANT-1 || this.charges <= 0 ||gameBoard[this.posY][this.posX+1].visible == true) {
+			if(this.posX == TEST_CONSTANT-1 || this.charges <= 0 ||gameBoard[this.posY][this.posX+1].visible == true || gameBoard[this.posY][this.posX+1].barrelType == BARREL_EMPTY) {
 				console.log('If barrel reveal below');
 				break;
 			}
@@ -30,7 +30,7 @@ function listener() {
 			break;
 		
 		case BARREL_REVEAL_RIGHT:
-			if(this.posY == TEST_CONSTANT-1 || this.charges <= 0 ||gameBoard[this.posY+1][this.posX].visible == true) {
+			if(this.posY == TEST_CONSTANT-1 || this.charges <= 0 ||gameBoard[this.posY+1][this.posX].visible == true || gameBoard[this.posY+1][this.posX].barrelType == BARREL_EMPTY) {
 				console.log('If barrel reveal RIGHT');
 				break;
 			}
@@ -41,7 +41,7 @@ function listener() {
 			break;
 		
 		case BARREL_REVEAL_LEFT:
-			if(this.posY == 0 || this.charges <= 0 ||gameBoard[this.posY-1][this.posX].visible == true) {
+			if(this.posY == 0 || this.charges <= 0 ||gameBoard[this.posY-1][this.posX].visible == true || gameBoard[this.posY-1][this.posX].barrelType == BARREL_EMPTY) {
 				console.log('If barrel reveal LEFT');
 				break;
 			}

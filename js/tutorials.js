@@ -29,8 +29,8 @@ function swapTutorials(index) {
         tutorialContinue.inputEnabled = true;
         tutorialContinue.events.onInputDown.add(tutorialListener, this);
         game.world.bringToTop(gameBoard[4][4].barrelSprite);
-        game.world.bringToTop(tutorialContinue);
         game.world.bringToTop(tutorial_1_1);
+        game.world.bringToTop(tutorialContinue);
         gameBoard[2][4].charges--;
         uppdateBarrelVisibility(2, true);
         gameBoard[2][4].barrelSprite.inputEnabled = false;

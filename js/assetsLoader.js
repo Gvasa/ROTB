@@ -35,4 +35,8 @@ function assetsLoader() {
     game.load.image('spriteStar', 'assets/barrelIcons/chargeFlash_25_37.png');
     game.load.image('spriteChargeUpper', 'assets/barrelIcons/charge_upper_76_96.png');
     game.load.image('spriteChargeLower', 'assets/barrelIcons/charge_lower_76_96.png');
+
+    game.load.image('spriteGuiUpper', 'assets/gui/gui_upper_bar.png');
+    game.load.image('spriteGuiLower', 'assets/gui/gui_lower_bar.png');
+
 }

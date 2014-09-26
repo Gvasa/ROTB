@@ -18,6 +18,8 @@ var TEST_CONSTANT = 6;
 var BARREL_WIDTH = 80;
 var BARREL_HEIGHT = 100;
 
+var guiGroup;
+
 var gameBoard;
 
 var winBarrelCol;

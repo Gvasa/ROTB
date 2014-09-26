@@ -129,6 +129,8 @@ function readLevelsFromFile(fileName) {
 }
 
 function emptyBoard() {
+	var xShift = 100;
+	var yShift = 100;
 	for (var i = 0; i < TEST_CONSTANT; i++) {
 			for(var j = 0; j < TEST_CONSTANT; j++) {
 				var barrel;
@@ -136,7 +138,7 @@ function emptyBoard() {
 				var chargeSprite2;
 				
 				
-				barrel = game.add.sprite(i*BARREL_WIDTH, j*BARREL_HEIGHT, 'spriteInvisBarrel');
+				barrel = game.add.sprite(i*BARREL_WIDTH+xShift, j*BARREL_HEIGHT+yShift, 'spriteInvisBarrel');
 				chargeSprite1 = game.add.sprite(5,0, 'spriteStar');
 				chargeSprite2 = game.add.sprite(30, 0, 'spriteStar');
 
@@ -172,34 +174,36 @@ function resetBoard() {
 function spawnBoard() {
 	
 	console.log('spawnboard()');
-
+	var yShift = 163;
+	var xShift = 73;
+	var barrelSpacing = 1.05;
 	for (var i = 0; i < TEST_CONSTANT; i++) {
 		for(var j = 0; j < TEST_CONSTANT; j++) {
 			var barrel;
 			var rand = Math.round(Math.random()*9);
 			if(rand === 0) {
-				barrel = game.add.sprite(i*BARREL_WIDTH, j*BARREL_HEIGHT, 'spriteMoveRowLeft');
+				barrel = game.add.sprite(i*BARREL_WIDTH*barrelSpacing+xShift, j*BARREL_HEIGHT*barrelSpacing+yShift, 'spriteMoveRowLeft');
 				gameBoard[i][j] = new Barrel(BARREL_MOVE_ROW_LEFT, j, i, counter, barrel, 2, false);
-                barrel.alpha = false;
+                barrel.alpha = true;
 			} else if (rand === 1) {
-				barrel = game.add.sprite(i*BARREL_WIDTH, j*BARREL_HEIGHT, 'spriteRevealAbove');
+				barrel = game.add.sprite(i*BARREL_WIDTH*barrelSpacing+xShift, j*BARREL_HEIGHT*barrelSpacing+yShift, 'spriteRevealAbove');
 				gameBoard[i][j] = new Barrel(BARREL_REVEAL_ABOVE, j, i, counter, barrel, 2, true);
 			} else if (rand == 2) {
-				barrel = game.add.sprite(i*BARREL_WIDTH, j*BARREL_HEIGHT, 'spriteCharge');
+				barrel = game.add.sprite(i*BARREL_WIDTH*barrelSpacing+xShift, j*BARREL_HEIGHT*barrelSpacing+yShift, 'spriteCharge');
 				gameBoard[i][j] = new Barrel(BARREL_CHARGE, j, i, counter, barrel, 2, false);
-                barrel.alpha = false;
+                barrel.alpha = true;
 			} else if (rand == 3) {
-				barrel = game.add.sprite(i*BARREL_WIDTH, j*BARREL_HEIGHT, 'spriteMoveRowRight');
+				barrel = game.add.sprite(i*BARREL_WIDTH*barrelSpacing+xShift, j*BARREL_HEIGHT*barrelSpacing+yShift, 'spriteMoveRowRight');
 				gameBoard[i][j] = new Barrel(BARREL_MOVE_ROW_RIGHT, j, i, counter, barrel, 2, false);
-                barrel.alpha = false;
+                barrel.alpha = true;
              } else if (rand == 4) {
-				barrel = game.add.sprite(i*BARREL_WIDTH, j*BARREL_HEIGHT, 'spriteRevealLeft');
+				barrel = game.add.sprite(i*BARREL_WIDTH*barrelSpacing+xShift, j*BARREL_HEIGHT*barrelSpacing+yShift, 'spriteRevealLeft');
 				gameBoard[i][j] = new Barrel(BARREL_REVEAL_LEFT, j, i, counter, barrel, 2, true);
                 barrel.alpha = true;
 			}  else {
-				barrel = game.add.sprite(i*BARREL_WIDTH, j*BARREL_HEIGHT, 'spriteMoveColDown');
+				barrel = game.add.sprite(i*BARREL_WIDTH*barrelSpacing+xShift, j*BARREL_HEIGHT*barrelSpacing+yShift, 'spriteMoveColDown');
 				gameBoard[i][j] = new Barrel(BARREL_MOVE_COL_DOWN, j, i, counter, barrel, 2, false);
-                barrel.alpha = false;
+                barrel.alpha = true;
 			}
 		
 			barrel.inputEnabled = true;
