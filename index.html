@@ -11,6 +11,7 @@
 	<script type="text/javascript" src="js/gameUtils.js"></script>
 	<script type="text/javascript" src="js/menuUtils.js"></script>
     <script type="text/javascript" src="js/tutorials.js"></script>
+    <script type="text/javascript" src="js/guiUtils.js"></script> 
 	<script type="text/javascript" src="js/listeners.js"></script>
 	<script type="text/javascript" src="js/assetsLoader.js"></script>
     <style type="text/css">
@@ -48,6 +49,8 @@ function create() {
     emptyBoard();
     createMenu();
     loadTutorials();
+
+    setUpGui();
 }
 
 function update() {
