@@ -12,6 +12,7 @@ function assetsLoader() {
     game.load.image('spriteRevealRight', 'assets/barrels/barrel_reveal_right_76_96.png');
     game.load.image('spriteCharge', 'assets/barrels/barrel_add_charge_76_96.png');
     game.load.image('spriteFadedBarrel', 'assets/barrels/barrel_tinted_black_76_96.png');
+    game.load.image('spriteBaseBarrel', 'assets/barrels/barrel_base_76_96.png');
 
     game.load.audio('sfx', 'assets/sound/barrelclick.wav');
 

@@ -129,8 +129,9 @@ function readLevelsFromFile(fileName) {
 }
 
 function emptyBoard() {
-	var xShift = 100;
-	var yShift = 100;
+	var yShift = 163;
+    var xShift = 73;
+    var barrelSpacing = 1.05;
 	for (var i = 0; i < TEST_CONSTANT; i++) {
 			for(var j = 0; j < TEST_CONSTANT; j++) {
 				var barrel;
@@ -138,7 +139,7 @@ function emptyBoard() {
 				var chargeSprite2;
 				
 				
-				barrel = game.add.sprite(i*BARREL_WIDTH+xShift, j*BARREL_HEIGHT+yShift, 'spriteInvisBarrel');
+				barrel = game.add.sprite(i*BARREL_WIDTH*barrelSpacing+xShift, j*BARREL_HEIGHT*barrelSpacing+yShift, 'spriteInvisBarrel');
 				chargeSprite1 = game.add.sprite(5,0, 'spriteStar');
 				chargeSprite2 = game.add.sprite(30, 0, 'spriteStar');
 
