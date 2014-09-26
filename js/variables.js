@@ -36,6 +36,11 @@ var menuButton1;
 var menuButton2;
 var menuButton3;
 var menuButton4;
+var levelButton1;
+var levelButton2;
+var levelButton3;
+var levelButton4;
+var levelButton5;
 var header;
 
 var tutorial_1_1;

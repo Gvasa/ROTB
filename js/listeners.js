@@ -94,7 +94,47 @@ function listener() {
 	}
 }
 
+function levelListener() {
+	var type = this.buttonType;
+	switch(type) {
 
+		case 'level1':
+			currentLevel = 'level1';
+			readLevelsFromFile('level1');
+			//hideMenu();
+			hideLevelMenu();
+			swapTutorials(1);
+			break;
+
+		case 'level2':
+			currentLevel = 'level2';
+			readLevelsFromFile('level2');
+			//hideMenu();
+			hideLevelMenu();
+			break;
+
+		case 'level3':
+			currentLevel = 'level3';
+			readLevelsFromFile('level3');
+			//hideMenu();
+			hideLevelMenu();
+			break;
+
+		case 'level4':
+			currentLevel = 'level4';
+			readLevelsFromFile('level4');
+			//hideMenu();
+			hideLevelMenu();
+			break;
+
+		case 'level5':
+			currentLevel = 'level5';
+			readLevelsFromFile('level5');
+			//hideMenu();
+			hideLevelMenu();
+			break;
+	}
+}
 
 function menuListener() {
 	console.log(this);	
@@ -102,29 +142,19 @@ function menuListener() {
 	var type = this.buttonType;
 	switch(type) {
 
-		case 'level1':
+		case 'play':
 			currentLevel = 'level1';
 			readLevelsFromFile('level1');
 			hideMenu();
 			swapTutorials(1);
 			break;
 
-		case 'level2':
-			currentLevel = 'level2';
-			readLevelsFromFile('level2');
+		case 'levels':
+			//currentLevel = 'level2';
+			//readLevelsFromFile('level2');
 			hideMenu();
-			break;
-
-		case 'level3':
-			currentLevel = 'level3';
-			readLevelsFromFile('level3');
-			hideMenu();
-			break;
-
-		case 'level4':
-			currentLevel = 'level4';
-			readLevelsFromFile('level4');
-			hideMenu();
+			createLevelMenu();
+			showLevelMenu();
 			break;
 
 		case 'resetButton':
