@@ -41,4 +41,9 @@ function assetsLoader() {
     game.load.image('spriteGuiUpper', 'assets/gui/gui_upper_bar.png');
     game.load.image('spriteGuiLower', 'assets/gui/gui_lower_bar.png');
 
+    game.load.image('spriteLevel1', 'assets/barrels/levels/level1.png');
+    game.load.image('spriteLevel2', 'assets/barrels/levels/level2.png');
+    game.load.image('spriteLevel3', 'assets/barrels/levels/level3.png');
+    game.load.image('spriteLevel4', 'assets/barrels/levels/level4.png');
+    game.load.image('spriteLevel5', 'assets/barrels/levels/level5.png');
 }
