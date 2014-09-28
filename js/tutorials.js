@@ -4,6 +4,7 @@ function loadTutorials() {
     tutorial_1_2 = game.add.sprite(115,-24,'tutorial_1_2');
     tutorial_1_3 = game.add.sprite(115,-24,'tutorial_1_3');
     tutorialContinue = game.add.sprite(255,266, 'menuLowerButtonSprite');
+   // tutorialContinue.alpha = false;
     //tutorialContinue.inputEnabled = true;
     //tutorialContinue.events.onInputDown.add(tutorialListener, this);
     console.log('wtf');
@@ -69,4 +70,5 @@ function clearTutorials() {
     tutorialFaded.alpha = false;
     tutorialContinue.alpha = false;
     game.world.bringToTop(menuButton1.buttonSprite);
+    game.world.bringToTop(menuButton2.buttonSprite);
 }
