@@ -43,6 +43,9 @@ var levelButton4;
 var levelButton5;
 var header;
 
+var nextLevelButton;
+var levelCompleteButton;
+
 var tutorial_1_1;
 var tutorial_1_2;
 var tutorial_1_3;

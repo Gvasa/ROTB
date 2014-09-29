@@ -5,7 +5,8 @@ function levelComplete() {
     //var t = game.add.text(game.world.centerX-280, 0, text, style);
   	//emptyBoard();
   	clearTutorials();
-    showMenu();
+    showPostGameMenu();
+    //showMenu();
 
 }
 

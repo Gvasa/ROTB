@@ -154,3 +154,16 @@ function hideLevelMenu() {
 	guiUpper.alpha = true;
 	guiLower.alpha = true;
 }
+
+function showPostGameMenu() {
+	//clearBoard();
+	levelCompleteButton = game.add.sprite(114, -20, 'continueButtonSprite');
+	var button1 = game.add.sprite(90, 366, 'nextLevelButtonSprite');
+
+	button1.inputEnabled = true;
+
+	nextLevelButton = new Button('nextLevel', button1);
+
+	button1.events.onInputDown.add(levelListener ,nextLevelButton);
+
+}

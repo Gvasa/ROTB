@@ -23,7 +23,6 @@ function assetsLoader() {
     game.load.text('level4', 'assets/levels/level4.json');
     game.load.text('level5', 'assets/levels/level5.json');
 
-
     game.load.image('header', 'assets/menu/menu_wood_chains_rotb.png');
     game.load.image('menuLowerButtonSprite', 'assets/menu/menuLowerButton_150_111.png');
     game.load.image('menuUpperButtonSprite', 'assets/menu/menuUpperButton_150_138.png');
@@ -47,4 +46,6 @@ function assetsLoader() {
     game.load.image('spriteGuiLower', 'assets/gui/gui_lower_bar.png');
 
     game.load.spritesheet('levels', 'assets/barrels/levels/levels_spritesheet.png', 77, 98);
+
+    game.load.image('nextLevelButtonSprite', 'assets/menu/level_complete_420_310.png');
 }

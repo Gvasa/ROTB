@@ -133,7 +133,14 @@ function levelListener() {
 			//hideMenu();
 			hideLevelMenu();
 			break;
-	}
+		case 'nextLevel':
+			var foo = currentLevel;
+			var he = parseInt(foo.slice(-1));
+			he++;
+			console.log(foo);
+			console.log(he);
+			break;
+	}		
 }
 
 function menuListener() {
