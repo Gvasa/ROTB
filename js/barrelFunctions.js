@@ -160,7 +160,7 @@ function moveRowRight (tmpBarrel) {
 	console.log('right');
 	if(winBarrelRow == row && gameBoard[winBarrelCol-1][winBarrelRow].barrelType != BARREL_EMPTY) {
 		console.log('WINGINGINGIGNG');
-		gameBoard[winBarrelCol-1][winBarrelRow].barrelSprite.loadTexture('spriteInvisBarrel');
+		gameBoard[winBarrelCol-1][winBarrelRow].barrelSprite.loadTexture(BARREL_EMPTY);
 		levelComplete();
 		return;
 	}

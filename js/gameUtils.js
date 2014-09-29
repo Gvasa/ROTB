@@ -9,125 +9,6 @@ function levelComplete() {
 
 }
 
-function readLevelsFromFile(fileName) {
-	var tmpFileText = game.cache.getText(fileName);
-
-	fileText = tmpFileText.split('\n');
-	var colCounter=0;
-	var sign;
-	var canSee;
-	var fooBarrelSprite;
-	var fooBarrelType;
-	var fooVisible;
-	for(var i = 0; i < TEST_CONSTANT; i++) {
-
-		for(var j = 0; j < TEST_CONSTANT*2; j++)
-		{
-			if(j%2 == 0) {
-				colCounter++;
-			}
-			
-			sign = fileText[i][j];
-			canSee = 's' == fileText[i][j+1] ? true : false;
-			//console.log(invis);
-			switch(sign) {
-
-				case '0':
-					fooBarrelType = BARREL_EMPTY;
-					fooBarrelSprite = 'spriteInvisBarrel';
-					fooVisible = canSee;
-					break;
-
-				case '>':
-					fooBarrelType = BARREL_MOVE_ROW_RIGHT;
-					fooBarrelSprite = 'spriteMoveRowRight';
-					fooVisible = canSee;
-					break;
-				
-				case '^':
-					fooBarrelType = BARREL_MOVE_COL_UP;
-					fooBarrelSprite = 'spriteMoveColUp';
-					fooVisible = canSee;
-					break;
-				
-				case 'v':
-					fooBarrelType = BARREL_MOVE_COL_DOWN;
-					fooBarrelSprite = 'spriteMoveColDown';
-					fooVisible = canSee;
-					break;
-
-				case '<':
-					fooBarrelType = BARREL_MOVE_ROW_LEFT;
-					fooBarrelSprite = 'spriteMoveRowLeft';
-					fooVisible = canSee;
-					break;
-
-				case 'a':
-					fooBarrelType = BARREL_REVEAL_ABOVE;
-					fooBarrelSprite = 'spriteRevealAbove';
-					fooVisible = canSee;
-					break;
-
-				case 'b':
-					fooBarrelType = BARREL_REVEAL_BELOW;
-					fooBarrelSprite = 'spriteRevealBelow';
-					fooVisible = canSee;
-					break;
-
-				case 'r':
-					fooBarrelType = BARREL_REVEAL_RIGHT;
-					fooBarrelSprite = 'spriteRevealRight';
-					fooVisible = canSee;
-					break;
-
-				case 'l':
-					fooBarrelType = BARREL_REVEAL_LEFT;
-					fooBarrelSprite = 'spriteRevealLeft';
-					fooVisible = canSee;
-					break;
-				
-				case 'z':
-					fooBarrelType = BARREL_CHARGE;
-					fooBarrelSprite = 'spriteCharge';
-					fooVisible = canSee;
-					break;
-
-				case 'w':
-					fooBarrelType = BARREL_WIN;
-					fooBarrelSprite = 'spriteWinBarrel';
-					winBarrelCol = colCounter-1;
-					winBarrelRow = i;
-					fooVisible = canSee;
-					break;
-			}
-		//	console.log(winBarrelCol + ' , ' + winBarrelRow);
-			console.log(canSee);
-			gameBoard[colCounter-1][i].visible = canSee;
-			gameBoard[colCounter-1][i].barrelSprite.inputEnabled = canSee;
-			//gameBoard[colCounter-1][i].barrelSprite.alpha = canSee;
-			//gameBoard[colCounter-1][i].barrelSprite.loadTexture(fooBarrelSprite);
-			gameBoard[colCounter-1][i].barrelType = fooBarrelType;
-			gameBoard[colCounter-1][i].charges = 2;
-
-				if(fooBarrelType != BARREL_EMPTY && canSee == false)
-				gameBoard[colCounter-1][i].barrelSprite.loadTexture('spriteFadedBarrel');
-			else 
-				gameBoard[colCounter-1][i].barrelSprite.loadTexture(fooBarrelSprite);
-
-			if(fooBarrelType != BARREL_EMPTY && canSee == true && fooBarrelType != BARREL_WIN) {
-				gameBoard[colCounter-1][i].chargeSprite1.alpha = true;
-				gameBoard[colCounter-1][i].chargeSprite2.alpha = true;
-			}
-
-			j++;
-		}	
-		colCounter = 0;	
-		
-		uppdateBarrelVisibility(i, true);
-		
-	}
-}
-
 function emptyBoard() {
 	var yShift = 163;
     var xShift = 73;
@@ -139,7 +20,7 @@ function emptyBoard() {
 				var chargeSprite2;
 				
 				
-				barrel = game.add.sprite(i*BARREL_WIDTH*barrelSpacing+xShift, j*BARREL_HEIGHT*barrelSpacing+yShift, 'spriteInvisBarrel');
+				barrel = game.add.sprite(i*BARREL_WIDTH*barrelSpacing+xShift, j*BARREL_HEIGHT*barrelSpacing+yShift, BARREL_EMPTY);
 				chargeSprite1 = game.add.sprite(5,0, 'spriteStar');
 				chargeSprite2 = game.add.sprite(30, 0, 'spriteStar');
 
@@ -163,7 +44,7 @@ function emptyBoard() {
 function resetBoard() {
 	for (var i = 0; i < TEST_CONSTANT; i++) {
 			for(var j = 0; j < TEST_CONSTANT; j++) {
-				gameBoard[i][j].barrelSprite.loadTexture('spriteInvisBarrel');
+				gameBoard[i][j].barrelSprite.loadTexture(BARREL_EMPTY);
 				gameBoard[i][j].barrelType = BARREL_EMPTY;
 				gameBoard[i][j].visible = false;
 				gameBoard[i][j].charges = 3;
