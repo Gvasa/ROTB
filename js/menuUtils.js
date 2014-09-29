@@ -97,6 +97,9 @@ function showMenu() {
 	*/
 	resetButton.buttonSprite.inputEnabled = false;
 	resetButton.buttonSprite.alpha = false;
+
+	guiUpper.alpha = false;
+	guiLower.alpha = false;
 }
 
 function hideMenu() {
@@ -116,6 +119,9 @@ function hideMenu() {
 	*/
 	resetButton.buttonSprite.inputEnabled = true;
 	resetButton.buttonSprite.alpha = true;
+
+	guiUpper.alpha = true;
+	guiLower.alpha = true;
 }
 
 function showLevelMenu() {
@@ -138,7 +144,10 @@ function showLevelMenu() {
 	levelButton5.buttonSprite.alpha = true;
 
 	resetButton.buttonSprite.inputEnabled = false;
-	resetButton.buttonSprite.alpha = true;
+	resetButton.buttonSprite.alpha = false;
+
+	guiUpper.alpha = false;
+	guiLower.alpha = false;
 }
 
 function hideLevelMenu() {
@@ -161,4 +170,7 @@ function hideLevelMenu() {
 
 	resetButton.buttonSprite.inputEnabled = true;
 	resetButton.buttonSprite.alpha = true;
+
+	guiUpper.alpha = true;
+	guiLower.alpha = true;
 }
