@@ -4,9 +4,7 @@ function loadTutorials() {
     tutorial_1_2 = game.add.sprite(115,-24,'tutorial_1_2');
     tutorial_1_3 = game.add.sprite(115,-24,'tutorial_1_3');
     tutorialContinue = game.add.sprite(256,265, 'continueButtonSprite');
-   // tutorialContinue.alpha = false;
-    //tutorialContinue.inputEnabled = true;
-    //tutorialContinue.events.onInputDown.add(tutorialListener, this);
+   
     console.log('wtf');
     clearTutorials();
 }

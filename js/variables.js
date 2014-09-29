@@ -28,7 +28,6 @@ var winBarrelRow;
 
 var currentLevel = '';
 
-
 var bClick;
 
 var fileText;
