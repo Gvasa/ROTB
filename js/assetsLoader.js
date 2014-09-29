@@ -27,7 +27,7 @@ function assetsLoader() {
     game.load.image('menuUpperButtonSprite', 'assets/menu/menuUpperButton_150_138.png');
     game.load.image('menuButtonSprite', 'assets/menu/menuButton_150_111.png');
     game.load.image('menuButtonWood2', 'assets/menu/menuButton_200_141.png');
-    game.load.image('resetButtonSprite', 'assets/menu/menuButtonRestart_150_105.png');
+    game.load.image('resetButtonSprite', 'assets/menu/menuButtonReset_196_53.png');
     game.load.image('continueButtonSprite', 'assets/menu/menuButtonContinue_150_113.png');
     game.load.image('levelsButtonSprite', 'assets/menu/menuButtonLevels_150_113.png');
     game.load.image('playButtonSprite', 'assets/menu/menuButtonPlay_150_113.png');
