@@ -19,6 +19,8 @@ var TEST_CONSTANT = 6;
 var BARREL_WIDTH = 80;
 var BARREL_HEIGHT = 100;
 
+var NUM_OF_LEVELS = 5;
+
 var guiGroup;
 
 var gameBoard;
@@ -43,7 +45,7 @@ var levelButton4;
 var levelButton5;
 var header;
 
-var nextLevelButton;
+//var nextLevelButton;
 var levelCompleteButton;
 
 var tutorial_1_1;

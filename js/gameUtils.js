@@ -3,11 +3,13 @@ function levelComplete() {
 	//var text = "- Gratz! -\n Level Complete";
     //var style = { font: "65px Arial", fill: "#ffd700", align: "center" };
     //var t = game.add.text(game.world.centerX-280, 0, text, style);
-  	//emptyBoard();
+    resetBoard();
+  	emptyBoard();
   	clearTutorials();
-    showPostGameMenu();
-    //showMenu();
-
+    if(parseInt(currentLevel.slice(-1)) < NUM_OF_LEVELS) {
+        showPostGameMenu();
+    } else
+        showMenu();
 }
 
 function emptyBoard() {

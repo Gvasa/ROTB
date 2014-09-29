@@ -134,11 +134,15 @@ function levelListener() {
 			hideLevelMenu();
 			break;
 		case 'nextLevel':
+			hidePostGameMenu();
 			var foo = currentLevel;
-			var he = parseInt(foo.slice(-1));
-			he++;
-			console.log(foo);
-			console.log(he);
+
+			var levelNum = parseInt(foo.slice(-1))+1;
+			if(levelNum < 6) {
+				var tmp = foo.substring(0, 5) + levelNum;
+				currentLevel = foo.substring(0, 5) + levelNum;
+				readJson(currentLevel);
+			}
 			break;
 	}		
 }
@@ -151,15 +155,12 @@ function menuListener() {
 
 		case 'play':
 			currentLevel = 'level1';
-			//readLevelsFromFile('level1');
 			readJson('level1');
 			hideMenu();
 			swapTutorials(1);
 			break;
 
 		case 'levels':
-			//currentLevel = 'level2';
-			//readLevelsFromFile('level2');
 			hideMenu();
 			createLevelMenu();
 			showLevelMenu();

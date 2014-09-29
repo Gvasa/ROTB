@@ -47,5 +47,5 @@ function assetsLoader() {
 
     game.load.spritesheet('levels', 'assets/barrels/levels/levels_spritesheet.png', 77, 98);
 
-    game.load.image('nextLevelButtonSprite', 'assets/menu/level_complete_420_310.png');
+    game.load.image('levelCompleteButtonSprite', 'assets/menu/level_complete_420_310.png');
 }
