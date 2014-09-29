@@ -54,7 +54,7 @@ function moveColUp (tmpBarrel) {
 	
 	if(winBarrelCol == col && gameBoard[winBarrelCol][winBarrelRow+1].barrelType != BARREL_EMPTY) {
 		console.log('WINGINGINGIGNG');
-		gameBoard[winBarrelCol][winBarrelRow+1].barrelSprite.loadTexture('spriteInvisBarrel');
+		gameBoard[winBarrelCol][winBarrelRow+1].barrelSprite.loadTexture(BARREL_EMPTY);
 		levelComplete();
 		return;
 	}
@@ -106,7 +106,7 @@ function moveColDown (tmpBarrel) {
 	
 	if(winBarrelCol == col && gameBoard[winBarrelCol][winBarrelRow-1].barrelType != BARREL_EMPTY) {
 		console.log('WINGINGINGIGNG');
-		gameBoard[winBarrelCol][winBarrelRow-1].barrelSprite.loadTexture('spriteInvisBarrel');
+		gameBoard[winBarrelCol][winBarrelRow-1].barrelSprite.loadTexture(BARREL_EMPTY);
 		levelComplete();
 		return;
 	}
@@ -215,7 +215,7 @@ function moveRowLeft (tmpBarrel) {
 	console.log('left');
 	if(winBarrelRow == row && gameBoard[winBarrelCol+1][winBarrelRow].barrelType != BARREL_EMPTY) {
 		console.log('WINGINGINGIGNG');
-		gameBoard[winBarrelCol+1][winBarrelRow].barrelSprite.loadTexture('spriteInvisBarrel');
+		gameBoard[winBarrelCol+1][winBarrelRow].barrelSprite.loadTexture(BARREL_EMPTY);
 		levelComplete();
 		return;
 	}

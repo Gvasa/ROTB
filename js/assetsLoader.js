@@ -17,16 +17,11 @@ function assetsLoader() {
 
     game.load.audio('sfx', 'assets/sound/barrelclick.wav');
 
-    game.load.text('level1', 'assets/levels/level1.txt');
-    game.load.text('level2', 'assets/levels/level2.txt');
-    game.load.text('level3', 'assets/levels/level3.txt');
-    game.load.text('level4', 'assets/levels/level4.txt');
-    game.load.text('level5', 'assets/levels/level5.txt');
-    game.load.text('jsonLevel1', 'assets/levels/level1.json');
-    game.load.text('jsonLevel2', 'assets/levels/level2.json');
-    game.load.text('jsonLevel3', 'assets/levels/level3.json');
-    game.load.text('jsonLevel4', 'assets/levels/level4.json');
-    game.load.text('jsonLevel5', 'assets/levels/level5.json');
+    game.load.text('level1', 'assets/levels/level1.json');
+    game.load.text('level2', 'assets/levels/level2.json');
+    game.load.text('level3', 'assets/levels/level3.json');
+    game.load.text('level4', 'assets/levels/level4.json');
+    game.load.text('level5', 'assets/levels/level5.json');
 
 
     game.load.image('header', 'assets/menu/menu_wood_chains_rotb.png');

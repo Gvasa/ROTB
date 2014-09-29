@@ -99,37 +99,37 @@ function levelListener() {
 	switch(type) {
 
 		case 'level1':
-			currentLevel = 'jsonLevel1';
-			readJson('jsonLevel1');
+			currentLevel = 'level1';
+			readJson('level1');
 			//hideMenu();
 			hideLevelMenu();
 			swapTutorials(1);
 			break;
 
 		case 'level2':
-			currentLevel = 'jsonLevel2';
-			readJson('jsonLevel2');
+			currentLevel = 'level2';
+			readJson('level2');
 			//hideMenu();
 			hideLevelMenu();
 			break;
 
 		case 'level3':
-			currentLevel = 'jsonLevel3';
-			readJson('jsonLevel3');
+			currentLevel = 'level3';
+			readJson('level3');
 			//hideMenu();
 			hideLevelMenu();
 			break;
 
 		case 'level4':
-			currentLevel = 'jsonLevel4';
-			readJson('jsonLevel4');
+			currentLevel = 'level4';
+			readJson('level4');
 			//hideMenu();
 			hideLevelMenu();
 			break;
 
 		case 'level5':
-			currentLevel = 'jsonLevel5';
-			readJson('jsonLevel5');
+			currentLevel = 'level5';
+			readJson('level5');
 			//hideMenu();
 			hideLevelMenu();
 			break;
@@ -143,11 +143,11 @@ function menuListener() {
 	switch(type) {
 
 		case 'play':
-			currentLevel = 'jsonLevel1';
+			currentLevel = 'level1';
 			//readLevelsFromFile('level1');
-			readJson('jsonLevel1');
+			readJson('level1');
 			hideMenu();
-			//swapTutorials(1);
+			swapTutorials(1);
 			break;
 
 		case 'levels':
