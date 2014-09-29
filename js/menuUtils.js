@@ -7,8 +7,8 @@
 function createMenu() {
 	resetBoard();
 	header = game.add.sprite(114,-20,'header');
-	var button1 = game.add.sprite(255, 266, 'menuButtonSprite');
-	var button2 = game.add.sprite(255, 366, 'menuLowerButtonSprite');
+	var button1 = game.add.sprite(256, 265, 'playButtonSprite');
+	var button2 = game.add.sprite(256, 365, 'levelsButtonSprite');
 	/*var button3 = game.add.sprite(255, 466, 'menuButtonSprite');
 	var button4 = game.add.sprite(255, 566, 'menuLowerButtonSprite');
 	*/
