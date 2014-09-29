@@ -40,11 +40,24 @@ function createMenu() {
 
 function createLevelMenu() {
 	header = game.add.sprite(114, -20, 'header');
-	var button1 = game.add.sprite(90, 366, 'spriteLevel1');
-	var button2 = game.add.sprite(90*2, 366, 'spriteLevel2');
-	var button3 = game.add.sprite(90*3, 366, 'spriteLevel3');
-	var button4 = game.add.sprite(90*4, 366, 'spriteLevel4');
-	var button5 = game.add.sprite(90*5, 366, 'spriteLevel5');
+	var button1 = game.add.sprite(90, 366, 'levels');
+	var button2 = game.add.sprite(90*2, 366, 'levels');
+	var button3 = game.add.sprite(90*3, 366, 'levels');
+	var button4 = game.add.sprite(90*4, 366, 'levels');
+	var button5 = game.add.sprite(90*5, 366, 'levels');
+
+
+	button1.animations.add('1', [0], true);
+	button2.animations.add('2', [1], true);
+	button3.animations.add('3', [2], true);
+	button4.animations.add('4', [3], true);
+	button5.animations.add('5', [4], true);
+
+	button1.animations.play('1');
+	button2.animations.play('2');
+	button3.animations.play('3');
+	button4.animations.play('4');
+	button5.animations.play('5');
 
 	levelButton1 = new Button('level1', button1);
 	levelButton2 = new Button('level2', button2);

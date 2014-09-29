@@ -32,7 +32,6 @@ function assetsLoader() {
     game.load.image('levelsButtonSprite', 'assets/menu/menuButtonLevels_150_113.png');
     game.load.image('playButtonSprite', 'assets/menu/menuButtonPlay_150_113.png');
 
-
     game.load.image('tutorial_1_1', 'assets/tutorials/tutorial_1_1_420_310.png');
     game.load.image('tutorial_1_2', 'assets/tutorials/tutorial_1_2_420_310.png');
     game.load.image('tutorial_1_3', 'assets/tutorials/tutorial_1_3_420_310.png');
@@ -45,9 +44,5 @@ function assetsLoader() {
     game.load.image('spriteGuiUpper', 'assets/gui/gui_upper_bar.png');
     game.load.image('spriteGuiLower', 'assets/gui/gui_lower_bar.png');
 
-    game.load.image('spriteLevel1', 'assets/barrels/levels/level1.png');
-    game.load.image('spriteLevel2', 'assets/barrels/levels/level2.png');
-    game.load.image('spriteLevel3', 'assets/barrels/levels/level3.png');
-    game.load.image('spriteLevel4', 'assets/barrels/levels/level4.png');
-    game.load.image('spriteLevel5', 'assets/barrels/levels/level5.png');
+    game.load.spritesheet('levels', 'assets/barrels/levels/levels_spritesheet.png', 77, 98);
 }
