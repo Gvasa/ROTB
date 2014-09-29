@@ -136,6 +136,9 @@ function showLevelMenu() {
 
 	levelButton5.buttonSprite.inputEnabled = true;
 	levelButton5.buttonSprite.alpha = true;
+
+	resetButton.buttonSprite.inputEnabled = false;
+	resetButton.buttonSprite.alpha = true;
 }
 
 function hideLevelMenu() {
