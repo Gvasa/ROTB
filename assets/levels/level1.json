@@ -1,0 +1,200 @@
+{
+	"level": "level1",
+	"gameBoard": {
+		"row1": {
+			"barrel1": {
+				"type": "BARREL_EMPTY",
+				"visible": false,
+				"charges": 0 
+			},
+			"barrel2": {
+				"type": "BARREL_EMPTY",
+				"visible":false,
+				"charges": 0
+			},
+			"barrel3": {
+				"type": "BARREL_EMPTY",
+				"visible":false,
+				"charges": 0 
+			},
+			"barrel4": {
+				"type": "BARREL_EMPTY",
+				"visible":false,
+				"charges": 0
+			},
+			"barrel5": {
+				"type": "BARREL_EMPTY",
+				"visible":false,
+				"charges": 0 
+			},
+			"barrel6": {
+				"type": "BARREL_EMPTY",
+				"visible":false,
+				"charges": 0 
+			}
+		},
+		"row2": {
+			"barrel1": {
+				"type": "BARREL_EMPTY",
+				"visible": false,
+				"charges": 0 
+			},
+			"barrel2": {
+				"type": "BARREL_EMPTY",
+				"visible": false,
+				"charges": 0
+			},
+			"barrel3": {
+				"type": "BARREL_EMPTY",
+				"visible": false,
+				"charges": 0 
+			},
+			"barrel4": {
+				"type": "BARREL_EMPTY",
+				"visible": false,
+				"charges": 0 
+			},
+			"barrel5": {
+				"type": "BARREL_EMPTY",
+				"visible": false,
+				"charges": 0 
+			},
+			"barrel6": {
+				"type": "BARREL_EMPTY",
+				"visible": false,
+				"charges": 0 
+			}
+		},
+		"row3": {
+			"barrel1": {
+				"type": "BARREL_EMPTY",
+				"visible": false,
+				"charges": 0 
+			},
+			"barrel2": {
+				"type": "BARREL_EMPTY",
+				"visible": false,
+				"charges" : 0
+			},
+			"barrel3": {
+				"type": "BARREL_EMPTY",
+				"visible": false,
+				"charges": 0 
+			},
+			"barrel4": {
+				"type": "BARREL_EMPTY",
+				"visible": false,
+				"charges": 0 
+			},
+			"barrel5": {
+				"type": "BARREL_EMPTY",
+				"visible": false,
+				"charges": 0 
+			},
+			"barrel6": {
+				"type": "BARREL_EMPTY",
+				"visible": false,
+				"charges": 0 
+			}
+		},
+		"row4": {
+			"barrel1": {
+				"type": "BARREL_EMPTY",
+				"visible": false,
+				"charges": 0
+			},
+			"barrel2": {
+				"type": "BARREL_EMPTY",
+				"visible": false,
+				"charges": 0
+			},
+			"barrel3": {
+				"type": "BARREL_MOVE_ROW_RIGHT",
+				"visible": false,
+				"charges": 2
+			},
+			"barrel4": {
+				"type": "BARREL_EMPTY",
+				"visible": false,
+				"charges": 0
+			},
+			"barrel5": {
+				"type": "BARREL_EMPTY",
+				"visible": false,
+				"charges": 0
+			},
+			"barrel6": {
+				"type": "BARREL_EMPTY",
+				"visible": false,
+				"charges": 0
+			}
+		},
+		"row5": {
+			"barrel1": {
+				"type": "BARREL_EMPTY",
+				"visible": false,
+				"charges": 0
+			},
+			"barrel2": {
+				"type": "BARREL_EMPTY",
+				"visible": false,
+				"charges": 0
+			},
+			"barrel3": {
+				"type": "BARREL_REVEAL_ABOVE",
+				"visible": true,
+				"charges": 1
+			},
+			"barrel4": {
+				"type": "BARREL_EMPTY", 
+				"visible":false,
+				"charges": 0
+			},
+			"barrel5": {
+				"type": "BARREL_WIN",
+				"visible": true,
+				"charges": 0
+			},
+			"barrel6": {
+				"type": "BARREL_EMPTY",
+				"visible": false,
+				"charges": 0 
+			}
+		},
+		"row6": {
+			"barrel1": {
+				"type": "BARREL_EMPTY",
+				"visible": false,
+				"charges": 0 
+			},
+			"barrel2": {
+				"type": "BARREL_EMPTY",
+				"visible": false,
+				"charges": 0
+			},
+			"barrel3": {
+				"type": "BARREL_EMPTY",
+				"visible": false,
+				"charges": 0 
+			},
+			"barrel4": {
+				"type": "BARREL_EMPTY",
+				"visible": false,
+				"charges": 0 
+			},
+			"barrel5": {
+				"type": "BARREL_EMPTY",
+				"visible": false,
+				"charges": 0 
+			},
+			"barrel6": {
+				"type": "BARREL_EMPTY",
+				"visible": false,
+				"charges": 0 
+			}
+		}
+
+	}
+
+
+}

@@ -14,6 +14,7 @@
     <script type="text/javascript" src="js/guiUtils.js"></script> 
 	<script type="text/javascript" src="js/listeners.js"></script>
 	<script type="text/javascript" src="js/assetsLoader.js"></script>
+    <script type="text/javascript" src="js/jsonReader.js"></script>
     <style type="text/css">
         body {
             margin: 0;
@@ -46,7 +47,7 @@ function create() {
     for(var i = 0; i < TEST_CONSTANT; i++)
     	gameBoard[i] = new Array(6);
 
-
+    readJson();
     setUpGui();
     emptyBoard();
     createMenu();
