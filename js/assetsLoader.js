@@ -1,5 +1,5 @@
 function assetsLoader() {
-    game.load.image('background', 'assets/backgrounds/bg_copy.png');
+    game.load.image('background', 'assets/backgrounds/bg_copy.jpg');
     game.load.image('spriteInvisBarrel', 'assets/barrels/barrel_invis_76_96.png');
     game.load.image('spriteWinBarrel', 'assets/barrels/barrel_win_76_96.png');
     game.load.image('spriteMoveRowLeft', 'assets/barrels/barrel_move_row_left_76_96.png');
