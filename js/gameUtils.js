@@ -3,13 +3,15 @@ function levelComplete() {
 	//var text = "- Gratz! -\n Level Complete";
     //var style = { font: "65px Arial", fill: "#ffd700", align: "center" };
     //var t = game.add.text(game.world.centerX-280, 0, text, style);
-    resetBoard();
-  	emptyBoard();
   	clearTutorials();
+    tutorialFaded.alpha = true;
     if(parseInt(currentLevel.slice(-1)) < NUM_OF_LEVELS) {
         showPostGameMenu();
-    } else
+        console.log('FORTSATT');
+    } else {
         showMenu();
+        console.log('MENU PLS');
+    }
 }
 
 function emptyBoard() {

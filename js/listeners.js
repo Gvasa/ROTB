@@ -134,6 +134,9 @@ function levelListener() {
 			hideLevelMenu();
 			break;
 		case 'nextLevel':
+			resetBoard();
+  			emptyBoard();
+  			tutorialFaded.alpha = false;
 			hidePostGameMenu();
 			var foo = currentLevel;
 
@@ -142,6 +145,7 @@ function levelListener() {
 				var tmp = foo.substring(0, 5) + levelNum;
 				currentLevel = foo.substring(0, 5) + levelNum;
 				readJson(currentLevel);
+				console.log(currentLevel);
 			}
 			break;
 	}		

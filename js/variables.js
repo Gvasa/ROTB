@@ -34,10 +34,10 @@ var bClick;
 
 var fileText;
 
+var mainMenuButtonSprite1;
+var mainMenuButtonSprite2;
 var menuButton1;
 var menuButton2;
-var menuButton3;
-var menuButton4;
 var levelButton1;
 var levelButton2;
 var levelButton3;

@@ -20,6 +20,8 @@ function showTutorials () {
 
 function swapTutorials(index) {
     if(index == 1) {
+        dropMenuAnimation(tutorial_1_1, -910, 700);
+        dropMenuAnimation(tutorialContinue, -465-113, 700);
         tutorial_1_1.alpha = true;
         tutorial_1_2.alpha = false;
         tutorial_1_3.alpha = false;
@@ -35,26 +37,39 @@ function swapTutorials(index) {
         gameBoard[2][3].barrelSprite.inputEnabled = false;
         console.log(index);
     } else if(index == 2) {
-        tutorial_1_1.alpha = false;
+        rollUpMenuAnimation(tutorial_1_1, -910, 700);
+        //rollUpMenuAnimation(tutorialContinue, -465-113, 700);
+        dropMenuAnimation(tutorial_1_2, -910, 700);
+        //dropMenuAnimation(tutorialContinue, -465-113, 700);
+        //tutorial_1_1.alpha = false;
         tutorial_1_2.alpha = true;
-        tutorial_1_3.alpha = false;
+        //tutorial_1_3.alpha = false;
         tutorialContinue.alpha = false;
         tutorialContinue.inputEnabled = false;
         game.world.bringToTop(tutorialFaded);
+        game.world.bringToTop(guiGroup);
         game.world.bringToTop(tutorial_1_2);
         game.world.bringToTop(gameBoard[2][4].barrelSprite);
         gameBoard[2][4].barrelSprite.inputEnabled = true;
         console.log(index);
     } else if(index == 3) {
-        tutorial_1_1.alpha = false;
-        tutorial_1_2.alpha = false;
+        //tutorial_1_1.alpha = false;
+        //tutorial_1_2.alpha = false;
+        rollUpMenuAnimation(tutorial_1_2, -910, 700);
+        //rollUpMenuAnimation(tutorialContinue, -465-113, 700);
+        dropMenuAnimation(tutorial_1_3, -910, 700);
+        //dropMenuAnimation(tutorialContinue, -465-113, 700);
+
         tutorial_1_3.alpha = true;
         game.world.bringToTop(tutorialFaded);
+        game.world.bringToTop(guiGroup);
         game.world.bringToTop(tutorial_1_3);
         game.world.bringToTop(gameBoard[2][3].barrelSprite);
         gameBoard[2][3].barrelSprite.inputEnabled = true;
         console.log(index);
     } else {
+        rollUpMenuAnimation(tutorial_1_3, -910, 700);
+        //rollUpMenuAnimation(tutorialContinue, -465-113, 700);
         tutorialFaded.alpha = false;
         console.log(index);
     }
