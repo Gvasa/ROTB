@@ -29,8 +29,6 @@ function swapTutorials(index) {
         tutorialContinue.alpha = true;
         tutorialContinue.inputEnabled = true;
         tutorialContinue.events.onInputDown.add(tutorialListener, this);
-       // resetButton.buttonSprite.alpha = true;
-       // game.world.bringToTop(resetButton);
         game.world.bringToTop(guiGroup);
         game.world.bringToTop(gameBoard[4][4].barrelSprite);
         game.world.bringToTop(tutorial_1_1);
@@ -41,29 +39,19 @@ function swapTutorials(index) {
         console.log(index);
     } else if(index == 2) {
         rollUpMenuAnimation(tutorial_1_1, -910, 700);
-        //rollUpMenuAnimation(tutorialContinue, -465-113, 700);
         dropMenuAnimation(tutorial_1_2, -910, 700);
-        //dropMenuAnimation(tutorialContinue, -465-113, 700);
-        //tutorial_1_1.alpha = false;
         tutorial_1_2.alpha = true;
-        //tutorial_1_3.alpha = false;
         tutorialContinue.alpha = false;
         tutorialContinue.inputEnabled = false;
         game.world.bringToTop(tutorialFaded);
         game.world.bringToTop(guiGroup);
-     //   resetButton.buttonSprite.alpha = true;
-      //  game.world.bringToTop(resetButton);
         game.world.bringToTop(tutorial_1_2);
         game.world.bringToTop(gameBoard[2][4].barrelSprite);
         gameBoard[2][4].barrelSprite.inputEnabled = true;
         console.log(index);
     } else if(index == 3) {
-        //tutorial_1_1.alpha = false;
-        //tutorial_1_2.alpha = false;
         rollUpMenuAnimation(tutorial_1_2, -910, 700);
-        //rollUpMenuAnimation(tutorialContinue, -465-113, 700);
         dropMenuAnimation(tutorial_1_3, -910, 700);
-        //dropMenuAnimation(tutorialContinue, -465-113, 700);
 
         tutorial_1_3.alpha = true;
         game.world.bringToTop(tutorialFaded);
@@ -74,7 +62,6 @@ function swapTutorials(index) {
         console.log(index);
     } else {
         rollUpMenuAnimation(tutorial_1_3, -910, 700);
-        //rollUpMenuAnimation(tutorialContinue, -465-113, 700);
         tutorialFaded.alpha = false;
         console.log(index);
     }
