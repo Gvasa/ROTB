@@ -47,6 +47,7 @@ var header;
 
 //var nextLevelButton;
 var levelCompleteButton;
+var resetButton;
 
 var tutorial_1_1;
 var tutorial_1_2;

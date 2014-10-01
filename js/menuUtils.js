@@ -6,44 +6,44 @@
 
 function createMenu() {
 	resetBoard();
-	header = game.add.sprite(114,-20,'header');
+	header = game.add.sprite(114,-910,'header');
 
-	mainMenuButtonSprite1 = game.add.sprite(256, 265, 'playButtonSprite');
-	mainMenuButtonSprite2 = game.add.sprite(256, 365, 'levelsButtonSprite');
+	mainMenuButtonSprite1 = game.add.sprite(256, -465-113, 'playButtonSprite');
+	mainMenuButtonSprite2 = game.add.sprite(256, -365-113, 'levelsButtonSprite');
 	
-	var resetButtonSprite = game.add.sprite(70, 895, 'resetButtonSprite');
+	//var resetButtonSprite = game.add.sprite(70, 895, 'resetButtonSprite');
  
 	mainMenuButtonSprite1.inputEnabled = true;
 	mainMenuButtonSprite2.inputEnabled = true;
 	
-	resetButtonSprite.inputEnabled = true;
+	//resetButtonSprite.inputEnabled = true;
 
 	menuButton1 = new Button('play', mainMenuButtonSprite1);
 	menuButton2 = new Button('levels', mainMenuButtonSprite2);
 	
-	resetButton = new Button('resetButton', resetButtonSprite);
-	resetButton.buttonSprite.alpha = false;
+	//resetButton = new Button('resetButton', resetButtonSprite);
+	//resetButton.buttonSprite.alpha = false;
 
 	mainMenuButtonSprite1.events.onInputDown.add(menuListener, menuButton1);	
 	mainMenuButtonSprite2.events.onInputDown.add(menuListener, menuButton2);
 	
-	resetButtonSprite.events.onInputDown.add(menuListener, resetButton);
-	resetButton.buttonSprite.inputEnabled = false;
+	//resetButtonSprite.events.onInputDown.add(menuListener, resetButton);
+	//resetButton.buttonSprite.inputEnabled = false;
 
 	//dropMainMenu();
-	dropMenuAnimation(header, -910, 700);
-	dropMenuAnimation(menuButton1.buttonSprite, -465-113, 700);
-	dropMenuAnimation(menuButton2.buttonSprite, -365-113, 700);
+	dropMenuAnimation(header, -20, 700);
+	dropMenuAnimation(menuButton1.buttonSprite, 265, 700);
+	dropMenuAnimation(menuButton2.buttonSprite, 365, 700);
 
 }
 
 function createLevelMenu() {
-	header = game.add.sprite(114, -20, 'header');
-	var button1 = game.add.sprite(90, 366, 'levels');
-	var button2 = game.add.sprite(90*2, 366, 'levels');
-	var button3 = game.add.sprite(90*3, 366, 'levels');
-	var button4 = game.add.sprite(90*4, 366, 'levels');
-	var button5 = game.add.sprite(90*5, 366, 'levels');
+	header = game.add.sprite(114, -910, 'header');
+	var button1 = game.add.sprite(-1000, 366, 'levels');
+	var button2 = game.add.sprite(-1000, 366, 'levels');
+	var button3 = game.add.sprite(-1000, 366, 'levels');
+	var button4 = game.add.sprite(-1000, 366, 'levels');
+	var button5 = game.add.sprite(-1000, 366, 'levels');
 
 
 	button1.animations.add('1', [0], true);
@@ -80,9 +80,9 @@ function createLevelMenu() {
 function showMenu() {
 	resetBoard();
 
-	dropMenuAnimation(header, -910, 700);
-	dropMenuAnimation(menuButton1.buttonSprite, -465-113, 700);
-	dropMenuAnimation(menuButton2.buttonSprite, -365-113, 700);
+	dropMenuAnimation(header, -20, 700);
+	dropMenuAnimation(menuButton1.buttonSprite, 265, 700);
+	dropMenuAnimation(menuButton2.buttonSprite, 365, 700);
 
 	header.alpha = true;
 
@@ -92,11 +92,12 @@ function showMenu() {
 	menuButton2.buttonSprite.inputEnabled = true;
 	menuButton2.buttonSprite.alpha = true;
 	
-	resetButton.buttonSprite.inputEnabled = false;
-	resetButton.buttonSprite.alpha = false;
+	//resetButton.buttonSprite.inputEnabled = false;
+	//resetButton.buttonSprite.alpha = false;
 
-	guiUpper.alpha = false;
-	guiLower.alpha = false;
+	//guiUpper.alpha = false;
+	//guiLower.alpha = false;
+	guiGroup.alpha = false;
 }
 
 function hideMenu() {
@@ -113,22 +114,23 @@ function hideMenu() {
 		menuButton2.buttonSprite.inputEnabled = false;
 		menuButton2.buttonSprite.alpha = false;
 */		
-		resetButton.buttonSprite.inputEnabled = true;
-		resetButton.buttonSprite.alpha = true;
-
-		guiUpper.alpha = true;
-		guiLower.alpha = true;
+		//resetButton.buttonSprite.inputEnabled = true;
+		//resetButton.buttonSprite.alpha = true;
+		//game.world.bringToTop(resetButton);
+		//guiUpper.alpha = true;
+		//guiLower.alpha = true;
+		guiGroup.alpha = true;
 }
 
 function showLevelMenu() {
 	hideMenu();
 
-	dropMenuAnimation(header, -910, 700);
-	showFromLeftAnimation(levelButton1.buttonSprite, -1000, 700);
-	showFromLeftAnimation(levelButton2.buttonSprite, -1000, 670);
-	showFromLeftAnimation(levelButton3.buttonSprite, -1000, 640);
-	showFromLeftAnimation(levelButton4.buttonSprite, -1000, 610);
-	showFromLeftAnimation(levelButton5.buttonSprite, -1000, 580);
+	dropMenuAnimation(header, -20, 700);
+	showFromLeftAnimation(levelButton1.buttonSprite, 90, 700);
+	showFromLeftAnimation(levelButton2.buttonSprite, 90*2, 670);
+	showFromLeftAnimation(levelButton3.buttonSprite, 90*3, 640);
+	showFromLeftAnimation(levelButton4.buttonSprite, 90*4, 610);
+	showFromLeftAnimation(levelButton5.buttonSprite, 90*5, 580);
 
 	header.alpha = true;
 
@@ -147,11 +149,13 @@ function showLevelMenu() {
 	levelButton5.buttonSprite.inputEnabled = true;
 	levelButton5.buttonSprite.alpha = true;
 
-	resetButton.buttonSprite.inputEnabled = false;
-	resetButton.buttonSprite.alpha = false;
+	//resetButton.buttonSprite.inputEnabled = false;
+	//resetButton.buttonSprite.alpha = false;
 
-	guiUpper.alpha = false;
-	guiLower.alpha = false;
+	//guiUpper.alpha = false;
+	//guiLower.alpha = false;
+
+	guiGroup.alpha = false;
 }
 
 function hideLevelMenu() {
@@ -180,11 +184,13 @@ function hideLevelMenu() {
 	levelButton5.buttonSprite.inputEnabled = false;
 	levelButton5.buttonSprite.alpha = false;
 */
-	resetButton.buttonSprite.inputEnabled = true;
-	resetButton.buttonSprite.alpha = true;
+	//resetButton.buttonSprite.inputEnabled = true;
+	//resetButton.buttonSprite.alpha = true;
 
-	guiUpper.alpha = true;
-	guiLower.alpha = true;
+	//guiUpper.alpha = true;
+	//guiLower.alpha = true;
+
+	guiGroup.alpha = true;
 }
 
 function createPostGameMenu() {
@@ -205,12 +211,12 @@ function createPostGameMenu() {
 }
 
 function showPostGameMenu() {
-	dropMenuAnimation(levelCompleteButton, -910, 700);
-	dropMenuAnimation(nextLevelButton.buttonSprite, -498-113, 700);
+	dropMenuAnimation(levelCompleteButton, -20, 700);
+	dropMenuAnimation(nextLevelButton.buttonSprite, 265, 700);
 
 	game.world.bringToTop(tutorialFaded);
 	game.world.bringToTop(guiGroup);
-	game.world.bringToTop(resetButton);
+	//game.world.bringToTop(resetButton);
 	levelCompleteButton.alpha = true;
 	game.world.bringToTop(levelCompleteButton);
 

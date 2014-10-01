@@ -180,9 +180,7 @@ function menuListener() {
 }
 
 function tutorialListener() {
-
 	console.log(this);
 	swapTutorials(2);
 	this.inputEnabled = false;
-
 }

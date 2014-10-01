@@ -1,6 +1,6 @@
 function dropMenuAnimation(sprite, fromY, speed) {
-        game.add.tween(sprite).from({y: fromY}, speed, Phaser.Easing.Linear.None, true);
-        console.log('from:' + fromY);
+        game.add.tween(sprite).to({y: fromY}, speed, Phaser.Easing.Linear.None, true);
+        console.log('to:' + fromY);
 }
 
 function rollUpMenuAnimation(sprite, toY, speed) {
@@ -11,7 +11,7 @@ function rollUpMenuAnimation(sprite, toY, speed) {
 }
 
 function showFromLeftAnimation(sprite, fromX, speed) {
-    game.add.tween(sprite).from({x: fromX}, speed, Phaser.Easing.Linear.None, true);
+    game.add.tween(sprite).to({x: fromX}, speed, Phaser.Easing.Linear.None, true);
 }
 
 function hideToLeftAnimation(sprite, toX, speed) {

@@ -29,6 +29,9 @@ function swapTutorials(index) {
         tutorialContinue.alpha = true;
         tutorialContinue.inputEnabled = true;
         tutorialContinue.events.onInputDown.add(tutorialListener, this);
+       // resetButton.buttonSprite.alpha = true;
+       // game.world.bringToTop(resetButton);
+        game.world.bringToTop(guiGroup);
         game.world.bringToTop(gameBoard[4][4].barrelSprite);
         game.world.bringToTop(tutorial_1_1);
         game.world.bringToTop(tutorialContinue);
@@ -48,6 +51,8 @@ function swapTutorials(index) {
         tutorialContinue.inputEnabled = false;
         game.world.bringToTop(tutorialFaded);
         game.world.bringToTop(guiGroup);
+     //   resetButton.buttonSprite.alpha = true;
+      //  game.world.bringToTop(resetButton);
         game.world.bringToTop(tutorial_1_2);
         game.world.bringToTop(gameBoard[2][4].barrelSprite);
         gameBoard[2][4].barrelSprite.inputEnabled = true;
