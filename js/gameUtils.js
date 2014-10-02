@@ -27,7 +27,8 @@ function emptyBoard() {
 				
 				barrel = game.add.sprite(i*BARREL_WIDTH*barrelSpacing+xShift, j*BARREL_HEIGHT*barrelSpacing+yShift, BARREL_EMPTY);
 				chargeSprite1 = game.add.sprite(5,0, 'spriteStar');
-				chargeSprite2 = game.add.sprite(30, 0, 'spriteStar');
+				chargeSprite2 = game.add.sprite(5*6, 0, 'spriteStar');
+        
 
 				gameBoard[i][j] = new Barrel(BARREL_EMPTY, j, i, counter, barrel, 2, false, chargeSprite1, chargeSprite2);
 	            

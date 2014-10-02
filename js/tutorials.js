@@ -1,9 +1,9 @@
 function loadTutorials() {
     tutorialFaded = game.add.sprite(0,0, 'tutorialFaded');
-    tutorial_1_1 = game.add.sprite(115,-24,'tutorial_1_1');
-    tutorial_1_2 = game.add.sprite(115,-24,'tutorial_1_2');
-    tutorial_1_3 = game.add.sprite(115,-24,'tutorial_1_3');
-    tutorialContinue = game.add.sprite(256,265, 'continueButtonSprite');
+    tutorial_1_1 = game.add.sprite(115,-960,'tutorial_1_1');
+    tutorial_1_2 = game.add.sprite(115,-20,'tutorial_1_2');
+    tutorial_1_3 = game.add.sprite(115,-20,'tutorial_1_3');
+    tutorialContinue = game.add.sprite(256,-1000, 'continueButtonSprite');
    
     console.log('wtf');
     clearTutorials();
@@ -20,8 +20,8 @@ function showTutorials () {
 
 function swapTutorials(index) {
     if(index == 1) {
-        dropMenuAnimation(tutorial_1_1, -910, 700);
-        dropMenuAnimation(tutorialContinue, -465-113, 700);
+        dropMenuAnimation(tutorial_1_1, -20, 800);
+        dropMenuAnimation(tutorialContinue, 270, 790);
         tutorial_1_1.alpha = true;
         tutorial_1_2.alpha = false;
         tutorial_1_3.alpha = false;
@@ -38,8 +38,9 @@ function swapTutorials(index) {
         gameBoard[2][3].barrelSprite.inputEnabled = false;
         console.log(index);
     } else if(index == 2) {
-        rollUpMenuAnimation(tutorial_1_1, -910, 700);
-        dropMenuAnimation(tutorial_1_2, -910, 700);
+        //rollUpMenuAnimation(tutorial_1_1, -910, 700);
+        //dropMenuAnimation(tutorial_1_2, -910, 700);
+        tutorial_1_1.alpha = false;
         tutorial_1_2.alpha = true;
         tutorialContinue.alpha = false;
         tutorialContinue.inputEnabled = false;
@@ -50,9 +51,9 @@ function swapTutorials(index) {
         gameBoard[2][4].barrelSprite.inputEnabled = true;
         console.log(index);
     } else if(index == 3) {
-        rollUpMenuAnimation(tutorial_1_2, -910, 700);
-        dropMenuAnimation(tutorial_1_3, -910, 700);
-
+        //rollUpMenuAnimation(tutorial_1_2, -910, 700);
+        //dropMenuAnimation(tutorial_1_3, -910, 700);
+        tutorial_1_2.alpha = false;
         tutorial_1_3.alpha = true;
         game.world.bringToTop(tutorialFaded);
         game.world.bringToTop(guiGroup);
@@ -61,7 +62,7 @@ function swapTutorials(index) {
         gameBoard[2][3].barrelSprite.inputEnabled = true;
         console.log(index);
     } else {
-        rollUpMenuAnimation(tutorial_1_3, -910, 700);
+       // rollUpMenuAnimation(tutorial_1_3, -910, 700);
         tutorialFaded.alpha = false;
         console.log(index);
     }

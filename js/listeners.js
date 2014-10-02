@@ -88,6 +88,7 @@ function listener() {
 			break;
 
 		case BARREL_CHARGE:
+			this.charges--;
 			addCharge(this);
             this.barrelInfo();
 			break;
@@ -133,6 +134,13 @@ function levelListener() {
 			//hideMenu();
 			hideLevelMenu();
 			break;
+
+		case 'level6':
+			currentLevel = 'level6';
+			readJson('level6');
+			hideLevelMenu();
+			break;
+
 		case 'nextLevel':
 			resetBoard();
   			emptyBoard();
@@ -141,7 +149,7 @@ function levelListener() {
 			var foo = currentLevel;
 
 			var levelNum = parseInt(foo.slice(-1))+1;
-			if(levelNum < 6) {
+			if(levelNum < 7) {
 				var tmp = foo.substring(0, 5) + levelNum;
 				currentLevel = foo.substring(0, 5) + levelNum;
 				readJson(currentLevel);

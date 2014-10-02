@@ -34,6 +34,7 @@ function createLevelMenu() {
 	var button3 = game.add.sprite(-1000, 366, 'levels');
 	var button4 = game.add.sprite(-1000, 366, 'levels');
 	var button5 = game.add.sprite(-1000, 366, 'levels');
+	var button6 = game.add.sprite(-1000, 366+110, 'levels');
 
 
 	button1.animations.add('1', [0], true);
@@ -41,35 +42,40 @@ function createLevelMenu() {
 	button3.animations.add('3', [2], true);
 	button4.animations.add('4', [3], true);
 	button5.animations.add('5', [4], true);
+	button6.animations.add('5', [4], true);
 
 	button1.animations.play('1');
 	button2.animations.play('2');
 	button3.animations.play('3');
 	button4.animations.play('4');
 	button5.animations.play('5');
+	button6.animations.play('5');
 
 	levelButton1 = new Button('level1', button1);
 	levelButton2 = new Button('level2', button2);
 	levelButton3 = new Button('level3', button3);
 	levelButton4 = new Button('level4', button4);
 	levelButton5 = new Button('level5', button5);
+	levelButton6 = new Button('level6', button6);
 
 	button1.inputEnabled = true;
 	button2.inputEnabled = true;
 	button3.inputEnabled = true;
 	button4.inputEnabled = true;
 	button5.inputEnabled = true;
+	button6.inputEnabled = true;
 
 	button1.events.onInputDown.add(levelListener, levelButton1);
 	button2.events.onInputDown.add(levelListener, levelButton2);
 	button3.events.onInputDown.add(levelListener, levelButton3);
 	button4.events.onInputDown.add(levelListener, levelButton4);
 	button5.events.onInputDown.add(levelListener, levelButton5);
+	button6.events.onInputDown.add(levelListener, levelButton6);
 }
 
 function showMenu() {
 	resetBoard();
-
+	tutorialFaded.alpha = false;
 	dropMenuAnimation(header, -20, 700);
 	dropMenuAnimation(menuButton1.buttonSprite, 265, 700);
 	dropMenuAnimation(menuButton2.buttonSprite, 365, 700);
@@ -81,6 +87,10 @@ function showMenu() {
 
 	menuButton2.buttonSprite.inputEnabled = true;
 	menuButton2.buttonSprite.alpha = true;
+
+	//game.world.bringToTop(header);
+	game.world.bringToTop(menuButton1);
+	game.world.bringToTop(menuButton2);
 	
 	guiGroup.alpha = false;
 }
@@ -103,6 +113,7 @@ function showLevelMenu() {
 	showFromLeftAnimation(levelButton3.buttonSprite, 90*3, 640);
 	showFromLeftAnimation(levelButton4.buttonSprite, 90*4, 610);
 	showFromLeftAnimation(levelButton5.buttonSprite, 90*5, 580);
+	showFromLeftAnimation(levelButton6.buttonSprite, 90, 700);
 
 	header.alpha = true;
 
@@ -121,6 +132,9 @@ function showLevelMenu() {
 	levelButton5.buttonSprite.inputEnabled = true;
 	levelButton5.buttonSprite.alpha = true;
 
+	levelButton6.buttonSprite.inputEnabled = true;
+	levelButton6.buttonSprite.alpha = true;
+
 	guiGroup.alpha = false;
 }
 
@@ -132,6 +146,7 @@ function hideLevelMenu() {
 	hideToLeftAnimation(levelButton3.buttonSprite, -1000, 640);
 	hideToLeftAnimation(levelButton4.buttonSprite, -1000, 670);
 	hideToLeftAnimation(levelButton5.buttonSprite, -1000, 700);
+	hideToLeftAnimation(levelButton6.buttonSprite, -1000, 580);
 
 	guiGroup.alpha = true;
 }
