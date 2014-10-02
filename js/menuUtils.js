@@ -21,9 +21,9 @@ function createMenu() {
 	mainMenuButtonSprite1.events.onInputDown.add(menuListener, menuButton1);	
 	mainMenuButtonSprite2.events.onInputDown.add(menuListener, menuButton2);
 	
-	dropMenuAnimation(header, -20, 700);
-	dropMenuAnimation(menuButton1.buttonSprite, 265, 700);
-	dropMenuAnimation(menuButton2.buttonSprite, 365, 700);
+	moveFromYAnimation(header, -20, 700);
+	moveFromYAnimation(menuButton1.buttonSprite, 265, 700);
+	moveFromYAnimation(menuButton2.buttonSprite, 365, 700);
 
 }
 
@@ -76,9 +76,9 @@ function createLevelMenu() {
 function showMenu() {
 	resetBoard();
 	tutorialFaded.alpha = false;
-	dropMenuAnimation(header, -20, 700);
-	dropMenuAnimation(menuButton1.buttonSprite, 265, 700);
-	dropMenuAnimation(menuButton2.buttonSprite, 365, 700);
+	moveFromYAnimation(header, -20, 700);
+	moveFromYAnimation(menuButton1.buttonSprite, 265, 700);
+	moveFromYAnimation(menuButton2.buttonSprite, 365, 700);
 
 	header.alpha = true;
 
@@ -97,9 +97,9 @@ function showMenu() {
 
 function hideMenu() {
 	
-	rollUpMenuAnimation(header, -910, 700);
-	rollUpMenuAnimation(menuButton1.buttonSprite, -465-113, 700);
-	rollUpMenuAnimation(menuButton2.buttonSprite, -365-113, 700);
+	moveToYAnimation(header, -910, 700);
+	moveToYAnimation(menuButton1.buttonSprite, -465-113, 700);
+	moveToYAnimation(menuButton2.buttonSprite, -365-113, 700);
 	
 	guiGroup.alpha = true;
 }
@@ -107,13 +107,13 @@ function hideMenu() {
 function showLevelMenu() {
 	hideMenu();
 
-	dropMenuAnimation(header, -20, 700);
-	showFromLeftAnimation(levelButton1.buttonSprite, 90, 700);
-	showFromLeftAnimation(levelButton2.buttonSprite, 90*2, 670);
-	showFromLeftAnimation(levelButton3.buttonSprite, 90*3, 640);
-	showFromLeftAnimation(levelButton4.buttonSprite, 90*4, 610);
-	showFromLeftAnimation(levelButton5.buttonSprite, 90*5, 580);
-	showFromLeftAnimation(levelButton6.buttonSprite, 90, 700);
+	moveFromYAnimation(header, -20, 700);
+	moveFromXAnimation(levelButton1.buttonSprite, 90, 700);
+	moveFromXAnimation(levelButton2.buttonSprite, 90*2, 670);
+	moveFromXAnimation(levelButton3.buttonSprite, 90*3, 640);
+	moveFromXAnimation(levelButton4.buttonSprite, 90*4, 610);
+	moveFromXAnimation(levelButton5.buttonSprite, 90*5, 580);
+	moveFromXAnimation(levelButton6.buttonSprite, 90, 700);
 
 	header.alpha = true;
 
@@ -140,13 +140,13 @@ function showLevelMenu() {
 
 function hideLevelMenu() {
 
-	rollUpMenuAnimation(header, -910, 700);
-	hideToLeftAnimation(levelButton1.buttonSprite, -1000, 580);
-	hideToLeftAnimation(levelButton2.buttonSprite, -1000, 610);
-	hideToLeftAnimation(levelButton3.buttonSprite, -1000, 640);
-	hideToLeftAnimation(levelButton4.buttonSprite, -1000, 670);
-	hideToLeftAnimation(levelButton5.buttonSprite, -1000, 700);
-	hideToLeftAnimation(levelButton6.buttonSprite, -1000, 580);
+	moveToYAnimation(header, -910, 700);
+	moveToXAnimation(levelButton1.buttonSprite, -1000, 580);
+	moveToXAnimation(levelButton2.buttonSprite, -1000, 610);
+	moveToXAnimation(levelButton3.buttonSprite, -1000, 640);
+	moveToXAnimation(levelButton4.buttonSprite, -1000, 670);
+	moveToXAnimation(levelButton5.buttonSprite, -1000, 700);
+	moveToXAnimation(levelButton6.buttonSprite, -1000, 580);
 
 	guiGroup.alpha = true;
 }
@@ -169,8 +169,8 @@ function createPostGameMenu() {
 }
 
 function showPostGameMenu() {
-	dropMenuAnimation(levelCompleteButton, -20, 700);
-	dropMenuAnimation(nextLevelButton.buttonSprite, 265, 700);
+	moveFromYAnimation(levelCompleteButton, -20, 700);
+	moveFromYAnimation(nextLevelButton.buttonSprite, 265, 700);
 
 	game.world.bringToTop(tutorialFaded);
 	game.world.bringToTop(guiGroup);
@@ -183,6 +183,6 @@ function showPostGameMenu() {
 }
 
 function hidePostGameMenu() {
-	rollUpMenuAnimation(levelCompleteButton, -910, 700);
-	rollUpMenuAnimation(nextLevelButton.buttonSprite, -498-113, 700);
+	moveToYAnimation(levelCompleteButton, -910, 700);
+	moveToYAnimation(nextLevelButton.buttonSprite, -498-113, 700);
 }

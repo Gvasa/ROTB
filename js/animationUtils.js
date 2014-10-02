@@ -1,21 +1,21 @@
-function dropMenuAnimation(sprite, fromY, speed) {
-        game.add.tween(sprite).to({y: fromY}, speed, Phaser.Easing.Linear.None, true);
+function moveFromYAnimation(sprite, fromY, speed) {
+        TWEENCHECK = game.add.tween(sprite).to({y: fromY}, speed, Phaser.Easing.Linear.None, true);
         console.log('to:' + fromY);
 }
 
-function rollUpMenuAnimation(sprite, toY, speed) {
-    game.add.tween(sprite).to({y: toY}, speed, Phaser.Easing.Linear.None, true);
+function moveToYAnimation(sprite, toY, speed) {
+    TWEENCHECK = game.add.tween(sprite).to({y: toY}, speed, Phaser.Easing.Linear.None, true);
     console.log('to:' + toY);
     //game.add.tween(mainMenuButtonSprite1).to({y: -465-113}, 700, Phaser.Easing.Bounce.Out, true);
     //game.add.tween(mainMenuButtonSprite2).to({y: -365-113}, 700, Phaser.Easing.Bounce.Out, true);
 }
 
-function showFromLeftAnimation(sprite, fromX, speed) {
-    game.add.tween(sprite).to({x: fromX}, speed, Phaser.Easing.Linear.None, true);
+function moveFromXAnimation(sprite, fromX, speed) {
+    TWEENCHECK = game.add.tween(sprite).to({x: fromX}, speed, Phaser.Easing.Linear.None, true);
 }
 
-function hideToLeftAnimation(sprite, toX, speed) {
-    game.add.tween(sprite).to({x: toX}, speed, Phaser.Easing.Linear.None, true);
+function moveToXAnimation(sprite, toX, speed) {
+    TWEENCHECK = game.add.tween(sprite).to({x: toX}, speed, Phaser.Easing.Linear.None, true);
 }
 
 /*

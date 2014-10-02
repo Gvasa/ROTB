@@ -88,6 +88,10 @@ function listener() {
 			break;
 
 		case BARREL_CHARGE:
+			if(this.charges <= 0) {
+				console.log('asdasd');
+				break;
+			}
 			this.charges--;
 			addCharge(this);
             this.barrelInfo();
@@ -103,6 +107,7 @@ function levelListener() {
 			currentLevel = 'level1';
 			readJson('level1');
 			//hideMenu();
+			animationBoardIn();
 			hideLevelMenu();
 			swapTutorials(1);
 			break;
@@ -110,6 +115,7 @@ function levelListener() {
 		case 'level2':
 			currentLevel = 'level2';
 			readJson('level2');
+			animationBoardIn();
 			//hideMenu();
 			hideLevelMenu();
 			break;
@@ -118,12 +124,14 @@ function levelListener() {
 			currentLevel = 'level3';
 			readJson('level3');
 			//hideMenu();
+			animationBoardIn();
 			hideLevelMenu();
 			break;
 
 		case 'level4':
 			currentLevel = 'level4';
 			readJson('level4');
+			animationBoardIn();
 			//hideMenu();
 			hideLevelMenu();
 			break;
@@ -131,6 +139,7 @@ function levelListener() {
 		case 'level5':
 			currentLevel = 'level5';
 			readJson('level5');
+			animationBoardIn();
 			//hideMenu();
 			hideLevelMenu();
 			break;
@@ -138,23 +147,23 @@ function levelListener() {
 		case 'level6':
 			currentLevel = 'level6';
 			readJson('level6');
+			animationBoardIn();
 			hideLevelMenu();
 			break;
 
 		case 'nextLevel':
-			resetBoard();
-  			emptyBoard();
+			//resetBoard();
+  			//emptyBoard();
   			tutorialFaded.alpha = false;
 			hidePostGameMenu();
-			var foo = currentLevel;
+			animationBoardOut();
+			game.time.events.add(Phaser.Timer.QUARTER*1.9, moveBarrelsToStartPosition, this);
+			game.time.events.add(Phaser.Timer.QUARTER*1.9, readNextLevel, this);
+			//moveBarrelsToStartPosition();
+			//game.time.events.add(Phaser.Timer.SECOND * 1, readNextLevel, this);
 
-			var levelNum = parseInt(foo.slice(-1))+1;
-			if(levelNum < 7) {
-				var tmp = foo.substring(0, 5) + levelNum;
-				currentLevel = foo.substring(0, 5) + levelNum;
-				readJson(currentLevel);
-				console.log(currentLevel);
-			}
+			//resetBoard();
+			
 			break;
 	}		
 }
@@ -169,6 +178,7 @@ function menuListener() {
 			currentLevel = 'level1';
 			readJson('level1');
 			hideMenu();
+			animationBoardIn()
 			swapTutorials(1);
 			break;
 
@@ -191,4 +201,21 @@ function tutorialListener() {
 	console.log(this);
 	swapTutorials(2);
 	this.inputEnabled = false;
+}
+
+function readNextLevel() {
+	resetBoard();
+	var foo = currentLevel;
+
+
+	var levelNum = parseInt(foo.slice(-1))+1;
+	if(levelNum < 7) {
+		var tmp = foo.substring(0, 5) + levelNum;
+		currentLevel = foo.substring(0, 5) + levelNum;
+		//animationBoardOut();
+		//while(game.time.now - timeCheck > 2000) { }
+		readJson(currentLevel);
+		animationBoardIn();
+		console.log(currentLevel);
+	}
 }

@@ -21,6 +21,8 @@ var BARREL_HEIGHT = 100;
 
 var NUM_OF_LEVELS = 6;
 
+var TWEENCHECK;
+
 var guiGroup;
 
 var gameBoard;

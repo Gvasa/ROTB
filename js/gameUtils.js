@@ -3,7 +3,10 @@ function levelComplete() {
 	//var text = "- Gratz! -\n Level Complete";
     //var style = { font: "65px Arial", fill: "#ffd700", align: "center" };
     //var t = game.add.text(game.world.centerX-280, 0, text, style);
-  	clearTutorials();
+    for(var i = 0; i < 6; i++)
+      uppdateBarrelVisibility(i, true);
+  	
+    clearTutorials();
     tutorialFaded.alpha = true;
     if(parseInt(currentLevel.slice(-1)) < NUM_OF_LEVELS) {
         showPostGameMenu();
@@ -15,7 +18,7 @@ function levelComplete() {
 }
 
 function emptyBoard() {
-	var yShift = 163;
+	  var yShift = 163;
     var xShift = 73;
     var barrelSpacing = 1.05;
 	for (var i = 0; i < TEST_CONSTANT; i++) {
@@ -25,10 +28,11 @@ function emptyBoard() {
 				var chargeSprite2;
 				
 				
-				barrel = game.add.sprite(i*BARREL_WIDTH*barrelSpacing+xShift, j*BARREL_HEIGHT*barrelSpacing+yShift, BARREL_EMPTY);
+        //barrel = game.add.sprite(i*BARREL_WIDTH*barrelSpacing+xShift+1000, j*BARREL_HEIGHT*barrelSpacing+yShift, BARREL_EMPTY);
+				barrel = game.add.sprite(1000, j*BARREL_HEIGHT*barrelSpacing+yShift, BARREL_EMPTY);
 				chargeSprite1 = game.add.sprite(5,0, 'spriteStar');
 				chargeSprite2 = game.add.sprite(5*6, 0, 'spriteStar');
-        
+
 
 				gameBoard[i][j] = new Barrel(BARREL_EMPTY, j, i, counter, barrel, 2, false, chargeSprite1, chargeSprite2);
 	            
@@ -53,7 +57,7 @@ function resetBoard() {
 				gameBoard[i][j].barrelSprite.loadTexture(BARREL_EMPTY);
 				gameBoard[i][j].barrelType = BARREL_EMPTY;
 				gameBoard[i][j].visible = false;
-				gameBoard[i][j].charges = 3;
+				gameBoard[i][j].charges = 2;
 		}
 		uppdateBarrelVisibility(i, true);
 	}

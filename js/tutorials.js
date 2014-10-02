@@ -20,8 +20,8 @@ function showTutorials () {
 
 function swapTutorials(index) {
     if(index == 1) {
-        dropMenuAnimation(tutorial_1_1, -20, 800);
-        dropMenuAnimation(tutorialContinue, 270, 790);
+        moveFromYAnimation(tutorial_1_1, -20, 800);
+        moveFromYAnimation(tutorialContinue, 270, 790);
         tutorial_1_1.alpha = true;
         tutorial_1_2.alpha = false;
         tutorial_1_3.alpha = false;
