@@ -154,7 +154,7 @@ function hideLevelMenu() {
 function createPostGameMenu() {
 	//clearBoard();
 	levelCompleteButton = game.add.sprite(114, -910, 'levelCompleteButtonSprite');
-	var button1 = game.add.sprite(256, -365-113, 'continueButtonSprite');
+	var button1 = game.add.sprite(254, -365-113, 'nextLevelSprite');
 
 	button1.inputEnabled = true;
 

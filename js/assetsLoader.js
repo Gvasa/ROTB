@@ -33,6 +33,7 @@ function assetsLoader() {
     game.load.image('continueButtonSprite', 'assets/menu/menuButtonContinue_150_113.png');
     game.load.image('levelsButtonSprite', 'assets/menu/menuButtonLevels_150_113.png');
     game.load.image('playButtonSprite', 'assets/menu/menuButtonPlay_150_113.png');
+    game.load.image('nextLevelSprite', 'assets/menu/nextLevel_150_113.png');
 
     game.load.image('tutorial_1_1', 'assets/tutorials/tutorial_1_1_420_310.png');
     game.load.image('tutorial_1_2', 'assets/tutorials/tutorial_1_2_420_310.png');
