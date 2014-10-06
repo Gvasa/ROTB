@@ -36,6 +36,8 @@ var bClick;
 
 var fileText;
 
+var charges;
+
 var mainMenuButtonSprite1;
 var mainMenuButtonSprite2;
 var menuButton1;
@@ -50,6 +52,7 @@ var header;
 //var nextLevelButton;
 var levelCompleteButton;
 var resetButton;
+var mainMenuButton;
 
 var tutorial_1_1;
 var tutorial_1_2;

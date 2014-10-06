@@ -193,6 +193,11 @@ function menuListener() {
 			readJson(currentLevel);
 			hideMenu();
 			break;
+
+		case 'menuButton':
+			//resetBoard();
+			showMenu();
+			break;
 	}
 
 }

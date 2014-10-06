@@ -2,16 +2,17 @@ function setUpGui() {
 	console.log('set up gui here');
 	guiGroup = game.add.group()
 
-	guiUpper = guiGroup.create(0, 0, 'spriteGuiUpper');
-	guiLower = guiGroup.create(0, 877, 'spriteGuiLower' );
-	spriteResetButton = guiGroup.create(70, 895, 'resetButtonSprite');
+	var guiUpper = guiGroup.create(0, 0, 'spriteGuiUpper');
+	var guiLower = guiGroup.create(0, 877, 'spriteGuiLower' );
+	var spriteResetButton = guiGroup.create(70, 895, 'resetButtonSprite');
+    var spriteMainMenuButton = guiGroup.create(374 ,895, 'mainMenuButtonSprite');
 
 	resetButton = new Button('resetButton', spriteResetButton);
+    mainMenuButton = new Button('menuButton', spriteMainMenuButton);
 
-	//guiUpper.alpha = false;
-	//guiLower.alpha = false;
-	//spriteResetButton.alpha = false;
 	guiGroup.alpha = false;
 	spriteResetButton.inputEnabled = true;
+    spriteMainMenuButton.inputEnabled = true;
 	spriteResetButton.events.onInputDown.add(menuListener, resetButton);
+    spriteMainMenuButton.events.onInputDown.add(menuListener, mainMenuButton);
 }
