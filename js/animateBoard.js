@@ -3,7 +3,7 @@ function animationBoardIn() {
 	console.log('animationboardin');
 	for(var i = 0; i < 6; i ++) {
 		for(var j = 0; j < 6; j++) {
-				moveFromXAnimation(gameBoard[j][i].barrelSprite, j*BARREL_WIDTH*1.05+73, speed);
+				moveFromXAnimation(gameBoard[j][i].barrelSprite, j*BARREL_WIDTH+X_SHIFT, speed);
 				speed = speed+54;
 		}
 		speed=320;
@@ -23,11 +23,11 @@ function animationBoardOut() {
 
 }
 
-function animateRowRight() {
-	var speed = 100;
+function animateRowRight(row) {
+	var speed = 1000;
 	console.log('animate row');
 	for(var i=0; i < 6; i++){
-		moveToXAnimation(gameBoard[j][i].barrelSprite, i*BARREL_WIDTH*1.05+73+10, speed);
+		moveToXAnimation(gameBoard[i][row].barrelSprite, (i*BARREL_WIDTH), speed);
 	}
 }
 

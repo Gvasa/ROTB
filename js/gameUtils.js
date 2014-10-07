@@ -20,9 +20,7 @@ function levelComplete() {
 }
 
 function emptyBoard() {
-	  var yShift = 163;
-    var xShift = 73;
-    var barrelSpacing = 1.05;
+	 
 	for (var i = 0; i < TEST_CONSTANT; i++) {
 			for(var j = 0; j < TEST_CONSTANT; j++) {
 				var barrel;
@@ -31,7 +29,7 @@ function emptyBoard() {
 				
 				
         //barrel = game.add.sprite(i*BARREL_WIDTH*barrelSpacing+xShift+1000, j*BARREL_HEIGHT*barrelSpacing+yShift, BARREL_EMPTY);
-				barrel = game.add.sprite(1000, j*BARREL_HEIGHT*barrelSpacing+yShift, BARREL_EMPTY);
+				barrel = game.add.sprite(1000, j*BARREL_HEIGHT+Y_SHIFT, BARREL_EMPTY);
 				chargeSprite1 = game.add.sprite(5,0, 'spriteStar');
 				chargeSprite2 = game.add.sprite(5*6, 0, 'spriteStar');
 
@@ -124,52 +122,3 @@ function printBoard() {
    		}
    	}
 }
-
-// FOR DEBUGGING OR?
-/*
-function spawnBoard() {
-    
-    console.log('spawnboard()');
-    var yShift = 163;
-    var xShift = 73;
-    var barrelSpacing = 1.05;
-    for (var i = 0; i < TEST_CONSTANT; i++) {
-        for(var j = 0; j < TEST_CONSTANT; j++) {
-            var barrel;
-            var rand = Math.round(Math.random()*9);
-            if(rand === 0) {
-                barrel = game.add.sprite(i*BARREL_WIDTH*barrelSpacing+xShift, j*BARREL_HEIGHT*barrelSpacing+yShift, 'spriteMoveRowLeft');
-                gameBoard[i][j] = new Barrel(BARREL_MOVE_ROW_LEFT, j, i, counter, barrel, 2, false);
-                barrel.alpha = true;
-            } else if (rand === 1) {
-                barrel = game.add.sprite(i*BARREL_WIDTH*barrelSpacing+xShift, j*BARREL_HEIGHT*barrelSpacing+yShift, 'spriteRevealAbove');
-                gameBoard[i][j] = new Barrel(BARREL_REVEAL_ABOVE, j, i, counter, barrel, 2, true);
-            } else if (rand == 2) {
-                barrel = game.add.sprite(i*BARREL_WIDTH*barrelSpacing+xShift, j*BARREL_HEIGHT*barrelSpacing+yShift, 'spriteCharge');
-                gameBoard[i][j] = new Barrel(BARREL_CHARGE, j, i, counter, barrel, 2, false);
-                barrel.alpha = true;
-            } else if (rand == 3) {
-                barrel = game.add.sprite(i*BARREL_WIDTH*barrelSpacing+xShift, j*BARREL_HEIGHT*barrelSpacing+yShift, 'spriteMoveRowRight');
-                gameBoard[i][j] = new Barrel(BARREL_MOVE_ROW_RIGHT, j, i, counter, barrel, 2, false);
-                barrel.alpha = true;
-             } else if (rand == 4) {
-                barrel = game.add.sprite(i*BARREL_WIDTH*barrelSpacing+xShift, j*BARREL_HEIGHT*barrelSpacing+yShift, 'spriteRevealLeft');
-                gameBoard[i][j] = new Barrel(BARREL_REVEAL_LEFT, j, i, counter, barrel, 2, true);
-                barrel.alpha = true;
-            }  else {
-                barrel = game.add.sprite(i*BARREL_WIDTH*barrelSpacing+xShift, j*BARREL_HEIGHT*barrelSpacing+yShift, 'spriteMoveColDown');
-                gameBoard[i][j] = new Barrel(BARREL_MOVE_COL_DOWN, j, i, counter, barrel, 2, false);
-                barrel.alpha = true;
-            }
-        
-            barrel.inputEnabled = true;
-
-            gameBoard[i][j].barrelSprite.events.onInputDown.add(listener,gameBoard[i][j]);
-            if(!gameBoard[i][j].visible)
-                gameBoard[i][j].barrelSprite.inputEnabled = false;
-
-            counter++;
-        }
-    }
-}
-*/

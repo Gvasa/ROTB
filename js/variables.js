@@ -16,8 +16,10 @@ var BOARD_ROWS;
 var counter = 0;
 
 var TEST_CONSTANT = 6;
-var BARREL_WIDTH = 80;
-var BARREL_HEIGHT = 100;
+var BARREL_WIDTH = 80*1.05;
+var BARREL_HEIGHT = 100*1.05;
+var X_SHIFT = 73;
+var Y_SHIFT = 163;
 
 var NUM_OF_LEVELS = 6;
 
