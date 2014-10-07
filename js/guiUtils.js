@@ -13,6 +13,6 @@ function setUpGui() {
 	guiGroup.alpha = false;
 	spriteResetButton.inputEnabled = true;
     spriteMainMenuButton.inputEnabled = true;
-	spriteResetButton.events.onInputDown.add(menuListener, resetButton);
-    spriteMainMenuButton.events.onInputDown.add(menuListener, mainMenuButton);
+	spriteResetButton.events.onInputDown.add(guiListener, resetButton);
+    spriteMainMenuButton.events.onInputDown.add(guiListener, mainMenuButton);
 }

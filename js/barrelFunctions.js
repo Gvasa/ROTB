@@ -3,7 +3,6 @@ function showBarrelRight(tmpBarrel) {
 	var row = tmpBarrel.posX;
     var col = tmpBarrel.posY;
 
-
    	gameBoard[col+1][row].barrelSprite.loadTexture(gameBoard[col+1][row].barrelType);
     gameBoard[col+1][row].visible = true;
     gameBoard[col+1][row].barrelInfo();
@@ -110,7 +109,6 @@ function moveColDown (tmpBarrel) {
 		levelComplete();
 		return;
 	}
-
 	for(var i = 5; i >= 0; i--) {
 		if(i == 0) 
 			gameBoard[col][i].barrelSprite.loadTexture(text);
@@ -269,18 +267,22 @@ function addCharge (tmpBarrel) {
 	if(row > 0) {
 		gameBoard[col][row-1].charges++;
 		console.log('barrel over: ' + col + ',' + (row-1));
+        charges++;
 	}
 	if(row < 5) {
 		gameBoard[col][row+1].charges++;
 		console.log('barrel under: ' + col + ',' + (row+1));
+        charges++;
 	}
 	if(col > 0) {
 		gameBoard[col-1][row].charges++;
 		console.log('barrel venster: ' + (col-1) + ',' + row);
+        charges++;
 	}
 	if(col < 5) {
 		gameBoard[col+1][row].charges++;
 		console.log('barrel hoeger: ' + (col+1) + ',' + row);
+        charges++;
 	}
 
 	uppdateBarrelVisibility(col,true);

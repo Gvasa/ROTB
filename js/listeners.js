@@ -16,6 +16,13 @@ function listener() {
             this.charges--;
 			showBarrelAbove(this);
             this.barrelInfo();
+            charges--;
+
+            if(charges == 0 && complete == false) {
+            	showFailMenu();
+            	break;
+            }
+            console.log('charges: ' + charges);
 			break;
 
 		case BARREL_REVEAL_BELOW:
@@ -27,6 +34,13 @@ function listener() {
 			this.charges--;
 			showBarrelBellow(this);
             this.barrelInfo();
+            charges--;
+
+            if(charges == 0 && complete == false) {
+            	showFailMenu();
+            	break;
+            }
+            console.log('charges: ' + charges);
 			break;
 		
 		case BARREL_REVEAL_RIGHT:
@@ -38,6 +52,13 @@ function listener() {
 			this.charges--;
 			showBarrelRight(this);
             this.barrelInfo();
+            charges--;
+
+            if(charges == 0 && complete == false) {
+            	showFailMenu();
+            	break;
+            }
+            console.log('charges: ' + charges);
 			break;
 		
 		case BARREL_REVEAL_LEFT:
@@ -49,6 +70,13 @@ function listener() {
 			this.charges--;
 			showBarrelLeft(this);
             this.barrelInfo();
+            charges--;
+
+            if(charges == 0 && complete == false) {
+            	showFailMenu();
+            	break;
+            }
+            console.log('charges: ' + charges);
 			break;
 
 		case BARREL_MOVE_COL_UP:
@@ -57,6 +85,13 @@ function listener() {
 			this.charges--;
 			moveColUp(this);
             this.barrelInfo();
+            charges--;
+
+            if(charges == 0 && complete == false) {
+            	showFailMenu();
+            	break;
+            }
+            console.log('charges: ' + charges);
 			break;
 
 		case BARREL_MOVE_COL_DOWN:
@@ -65,6 +100,13 @@ function listener() {
 			this.charges--;
 			moveColDown(this);
 			this.barrelInfo();
+			charges--;
+
+			if(charges == 0 && complete == false) {
+            	showFailMenu();
+            	break;
+            }
+			console.log('charges: ' + charges);
 			break;
 
 		case BARREL_MOVE_ROW_LEFT:
@@ -74,6 +116,13 @@ function listener() {
 			this.charges--;
 			moveRowLeft(this);
             this.barrelInfo();
+            charges--;
+
+            if(charges == 0 && complete == false) {
+            	showFailMenu();
+            	break;
+            }
+            console.log('charges: ' + charges);
 			break;
 
 		case BARREL_MOVE_ROW_RIGHT:
@@ -85,6 +134,13 @@ function listener() {
 			this.charges--;
 			moveRowRight(this);
 			this.barrelInfo();
+			charges--;
+
+			if(charges == 0 && complete == false) {
+            	showFailMenu();
+            	break;
+            }
+			console.log('charges: ' + charges);
 			break;
 
 		case BARREL_CHARGE:
@@ -95,6 +151,13 @@ function listener() {
 			this.charges--;
 			addCharge(this);
             this.barrelInfo();
+            charges--;
+
+            if(charges == 0 && complete == false) {
+            	showFailMenu();
+            	break;
+            }
+            console.log('charges: ' + charges);
 			break;
 	}
 }
@@ -178,7 +241,7 @@ function menuListener() {
 			currentLevel = 'level1';
 			readJson('level1');
 			hideMenu();
-			animationBoardIn()
+			animationBoardIn();
 			swapTutorials(1);
 			break;
 
@@ -187,6 +250,15 @@ function menuListener() {
 			createLevelMenu();
 			showLevelMenu();
 			break;
+	}
+
+}
+
+function guiListener() {
+	console.log(this);
+	var type = this.buttonType;
+
+	switch(type) {
 
 		case 'resetButton':
 			resetBoard();
@@ -199,7 +271,25 @@ function menuListener() {
 			showMenu();
 			break;
 	}
+}
 
+function postGameMenuListener() {
+	console.log(this);
+	var type = this.buttonType;
+
+	switch(type) {
+		case 'chooseLevel':
+			resetBoard();
+			showLevelMenu();
+			hideFailMenu();
+			break;
+
+		case 'restartLevel':
+			resetBoard();
+			readJson(currentLevel);
+			hideFailMenu();
+			break;
+	}
 }
 
 function tutorialListener() {

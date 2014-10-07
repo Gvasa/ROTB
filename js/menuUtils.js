@@ -186,3 +186,53 @@ function hidePostGameMenu() {
 	moveToYAnimation(levelCompleteButton, -910, 700);
 	moveToYAnimation(nextLevelButton.buttonSprite, -498-113, 700);
 }
+
+function createFailMenu() {
+	outOfChargesButton = game.add.sprite(114, -910, 'outOfChargesSprite');
+
+	var button1 = game.add.sprite(254, -465-113, 'chooseLevelSprite');
+	var button2 = game.add.sprite(256, -365-113, 'restartLevelSprite');
+
+	button1.inputEnabled = true;
+	button2.inputEnabled = true;
+
+	chooseLevelButton = new Button('chooseLevel', button1);
+	restartLevelButton = new Button('restartLevel', button2);
+
+	outOfChargesButton.alpha = false;
+	chooseLevelButton.buttonSprite.alpha = false;
+	chooseLevelButton.buttonSprite.inputEnabled = false;
+	restartLevelButton.buttonSprite.alpha = false;
+	restartLevelButton.buttonSprite.inputEnabled = false;
+
+	button1.events.onInputDown.add(postGameMenuListener, chooseLevelButton);
+	button2.events.onInputDown.add(postGameMenuListener, restartLevelButton);
+}
+
+function showFailMenu() {
+	moveFromYAnimation(outOfChargesButton, -20, 700);
+	moveFromYAnimation(chooseLevelButton.buttonSprite, 265, 700);
+	moveFromYAnimation(restartLevelButton.buttonSprite, 363, 700);
+	
+	tutorialFaded.alpha = true;
+	game.world.bringToTop(guiGroup);
+
+	outOfChargesButton.alpha = true;
+	game.world.bringToTop(outOfChargesButton);
+
+	chooseLevelButton.buttonSprite.alpha = true;
+	chooseLevelButton.buttonSprite.inputEnabled = true;
+	game.world.bringToTop(chooseLevelButton.buttonSprite);
+
+	restartLevelButton.buttonSprite.alpha = true;
+	restartLevelButton.buttonSprite.inputEnabled = true;
+	game.world.bringToTop(restartLevelButton.buttonSprite);
+}
+
+function hideFailMenu() {
+	game.add.tween(tutorialFaded).to({alpha: 0}, 1000, Phaser.Easing.Linear.None, true);
+	
+	moveToYAnimation(outOfChargesButton, -910, 700);
+	moveToYAnimation(chooseLevelButton.buttonSprite, -498-113, 700);
+	moveToYAnimation(restartLevelButton.buttonSprite ,-398-113, 700);
+}

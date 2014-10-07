@@ -2,6 +2,8 @@ function readJson(fileName) {
 		
 	var parsedJsonData = JSON.parse(game.cache.getText(fileName));
 	console.log(parsedJsonData);
+    charges = 0;
+    complete = false;
 
 	winBarrelRow = parsedJsonData.winRow;
 	winBarrelCol = parsedJsonData.winCol;
@@ -11,7 +13,7 @@ function readJson(fileName) {
 			gameBoard[j][i].barrelType = parsedJsonData.gameBoard[i][j].type;
 			gameBoard[j][i].visible = parsedJsonData.gameBoard[i][j].visible;
 			gameBoard[j][i].charges = parsedJsonData.gameBoard[i][j].charges;
-
+            //console.log(parseInt(parsedJsonData.gameBoard[i][j].charges));
             charges += parsedJsonData.gameBoard[i][j].charges;
 
 			if(gameBoard[j][i].barrelType != BARREL_EMPTY) {
@@ -24,6 +26,7 @@ function readJson(fileName) {
 			}
 		}	
 	}
+    console.log('charges: ' + charges);
 
 	for(var i = 0; i < TEST_CONSTANT; i++)
 		uppdateBarrelVisibility(i, true);

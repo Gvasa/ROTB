@@ -3,6 +3,7 @@ function levelComplete() {
 	//var text = "- Gratz! -\n Level Complete";
     //var style = { font: "65px Arial", fill: "#ffd700", align: "center" };
     //var t = game.add.text(game.world.centerX-280, 0, text, style);
+    complete = true;
     for(var i = 0; i < 6; i++)
       uppdateBarrelVisibility(i, true);
   	
