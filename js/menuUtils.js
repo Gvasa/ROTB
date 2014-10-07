@@ -172,6 +172,9 @@ function showPostGameMenu() {
 	moveFromYAnimation(levelCompleteButton, -20, 700);
 	moveFromYAnimation(nextLevelButton.buttonSprite, 265, 700);
 
+	resetButton.buttonSprite.inputEnabled = false;
+	mainMenuButton.buttonSprite.inputEnabled = false;
+
 	game.world.bringToTop(tutorialFaded);
 	game.world.bringToTop(guiGroup);
 	levelCompleteButton.alpha = true;
@@ -185,6 +188,9 @@ function showPostGameMenu() {
 function hidePostGameMenu() {
 	moveToYAnimation(levelCompleteButton, -910, 700);
 	moveToYAnimation(nextLevelButton.buttonSprite, -498-113, 700);
+
+	resetButton.buttonSprite.inputEnabled = true;
+	mainMenuButton.buttonSprite.inputEnabled = true;
 }
 
 function createFailMenu() {
@@ -214,6 +220,9 @@ function showFailMenu() {
 	moveFromYAnimation(chooseLevelButton.buttonSprite, 265, 700);
 	moveFromYAnimation(restartLevelButton.buttonSprite, 363, 700);
 	
+	resetButton.buttonSprite.inputEnabled = false;
+	mainMenuButton.buttonSprite.inputEnabled = false;
+
 	tutorialFaded.alpha = true;
 	game.world.bringToTop(guiGroup);
 
@@ -235,4 +244,7 @@ function hideFailMenu() {
 	moveToYAnimation(outOfChargesButton, -910, 700);
 	moveToYAnimation(chooseLevelButton.buttonSprite, -498-113, 700);
 	moveToYAnimation(restartLevelButton.buttonSprite ,-398-113, 700);
+
+	resetButton.buttonSprite.inputEnabled = true;
+	mainMenuButton.buttonSprite.inputEnabled = true;
 }
