@@ -23,6 +23,14 @@ function animationBoardOut() {
 
 }
 
+function animateRowRight() {
+	var speed = 100;
+	console.log('animate row');
+	for(var i=0; i < 6; i++){
+		moveToXAnimation(gameBoard[j][i].barrelSprite, i*BARREL_WIDTH*1.05+73+10, speed);
+	}
+}
+
 function moveBarrelsToStartPosition() {
 	console.log('heheh');
 	for(var i = 0; i < 6; i ++) {

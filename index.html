@@ -43,6 +43,7 @@ function create() {
     game.add.sprite(0,0, 'background');
     
 	bClick = game.add.audio('sfx');
+    sfxLevelComplete = game.add.audio('sfxLevelComplete');
 
     text = game.add.text(250, 16, '', { fill: '#ffffff' });
     gameBoard = new Array(6);

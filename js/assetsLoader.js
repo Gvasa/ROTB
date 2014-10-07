@@ -16,6 +16,7 @@ function assetsLoader() {
     game.load.image('BARREL_BASE', 'assets/barrels/barrel_base_76_96.png');
 
     game.load.audio('sfx', 'assets/sound/barrelclick.wav');
+    game.load.audio('sfxLevelComplete', 'assets/sound/levelcomplete.wav')
 
     game.load.text('level1', 'assets/levels/level1.json');
     game.load.text('level2', 'assets/levels/level2.json');
