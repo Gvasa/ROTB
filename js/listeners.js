@@ -215,18 +215,12 @@ function levelListener() {
 			break;
 
 		case 'nextLevel':
-			//resetBoard();
-  			//emptyBoard();
-  			tutorialFaded.alpha = false;
+			resetWinBarrel();
+  			tintGame(tintBlack, 0, 1000);
 			hidePostGameMenu();
 			animationBoardOut();
 			game.time.events.add(Phaser.Timer.QUARTER*1.9, moveBarrelsToStartPosition, this);
 			game.time.events.add(Phaser.Timer.QUARTER*1.9, readNextLevel, this);
-			//moveBarrelsToStartPosition();
-			//game.time.events.add(Phaser.Timer.SECOND * 1, readNextLevel, this);
-
-			//resetBoard();
-			
 			break;
 	}		
 }

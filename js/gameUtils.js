@@ -9,7 +9,26 @@ function levelComplete() {
       uppdateBarrelVisibility(i, true);
   	
     clearTutorials();
-    tutorialFaded.alpha = true;
+    tintGame(tintBlack, 1, 1000);
+
+    //game.world.bringToTop(gameBoard[winBarrelCol][winBarrelRow].barrelSprite);
+    tmpX = gameBoard[winBarrelCol][winBarrelRow].barrelSprite.x;
+    tmpY = gameBoard[winBarrelCol][winBarrelRow].barrelSprite.y;
+
+    gameBoard[winBarrelCol][winBarrelRow].barrelSprite.loadTexture('BARREL_WIN_LARGE');
+    gameBoard[winBarrelCol][winBarrelRow].barrelSprite.scale.setTo(BARREL_SPRITE_WIDTH/512, BARREL_SPRITE_HEIGHT/651);
+    gameBoard[winBarrelCol][winBarrelRow].barrelSprite.x = tmpX;
+    gameBoard[winBarrelCol][winBarrelRow].barrelSprite.y = tmpY;
+    scaleXYAnimation(gameBoard[winBarrelCol][winBarrelRow].barrelSprite, 0.5, 0.5, 700);
+    moveToXYAnimation(gameBoard[winBarrelCol][winBarrelRow].barrelSprite, 200, 420, 700);
+
+    
+    
+
+    //game.world.bringToTop(gameBoard[winBarrelCol][winBarrelRow].barrelSprite);
+    //moveToXAnimation(gameBoard[winBarrelCol][winBarrelRow].barrelSprite, 115, 700);
+    //moveToYAnimation(gameBoard[winBarrelCol][winBarrelRow].barrelSprite, 220, 700);
+
     if(parseInt(currentLevel.slice(-1)) < NUM_OF_LEVELS) {
         showPostGameMenu();
         console.log('FORTSATT');
@@ -121,4 +140,12 @@ function printBoard() {
 
    		}
    	}
+}
+
+function resetWinBarrel() {
+    gameBoard[winBarrelCol][winBarrelRow].barrelSprite.loadTexture('BARREL_WIN');
+
+    gameBoard[winBarrelCol][winBarrelRow].barrelSprite.x = tmpX;
+    gameBoard[winBarrelCol][winBarrelRow].barrelSprite.y = tmpY;
+    gameBoard[winBarrelCol][winBarrelRow].barrelSprite.scale.setTo(1, 1);
 }

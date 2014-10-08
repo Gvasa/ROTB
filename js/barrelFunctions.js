@@ -156,7 +156,7 @@ function moveRowRight (tmpBarrel) {
 	var text = gameBoard[5][row].barrelSprite.key;
 	var barrelSprite = gameBoard[5][row];
 	
-	animateRowRight(row);
+	//animateRowRight(row);
 
 	console.log('right');
 	if(winBarrelRow == row && gameBoard[winBarrelCol-1][winBarrelRow].barrelType != BARREL_EMPTY) {
@@ -166,7 +166,7 @@ function moveRowRight (tmpBarrel) {
 		return;
 	}
 	
-/*	for(var i = 5; i >= 0; i--) {
+	for(var i = 5; i >= 0; i--) {
 		if(i == 0) 
 			gameBoard[i][row].barrelSprite.loadTexture(text);
 		else if(gameBoard[i-1][row].barrelType == BARREL_WIN) {
@@ -174,7 +174,7 @@ function moveRowRight (tmpBarrel) {
 			i--;
 		} else 
 			gameBoard[i][row].barrelSprite.loadTexture(gameBoard[i-1][row].barrelSprite.key);
-	}*/
+	}
 
 	var fooType = gameBoard[5][row].barrelType;
     var fooId = gameBoard[5][row].barrelId;

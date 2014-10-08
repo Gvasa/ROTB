@@ -75,7 +75,7 @@ function createLevelMenu() {
 
 function showMenu() {
 	resetBoard();
-	tutorialFaded.alpha = false;
+	tintGame(tintBlack, 0, 1000);
 	moveFromYAnimation(header, -20, 700);
 	moveFromYAnimation(menuButton1.buttonSprite, 265, 700);
 	moveFromYAnimation(menuButton2.buttonSprite, 365, 700);
@@ -169,13 +169,15 @@ function createPostGameMenu() {
 }
 
 function showPostGameMenu() {
+	//resetBoard();
 	moveFromYAnimation(levelCompleteButton, -20, 700);
 	moveFromYAnimation(nextLevelButton.buttonSprite, 265, 700);
 
 	resetButton.buttonSprite.inputEnabled = false;
 	mainMenuButton.buttonSprite.inputEnabled = false;
 
-	game.world.bringToTop(tutorialFaded);
+	game.world.bringToTop(tintBlack);
+	game.world.bringToTop(gameBoard[winBarrelCol][winBarrelRow].barrelSprite);
 	game.world.bringToTop(guiGroup);
 	levelCompleteButton.alpha = true;
 	game.world.bringToTop(levelCompleteButton);
@@ -223,7 +225,7 @@ function showFailMenu() {
 	resetButton.buttonSprite.inputEnabled = false;
 	mainMenuButton.buttonSprite.inputEnabled = false;
 
-	tutorialFaded.alpha = true;
+	tintGame(tintBlack, 1, 1000);
 	game.world.bringToTop(guiGroup);
 
 	outOfChargesButton.alpha = true;
@@ -239,7 +241,7 @@ function showFailMenu() {
 }
 
 function hideFailMenu() {
-	game.add.tween(tutorialFaded).to({alpha: 0}, 1000, Phaser.Easing.Linear.None, true);
+	game.add.tween(tintBlack).to({alpha: 0}, 1000, Phaser.Easing.Linear.None, true);
 	
 	moveToYAnimation(outOfChargesButton, -910, 700);
 	moveToYAnimation(chooseLevelButton.buttonSprite, -498-113, 700);
