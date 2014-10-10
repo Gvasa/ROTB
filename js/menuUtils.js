@@ -177,6 +177,7 @@ function showPostGameMenu() {
 	mainMenuButton.buttonSprite.inputEnabled = false;
 
 	game.world.bringToTop(tintBlack);
+	winBarrelGlow.bringToTop();
 	game.world.bringToTop(gameBoard[winBarrelCol][winBarrelRow].barrelSprite);
 	game.world.bringToTop(guiGroup);
 	levelCompleteButton.alpha = true;

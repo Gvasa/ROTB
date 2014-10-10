@@ -69,5 +69,7 @@ var tutorial_1_3;
 var tintBlack;
 var tutorialContinue;
 
+var winBarrelGlow;
+
 var tmpX;
 var tmpY;

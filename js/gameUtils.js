@@ -1,6 +1,6 @@
 function levelComplete() {
 
-	//var text = "- Gratz! -\n Level Complete";
+    //var text = "- Gratz! -\n Level Complete";
     //var style = { font: "65px Arial", fill: "#ffd700", align: "center" };
     //var t = game.add.text(game.world.centerX-280, 0, text, style);
     sfxLevelComplete.play();
@@ -15,19 +15,11 @@ function levelComplete() {
     tmpX = gameBoard[winBarrelCol][winBarrelRow].barrelSprite.x;
     tmpY = gameBoard[winBarrelCol][winBarrelRow].barrelSprite.y;
 
-    gameBoard[winBarrelCol][winBarrelRow].barrelSprite.loadTexture('BARREL_WIN_LARGE');
-    gameBoard[winBarrelCol][winBarrelRow].barrelSprite.scale.setTo(BARREL_SPRITE_WIDTH/512, BARREL_SPRITE_HEIGHT/651);
-    gameBoard[winBarrelCol][winBarrelRow].barrelSprite.x = tmpX;
-    gameBoard[winBarrelCol][winBarrelRow].barrelSprite.y = tmpY;
-    scaleXYAnimation(gameBoard[winBarrelCol][winBarrelRow].barrelSprite, 0.5, 0.5, 700);
-    moveToXYAnimation(gameBoard[winBarrelCol][winBarrelRow].barrelSprite, 200, 420, 700);
+    animateWinBarrel();
 
-    
-    
+    tintGame(winBarrelGlow, 1, 700);
 
-    //game.world.bringToTop(gameBoard[winBarrelCol][winBarrelRow].barrelSprite);
-    //moveToXAnimation(gameBoard[winBarrelCol][winBarrelRow].barrelSprite, 115, 700);
-    //moveToYAnimation(gameBoard[winBarrelCol][winBarrelRow].barrelSprite, 220, 700);
+    animateWinBarrelGlow();
 
     if(parseInt(currentLevel.slice(-1)) < NUM_OF_LEVELS) {
         showPostGameMenu();
@@ -55,7 +47,7 @@ function emptyBoard() {
 
 				gameBoard[i][j] = new Barrel(BARREL_EMPTY, j, i, counter, barrel, 2, false, chargeSprite1, chargeSprite2);
 	            
-	            barrel.alpha = true;
+	      barrel.alpha = true;
 				barrel.inputEnabled = true;
 				chargeSprite1.alpha = false;
 				chargeSprite2.alpha = false;
@@ -63,9 +55,9 @@ function emptyBoard() {
 				barrel.addChild(chargeSprite1);
 				barrel.addChild(chargeSprite2);
 			
-	            gameBoard[i][j].barrelSprite.events.onInputDown.add(listener,gameBoard[i][j]);
-	          	gameBoard[i][j].barrelSprite.inputEnabled = false;
-	            counter++;
+	      gameBoard[i][j].barrelSprite.events.onInputDown.add(listener,gameBoard[i][j]);
+	      gameBoard[i][j].barrelSprite.inputEnabled = false;
+	      counter++;
 		}
 	}
 }
@@ -144,8 +136,11 @@ function printBoard() {
 
 function resetWinBarrel() {
     gameBoard[winBarrelCol][winBarrelRow].barrelSprite.loadTexture('BARREL_WIN');
-
     gameBoard[winBarrelCol][winBarrelRow].barrelSprite.x = tmpX;
     gameBoard[winBarrelCol][winBarrelRow].barrelSprite.y = tmpY;
     gameBoard[winBarrelCol][winBarrelRow].barrelSprite.scale.setTo(1, 1);
+    winBarrelGlow.x = tmpX;
+    winBarrelGlow.y = tmpY;
+    winBarrelGlow.scale.setTo(BARREL_SPRITE_WIDTH/400, BARREL_SPRITE_HEIGHT/400);
+    winBarrelGlow.alpha = false;
 }

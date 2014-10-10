@@ -46,6 +46,7 @@ function assetsLoader() {
     game.load.image('tutorial_1_3', 'assets/tutorials/tutorial_1_3_420_310.png');
     //game.load.image('tutorialFaded', 'assets/tutorials/tutorialFaded.png');
     game.load.image('tintBlack', 'assets/splash_screens/tint_game_black.png');
+    game.load.image('winBarrelGlow', 'assets/splash_screens/barrel_aura.png');
 
     game.load.image('spriteStar', 'assets/barrelIcons/chargeFlash_25_37.png');
     game.load.image('spriteChargeUpper', 'assets/barrelIcons/charge_upper_76_96.png');
