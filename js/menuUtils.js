@@ -5,7 +5,7 @@
 
 
 function createMenu() {
-	resetBoard();
+	resetBoard2();
 	header = game.add.sprite(114,-910,'header');
 
 	mainMenuButtonSprite1 = game.add.sprite(256, -465-113, 'playButtonSprite');
@@ -74,7 +74,7 @@ function createLevelMenu() {
 }
 
 function showMenu() {
-	resetBoard();
+	resetBoard2();
 	tutorialFaded.alpha = false;
 	moveFromYAnimation(header, -20, 700);
 	moveFromYAnimation(menuButton1.buttonSprite, 265, 700);

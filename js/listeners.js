@@ -4,9 +4,10 @@ function listener() {
 	switch(expr) {
 		
 		case BARREL_REVEAL_ABOVE:
-            if(this.posX == 0 || this.charges <= 0 || gameBoard[this.posY][this.posX-1].visible == true || gameBoard[this.posY][this.posX-1].barrelType == BARREL_EMPTY) {
+            if(this.posX == 0 || this.charges <= 0 || gameBoard[this.barrelId-1].visible == true || gameBoard[this.barrelId-1].barrelType == BARREL_EMPTY) {
                 console.log('If barrel reveal above');
                 this.barrelInfo();
+                gameBoard[this.barrelId-1].barrelInfo();
                 break;
             }
             if(currentLevel == 'level1')
@@ -26,13 +27,13 @@ function listener() {
 			break;
 
 		case BARREL_REVEAL_BELOW:
-			if(this.posX == TEST_CONSTANT-1 || this.charges <= 0 ||gameBoard[this.posY][this.posX+1].visible == true || gameBoard[this.posY][this.posX+1].barrelType == BARREL_EMPTY) {
+			if(this.posX == TEST_CONSTANT-1 || this.charges <= 0 || gameBoard[this.barrelId+1].visible == true || gameBoard[this.barrelId+1].barrelType == BARREL_EMPTY) {
 				console.log('If barrel reveal below');
 				break;
 			}
 			bClick.play();
 			this.charges--;
-			showBarrelBellow(this);
+			showBarrelBelow(this);
             this.barrelInfo();
             charges--;
 
@@ -44,8 +45,12 @@ function listener() {
 			break;
 		
 		case BARREL_REVEAL_RIGHT:
-			if(this.posY == TEST_CONSTANT-1 || this.charges <= 0 ||gameBoard[this.posY+1][this.posX].visible == true || gameBoard[this.posY+1][this.posX].barrelType == BARREL_EMPTY) {
+			if(this.posY == TEST_CONSTANT-1 || this.charges <= 0 || gameBoard[this.barrelId+6].visible == true || gameBoard[this.barrelId+6].barrelType == BARREL_EMPTY) {
 				console.log('If barrel reveal RIGHT');
+				this.barrelInfo();
+				gameBoard[this.barrelId+6].barrelInfo();
+				console.log(gameBoard[this.barrelId+6].visible);
+				console.log(gameBoard[this.barrelId+6].barrelType);
 				break;
 			}
 			bClick.play();
@@ -62,7 +67,7 @@ function listener() {
 			break;
 		
 		case BARREL_REVEAL_LEFT:
-			if(this.posY == 0 || this.charges <= 0 ||gameBoard[this.posY-1][this.posX].visible == true || gameBoard[this.posY-1][this.posX].barrelType == BARREL_EMPTY) {
+			if(this.posY == 0 || this.charges <= 0 ||gameBoard[this.barrelId-6].visible == true || gameBoard[this.barrelId-6].barrelType == BARREL_EMPTY) {
 				console.log('If barrel reveal LEFT');
 				break;
 			}
@@ -115,14 +120,14 @@ function listener() {
 
 			this.charges--;
 			moveRowLeft(this);
-            this.barrelInfo();
+           // this.barrelInfo();
             charges--;
 
             if(charges == 0 && complete == false) {
             	showFailMenu();
             	break;
             }
-            console.log('charges: ' + charges);
+            //console.log('charges: ' + charges);
 			break;
 
 		case BARREL_MOVE_ROW_RIGHT:
@@ -170,7 +175,7 @@ function levelListener() {
 			currentLevel = 'level1';
 			readJson('level1');
 			//hideMenu();
-			animationBoardIn();
+			//animationBoardIn();
 			hideLevelMenu();
 			swapTutorials(1);
 			break;
@@ -178,8 +183,8 @@ function levelListener() {
 		case 'level2':
 			currentLevel = 'level2';
 			readJson('level2');
-			animationBoardIn();
-			//hideMenu();
+			//animationBoardIn();
+			hideMenu();
 			hideLevelMenu();
 			break;
 
@@ -187,14 +192,14 @@ function levelListener() {
 			currentLevel = 'level3';
 			readJson('level3');
 			//hideMenu();
-			animationBoardIn();
+			//animationBoardIn();
 			hideLevelMenu();
 			break;
 
 		case 'level4':
 			currentLevel = 'level4';
 			readJson('level4');
-			animationBoardIn();
+			//animationBoardIn();
 			//hideMenu();
 			hideLevelMenu();
 			break;
@@ -202,7 +207,7 @@ function levelListener() {
 		case 'level5':
 			currentLevel = 'level5';
 			readJson('level5');
-			animationBoardIn();
+			//animationBoardIn();
 			//hideMenu();
 			hideLevelMenu();
 			break;
@@ -210,7 +215,7 @@ function levelListener() {
 		case 'level6':
 			currentLevel = 'level6';
 			readJson('level6');
-			animationBoardIn();
+			//animationBoardIn();
 			hideLevelMenu();
 			break;
 
@@ -241,7 +246,7 @@ function menuListener() {
 			currentLevel = 'level1';
 			readJson('level1');
 			hideMenu();
-			animationBoardIn();
+			//animationBoardIn();
 			swapTutorials(1);
 			break;
 
@@ -261,7 +266,7 @@ function guiListener() {
 	switch(type) {
 
 		case 'resetButton':
-			resetBoard();
+			resetBoard2();
 			readJson(currentLevel);
 			hideMenu();
 			break;
@@ -279,13 +284,13 @@ function postGameMenuListener() {
 
 	switch(type) {
 		case 'chooseLevel':
-			resetBoard();
+			resetBoard2();
 			showLevelMenu();
 			hideFailMenu();
 			break;
 
 		case 'restartLevel':
-			resetBoard();
+			resetBoard2();
 			readJson(currentLevel);
 			hideFailMenu();
 			break;
@@ -299,7 +304,7 @@ function tutorialListener() {
 }
 
 function readNextLevel() {
-	resetBoard();
+	//resetBoard2();
 	var foo = currentLevel;
 
 
