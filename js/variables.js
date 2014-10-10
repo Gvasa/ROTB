@@ -20,7 +20,8 @@ var BARREL_WIDTH = 80*1.05;
 var BARREL_HEIGHT = 100*1.05;
 var X_SHIFT = 73;
 var Y_SHIFT = 163;
-
+var BARREL_SPRITE_WIDTH = 76;
+var BARREL_SPRITE_HEIGHT = 96;
 var NUM_OF_LEVELS = 6;
 
 var TOP_ROW = [0, 6, 12, 18, 24, 30];
@@ -71,5 +72,9 @@ var restartLevelButton;
 var tutorial_1_1;
 var tutorial_1_2;
 var tutorial_1_3;
-var tutorialFaded;
+var tintBlack;
 var tutorialContinue;
+
+var winBarrelGlow;
+var tmpX;
+var tmpY;

@@ -222,7 +222,8 @@ function levelListener() {
 		case 'nextLevel':
 			//resetBoard();
   			//emptyBoard();
-  			tutorialFaded.alpha = false;
+  			resetWinBarrel();
+  			tintGame(tintBlack, 0, 1000);
 			hidePostGameMenu();
 			animationBoardOut();
 			game.time.events.add(Phaser.Timer.QUARTER*1.9, moveBarrelsToStartPosition, this);

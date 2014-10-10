@@ -144,3 +144,28 @@ function moveBarrelsToStartPosition() {
 		}
 	}
 }
+
+function animateWinBarrel() {
+    gameBoard[winIndex].barrelSprite.loadTexture('BARREL_WIN_LARGE');
+    gameBoard[winIndex].barrelSprite.scale.setTo(BARREL_SPRITE_WIDTH/512, BARREL_SPRITE_HEIGHT/651);
+    gameBoard[winIndex].barrelSprite.x = tmpX;
+    gameBoard[winIndex].barrelSprite.y = tmpY;
+    scaleXYAnimation(gameBoard[winIndex].barrelSprite, 0.5, 0.5, 700);
+    moveToXYAnimation(gameBoard[winIndex].barrelSprite, 200, 420, 700);
+}
+
+function animateWinBarrelGlow() {
+    winBarrelGlow.anchor.setTo(0.5, 0.5);
+    winBarrelGlow.alpha = true;
+    winBarrelGlow.scale.setTo(BARREL_SPRITE_HEIGHT/400, BARREL_SPRITE_HEIGHT/400);
+    winBarrelGlow.x = (tmpX - BARREL_SPRITE_WIDTH/2) + BARREL_SPRITE_WIDTH;
+    winBarrelGlow.y = (tmpY - BARREL_SPRITE_WIDTH/2) + BARREL_SPRITE_WIDTH + 50;
+    scaleXYAnimation(winBarrelGlow, 1.6, 1.6, 700);
+    moveToXYAnimation(winBarrelGlow, 320, 560, 700);
+    rotateAnimation(winBarrelGlow, 360, 8000, true);
+    //pulseScaleXYAnimation(winBarrelGlow, 0.9, 0.9, 700, false);
+}
+
+function resetGlowScale() {
+        winBarrelGlow.scale.setTo(2,2);
+}

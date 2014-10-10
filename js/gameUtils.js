@@ -1,15 +1,25 @@
 function levelComplete() {
-
-	//var text = "- Gratz! -\n Level Complete";
+ 
+    //var text = "- Gratz! -\n Level Complete";
     //var style = { font: "65px Arial", fill: "#ffd700", align: "center" };
     //var t = game.add.text(game.world.centerX-280, 0, text, style);
     sfxLevelComplete.play();
     complete = true;
-    
-    updateBarrelVisibility2();
-  	
+    updateBarrelVisibility2(); 
     clearTutorials();
-    tutorialFaded.alpha = true;
+    tintGame(tintBlack, 1, 1000);
+ 
+    //game.world.bringToTop(gameBoard[winBarrelCol][winBarrelRow].barrelSprite);
+    tmpX = gameBoard[winIndex].barrelSprite.x;
+    tmpY = gameBoard[winIndex].barrelSprite.y;
+ 
+    animateWinBarrel();
+ 
+    tintGame(winBarrelGlow, 1, 700);
+ 
+    animateWinBarrelGlow();
+    //createSmokeParticles();
+ 
     if(parseInt(currentLevel.slice(-1)) < NUM_OF_LEVELS) {
         showPostGameMenu();
         console.log('FORTSATT');
@@ -73,45 +83,6 @@ function resetBoard2() {
   }
 }
 
-function uppdateBarrelVisibility(tmpPos, isCol) {
-	if(isCol) {
-        for(var i = 0; i < TEST_CONSTANT; i++) {
-           	gameBoard[tmpPos][i].barrelSprite.inputEnabled = gameBoard[tmpPos][i].visible;
-           	
-           	if(gameBoard[tmpPos][i].barrelType != BARREL_WIN) {
-           		if(gameBoard[tmpPos][i].charges == 2) {
-           			gameBoard[tmpPos][i].chargeSprite1.alpha = gameBoard[tmpPos][i].visible;
-           			gameBoard[tmpPos][i].chargeSprite2.alpha = gameBoard[tmpPos][i].visible;
-           		} else if (gameBoard[tmpPos][i].charges == 1) {
-           			gameBoard[tmpPos][i].chargeSprite1.alpha = gameBoard[tmpPos][i].visible;
-           			gameBoard[tmpPos][i].chargeSprite2.alpha = false;
-           		} else {
-           			gameBoard[tmpPos][i].chargeSprite1.alpha = false;
-           			gameBoard[tmpPos][i].chargeSprite2.alpha = false;
-           		}
-           	}           
-        }
-    } else {
-        for(var i = 0; i < TEST_CONSTANT; i++) {  
-           	gameBoard[i][tmpPos].barrelSprite.inputEnabled = gameBoard[i][tmpPos].visible;
-           	
-           		if(gameBoard[i][tmpPos].barrelType != BARREL_WIN) {
-           		if(gameBoard[i][tmpPos].charges == 2) {
-           			gameBoard[i][tmpPos].chargeSprite1.alpha = gameBoard[i][tmpPos].visible;
-           			gameBoard[i][tmpPos].chargeSprite2.alpha = gameBoard[i][tmpPos].visible;
-           		} else if (gameBoard[i][tmpPos].charges == 1) {
-           			gameBoard[i][tmpPos].chargeSprite1.alpha = gameBoard[i][tmpPos].visible;
-           			gameBoard[i][tmpPos].chargeSprite2.alpha = false;
-           		} else {
-           			gameBoard[i][tmpPos].chargeSprite1.alpha = false;
-           			gameBoard[i][tmpPos].chargeSprite2.alpha = false;
-           		}
-           	} 
-        }
-    }
-}
-
-
 function updateBarrelVisibility2() {
   
   for(var i = 0; i < TEST_CONSTANT*6; i++) {  
@@ -161,4 +132,15 @@ function calculateXIndex(tmpBarrel) {
 
 function calculateYIndex(tmpBarrel) {
   return (tmpBarrel.spritePosY-Y_SHIFT) / (BARREL_HEIGHT);
+}
+
+function resetWinBarrel() {
+    gameBoard[winIndex].barrelSprite.loadTexture('BARREL_WIN');
+    gameBoard[winIndex].barrelSprite.x = tmpX;
+    gameBoard[winIndex].barrelSprite.y = tmpY;
+    gameBoard[winIndex].barrelSprite.scale.setTo(1, 1);
+    winBarrelGlow.x = tmpX;
+    winBarrelGlow.y = tmpY;
+    winBarrelGlow.scale.setTo(BARREL_SPRITE_WIDTH/400, BARREL_SPRITE_HEIGHT/400);
+    winBarrelGlow.alpha = false;
 }
