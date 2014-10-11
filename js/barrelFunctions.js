@@ -50,6 +50,8 @@ function moveColUp (tmpBarrel) {
 
 	animateColUp(colToMove);
 	if(winBarrelInArray != -1 && gameBoard[colToMove[winBarrelInArray+1]].barrelType != BARREL_EMPTY) {
+			console.log(colToMove);
+			console.log('asdasd');
 			levelComplete();
 			return;
 	}
@@ -59,6 +61,9 @@ function moveColUp (tmpBarrel) {
 		var tmpId = gameBoard[colToMove[5]].barrelId;
 		var tmpPosX = gameBoard[colToMove[5]].spritePosX;
 		var tmpPosY = gameBoard[colToMove[5]].spritePosY;
+		console.log(colToMove);
+		for (var j = 0; j <=5; j++)
+			console.log(gameBoard[colToMove[j]]);
 
 		for(var i = 5; i >= 0; i--) {
 			if(i == 0) {

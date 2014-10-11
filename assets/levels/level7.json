@@ -1,6 +1,6 @@
 {
     "level": "level7",
-    "winRow" : 0,
+    "winRow" : 1,
     "winCol" : 3,
     "gameBoard": 
     [
@@ -9,7 +9,7 @@
                 {"type": "BARREL_EMPTY", "visible": false, "charges": 0},
                 {"type": "BARREL_EMPTY", "visible": false, "charges": 0},
                 {"type": "BARREL_EMPTY", "visible": false, "charges": 0},
-                {"type": "BARREL_WIN", "visible": true, "charges": 0},
+                {"type": "BARREL_EMPTY", "visible": false, "charges": 0},
                 {"type": "BARREL_EMPTY", "visible": false, "charges": 0},
                 {"type": "BARREL_EMPTY", "visible": false, "charges": 0} 
             ],
@@ -18,7 +18,7 @@
                 {"type": "BARREL_EMPTY", "visible": false, "charges": 0 },
                 {"type": "BARREL_EMPTY", "visible": false, "charges": 0 },
                 {"type": "BARREL_EMPTY", "visible": false, "charges": 0 },
-                {"type": "BARREL_EMPTY", "visible": false, "charges": 0 },
+                {"type": "BARREL_WIN", "visible": true, "charges": 0 },
                 {"type": "BARREL_EMPTY", "visible": false, "charges": 0 },
                 {"type": "BARREL_EMPTY", "visible": false, "charges": 0 } 
             ],

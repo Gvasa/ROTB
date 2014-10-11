@@ -22,7 +22,7 @@ var X_SHIFT = 73;
 var Y_SHIFT = 163;
 var BARREL_SPRITE_WIDTH = 76;
 var BARREL_SPRITE_HEIGHT = 96;
-var NUM_OF_LEVELS = 6;
+var NUM_OF_LEVELS = 7;
 
 var TOP_ROW = [0, 6, 12, 18, 24, 30];
 var BOTTOM_ROW = [5, 11, 17, 23, 29];
