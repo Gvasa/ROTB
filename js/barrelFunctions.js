@@ -3,7 +3,7 @@ function showBarrelRight(tmpBarrel) {
 
 	var currentBarrel = tmpBarrel.barrelId;
 	var rightBarrel = currentBarrel+6;
-
+	charges += gameBoard[rightBarrel].charges;
    	gameBoard[rightBarrel].barrelSprite.loadTexture(gameBoard[rightBarrel].barrelType);
     gameBoard[rightBarrel].visible = true;
     gameBoard[rightBarrel].barrelInfo();
@@ -14,7 +14,7 @@ function showBarrelLeft(tmpBarrel) {
 	
 	var currentBarrel = tmpBarrel.barrelId;
 	var leftBarrel = currentBarrel-6;
-   	
+   	charges += gameBoard[leftBarrel].charges;
    	gameBoard[leftBarrel].barrelSprite.loadTexture(gameBoard[leftBarrel].barrelType);
     gameBoard[leftBarrel].visible = true;
     gameBoard[leftBarrel].barrelInfo();
@@ -25,7 +25,7 @@ function showBarrelAbove(tmpBarrel) {
     console.log('shwo above!');
     var currentBarrel = tmpBarrel.barrelId;
     var aboveBarrel = currentBarrel-1;
-
+    charges += gameBoard[aboveBarrel].charges;
    	gameBoard[aboveBarrel].barrelSprite.loadTexture(gameBoard[aboveBarrel].barrelType);
     gameBoard[aboveBarrel].visible = true;
     gameBoard[aboveBarrel].barrelInfo();
@@ -36,7 +36,7 @@ function showBarrelBelow (tmpBarrel) {
 	console.log('show bellow!');
 	var currentBarrel = tmpBarrel.barrelId;
 	var belowBarrel = currentBarrel+1;
-
+	charges += gameBoard[belowBarrel].charges;
    	gameBoard[belowBarrel].barrelSprite.loadTexture(gameBoard[belowBarrel].barrelType);
 	gameBoard[belowBarrel].visible = true;
 	gameBoard[belowBarrel].barrelInfo();
@@ -128,11 +128,13 @@ function moveColDown (tmpBarrel) {
 
 function moveRowRight (tmpBarrel) {
 
+	console.log(gameBoard[tmpBarrel.barrelId]);
 	var currentBarrel = tmpBarrel.barrelId;
 	var rowToMove = calcRow(tmpBarrel.barrelId);
 	var winBarrelInArray = rowToMove.indexOf(winIndex);
 	
 	animateRowRight(rowToMove);
+
 	if(winBarrelInArray != -1 && gameBoard[rowToMove[winBarrelInArray-1]].barrelType != BARREL_EMPTY) {
 			levelComplete();
 			return;
@@ -142,6 +144,8 @@ function moveRowRight (tmpBarrel) {
 		var tmpId = gameBoard[rowToMove[0]].barrelId;
 		var tmpPosX = gameBoard[rowToMove[0]].spritePosX;
 		var tmpPosY = gameBoard[rowToMove[0]].spritePosY;
+		console.log(rowToMove);
+
 
 		for(var i = 0; i <= 5; i++) {
 			if(i == 5) {
@@ -161,6 +165,8 @@ function moveRowRight (tmpBarrel) {
 		}
 		gameBoard.sort(compare);
 		updateBarrelVisibility2();
+		for(var j = 0; j < 6; j++)
+			console.log(gameBoard[rowToMove[j]]);
 	}, this);
 
 	

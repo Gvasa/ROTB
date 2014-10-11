@@ -17,7 +17,8 @@ function readJson(fileName) {
 			gameBoard[counter].visible = parsedJsonData.gameBoard[j][i].visible;
 			gameBoard[counter].charges = parsedJsonData.gameBoard[j][i].charges;
 
-            charges += parsedJsonData.gameBoard[j][i].charges;
+			if(parsedJsonData.gameBoard[j][i].visible)
+            	charges += parsedJsonData.gameBoard[j][i].charges;
 
 			if(gameBoard[counter].barrelType != BARREL_EMPTY) {
 				if(!gameBoard[counter].visible)
