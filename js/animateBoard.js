@@ -38,14 +38,17 @@ function animateColUp(colArray) {
 			continue;
 		} else if(colArray[i-1] == winIndex) {
 			if(gameBoard[colArray[i]].barrelType != BARREL_EMPTY)
-				moveToYAnimation(gameBoard[colArray[i]].barrelSprite, gameBoard[colArray[i]-7].spritePosY, speed);
-			else
-				moveToYAnimation(gameBoard[colArray[i]].barrelSprite, gameBoard[colArray[i]-8].spritePosY, speed);
-
+				moveToYAnimation(gameBoard[colArray[i]].barrelSprite, gameBoard[colArray[i]+5].spritePosY, speed);
+			else {
+				if(winIndex == colArray[0])
+					moveToYAnimation(gameBoard[colArray[i]].barrelSprite, gameBoard[colArray[5]+6].spritePosY, speed);
+				else
+					moveToYAnimation(gameBoard[colArray[i]].barrelSprite, gameBoard[colArray[i]+4].spritePosY, speed);
+			}
 		}else if(i == 0) {
 			moveToYAnimation(gameBoard[colArray[0]].barrelSprite, gameBoard[colArray[5]].spritePosY, speed);
 		} else {
-			moveToYAnimation(gameBoard[colArray[i]].barrelSprite, gameBoard[colArray[i]-7].spritePosY, speed);			
+			moveToYAnimation(gameBoard[colArray[i]].barrelSprite, gameBoard[colArray[i]+5].spritePosY, speed);			
 		}
 	}
 	moveToYAnimation(tmpBarrel, -BARREL_HEIGHT, speed);

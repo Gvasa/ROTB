@@ -191,9 +191,9 @@ function moveRowLeft (tmpBarrel) {
 					
 				} else if(rowToMove[i-1] == winIndex) {
 					if(winIndex == rowToMove[0]) {
-						gameBoard[rowToMove[i]].barrelId = gameBoard[rowToMove[5]].barrelId;
-						gameBoard[rowToMove[i]].spritePosX = gameBoard[rowToMove[5]].spritePosX;
-						gameBoard[rowToMove[i]].spritePosY = gameBoard[rowToMove[5]].spritePosY;
+						gameBoard[rowToMove[i]].barrelId = tmpId;
+						gameBoard[rowToMove[i]].spritePosX = tmpPosX;
+						gameBoard[rowToMove[i]].spritePosY = tmpPosY;
 						i--;
 					} else {
 						gameBoard[rowToMove[i]].barrelId = gameBoard[rowToMove[i-2]].barrelId;
@@ -211,6 +211,9 @@ function moveRowLeft (tmpBarrel) {
 			gameBoard.sort(compare);
 			updateBarrelVisibility2();
 
+			for(var j = 0; j < 6; j++)
+				console.log(gameBoard[rowToMove[j]])
+;
 		}, this);	
 }
 
