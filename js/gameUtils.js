@@ -24,7 +24,9 @@ function levelComplete() {
         showPostGameMenu();
         console.log('FORTSATT');
     } else {
-        showMenu();
+        /* DO SOMETHING HERE */
+
+        showLastLevelMenu();
         
         console.log('MENU PLS');
     }

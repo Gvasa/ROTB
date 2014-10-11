@@ -38,14 +38,14 @@ function animateColUp(colArray) {
 			continue;
 		} else if(colArray[i-1] == winIndex) {
 			if(gameBoard[colArray[i]].barrelType != BARREL_EMPTY)
-				moveToYAnimation(gameBoard[colArray[i]].barrelSprite, gameBoard[colArray[i]+5].spritePosY, speed);
+				moveToYAnimation(gameBoard[colArray[i]].barrelSprite, gameBoard[colArray[i]-7].spritePosY, speed);
 			else
-				moveToYAnimation(gameBoard[colArray[i]].barrelSprite, gameBoard[colArray[i]+5].spritePosY, speed);
+				moveToYAnimation(gameBoard[colArray[i]].barrelSprite, gameBoard[colArray[i]-8].spritePosY, speed);
 
 		}else if(i == 0) {
 			moveToYAnimation(gameBoard[colArray[0]].barrelSprite, gameBoard[colArray[5]].spritePosY, speed);
 		} else {
-			moveToYAnimation(gameBoard[colArray[i]].barrelSprite, gameBoard[colArray[i]+5].spritePosY, speed);			
+			moveToYAnimation(gameBoard[colArray[i]].barrelSprite, gameBoard[colArray[i]-7].spritePosY, speed);			
 		}
 	}
 	moveToYAnimation(tmpBarrel, -BARREL_HEIGHT, speed);
@@ -124,7 +124,10 @@ function animateRowRight(rowArray) {
 		}else if(i == 5) {
 			moveToXAnimation(gameBoard[rowArray[5]].barrelSprite, gameBoard[rowArray[0]].spritePosX, speed);
 		} else {
-			moveToXAnimation(gameBoard[rowArray[i]].barrelSprite, gameBoard[rowArray[i]+5].spritePosX, speed);			
+			/*if(BOTTOM_ROW.indexOf(rowArray[i]))
+				moveToXAnimation(gameBoard[rowArray[i]].barrelSprite, gameBoard[rowArray[i]+1].spritePosX, speed);	
+			else*/
+				moveToXAnimation(gameBoard[rowArray[i]].barrelSprite, gameBoard[rowArray[i]+5].spritePosX, speed);			
 		}
 	}
 	moveToXAnimation(tmpBarrel, 640+BARREL_WIDTH, speed);

@@ -227,6 +227,14 @@ function levelListener() {
 			animationBoardIn();
 			hideLevelMenu();
 			break;
+
+        case 'level8':
+            currentLevel = 'level8';
+            moveBarrelsToStartPosition();
+            readJson('level8');
+            animationBoardIn();
+            hideLevelMenu();
+            break;
 			
 		case 'nextLevel':
   			resetWinBarrel();
@@ -298,6 +306,12 @@ function postGameMenuListener() {
 			readJson(currentLevel);
 			hideFailMenu();
 			break;
+
+        case 'lastLevelMainMenu':
+            resetWinBarrel();
+            resetBoard2();
+            hideLastLevelMenu();
+            showMenu();
 	}
 }
 

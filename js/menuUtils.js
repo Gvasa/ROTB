@@ -36,6 +36,7 @@ function createLevelMenu() {
 	var button5 = game.add.sprite(-1000, 366, 'levels');
 	var button6 = game.add.sprite(-1000, 366+110, 'levels');
 	var button7 = game.add.sprite(-1000, 366+110, 'levels');
+	var button8 = game.add.sprite(-1000, 366+110, 'levels');
 
 
 	button1.animations.add('1', [0], true);
@@ -45,6 +46,7 @@ function createLevelMenu() {
 	button5.animations.add('5', [4], true);
 	button6.animations.add('5', [4], true);
 	button7.animations.add('5', [4], true);
+	button8.animations.add('5', [4], true);
 
 	button1.animations.play('1');
 	button2.animations.play('2');
@@ -53,6 +55,7 @@ function createLevelMenu() {
 	button5.animations.play('5');
 	button6.animations.play('5');
 	button7.animations.play('5');
+	button8.animations.play('5');
 
 	levelButton1 = new Button('level1', button1);
 	levelButton2 = new Button('level2', button2);
@@ -61,6 +64,7 @@ function createLevelMenu() {
 	levelButton5 = new Button('level5', button5);
 	levelButton6 = new Button('level6', button6);
 	levelButton7 = new Button('level7', button7);
+	levelButton8 = new Button('level8', button8);
 
 	button1.inputEnabled = true;
 	button2.inputEnabled = true;
@@ -69,6 +73,7 @@ function createLevelMenu() {
 	button5.inputEnabled = true;
 	button6.inputEnabled = true;
 	button7.inputEnabled = true;
+	button8.inputEnabled = true;
 
 	button1.events.onInputDown.add(levelListener, levelButton1);
 	button2.events.onInputDown.add(levelListener, levelButton2);
@@ -77,6 +82,7 @@ function createLevelMenu() {
 	button5.events.onInputDown.add(levelListener, levelButton5);
 	button6.events.onInputDown.add(levelListener, levelButton6);
 	button7.events.onInputDown.add(levelListener, levelButton7);
+	button8.events.onInputDown.add(levelListener, levelButton8);
 }
 
 function showMenu() {
@@ -121,6 +127,7 @@ function showLevelMenu() {
 	moveFromXAnimation(levelButton5.buttonSprite, 90*5, 580);
 	moveFromXAnimation(levelButton6.buttonSprite, 90, 700);
 	moveFromXAnimation(levelButton7.buttonSprite, 90*2, 670);
+	moveFromXAnimation(levelButton8.buttonSprite, 90*3, 640);
 
 	header.alpha = true;
 
@@ -145,6 +152,9 @@ function showLevelMenu() {
 	levelButton7.buttonSprite.inputEnabled = true;
 	levelButton7.buttonSprite.alpha = true;
 
+	levelButton8.buttonSprite.inputEnabled = true;
+	levelButton8.buttonSprite.alpha = true;
+
 	guiGroup.alpha = false;
 }
 
@@ -158,6 +168,7 @@ function hideLevelMenu() {
 	moveToXAnimation(levelButton5.buttonSprite, -1000, 700);
 	moveToXAnimation(levelButton6.buttonSprite, -1000, 580);
 	moveToXAnimation(levelButton7.buttonSprite, -1000, 610);
+	moveToXAnimation(levelButton8.buttonSprite, -1000, 640);
 
 	guiGroup.alpha = true;
 }
@@ -257,6 +268,48 @@ function hideFailMenu() {
 	moveToYAnimation(outOfChargesButton, -910, 700);
 	moveToYAnimation(chooseLevelButton.buttonSprite, -498-113, 700);
 	moveToYAnimation(restartLevelButton.buttonSprite ,-398-113, 700);
+
+	resetButton.buttonSprite.inputEnabled = true;
+	mainMenuButton.buttonSprite.inputEnabled = true;
+}
+
+function createLastLevelMenu() {
+	var button1 = game.add.sprite(254, -465-113, 'chooseLevelSprite');
+
+	button1.inputEnabled = true;
+
+	lastLevelMainMenuButton = new Button('lastLevelMainMenu', button1);
+
+	lastLevelMainMenuButton.buttonSprite.alpha = false;
+	lastLevelMainMenuButton.buttonSprite.inputEnabled = false;
+
+	button1.events.onInputDown.add(postGameMenuListener, lastLevelMainMenuButton);
+}
+
+function showLastLevelMenu() {
+	moveToYAnimation(outOfChargesButton, -20, 700);
+	moveToYAnimation(lastLevelMainMenuButton.buttonSprite, 265, 700);
+
+	resetButton.buttonSprite.inputEnabled = false;
+	mainMenuButton.buttonSprite.inputEnabled = false;
+
+	tintGame(tintBlack, 1, 1000);
+	game.world.bringToTop(guiGroup);
+
+	outOfChargesButton.alpha = true;
+	game.world.bringToTop(outOfChargesButton);
+
+	lastLevelMainMenuButton.buttonSprite.alpha = true;
+	lastLevelMainMenuButton.buttonSprite.inputEnabled = true;
+	game.world.bringToTop(lastLevelMainMenuButton.buttonSprite);
+
+}
+
+function hideLastLevelMenu() {
+	tintGame(tintBlack, 0, 1000);
+
+	moveToYAnimation(outOfChargesButton, -910, 700);
+	moveToYAnimation(lastLevelMainMenuButton.buttonSprite, -498-113, 700);
 
 	resetButton.buttonSprite.inputEnabled = true;
 	mainMenuButton.buttonSprite.inputEnabled = true;

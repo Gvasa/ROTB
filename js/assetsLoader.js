@@ -26,6 +26,7 @@ function assetsLoader() {
     game.load.text('level5', 'assets/levels/level5.json');
     game.load.text('level6', 'assets/levels/level6.json');
     game.load.text('level7', 'assets/levels/level7.json');
+    game.load.text('level8', 'assets/levels/level8.json');
 
     game.load.image('header', 'assets/menu/menu_wood_chains_rotb.png');
     game.load.image('menuLowerButtonSprite', 'assets/menu/menuLowerButton_150_111.png');

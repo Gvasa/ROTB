@@ -22,7 +22,7 @@ var X_SHIFT = 73;
 var Y_SHIFT = 163;
 var BARREL_SPRITE_WIDTH = 76;
 var BARREL_SPRITE_HEIGHT = 96;
-var NUM_OF_LEVELS = 7;
+var NUM_OF_LEVELS = 8;
 
 var TOP_ROW = [0, 6, 12, 18, 24, 30];
 var BOTTOM_ROW = [5, 11, 17, 23, 29];
@@ -49,16 +49,21 @@ var fileText;
 var charges;
 var complete;
 
+var header;
+
 var mainMenuButtonSprite1;
 var mainMenuButtonSprite2;
 var menuButton1;
 var menuButton2;
+
 var levelButton1;
 var levelButton2;
 var levelButton3;
 var levelButton4;
 var levelButton5;
-var header;
+var levelButton6;
+var levelButton7;
+var levelButton8;
 
 //var nextLevelButton;
 var levelCompleteButton;
@@ -68,6 +73,7 @@ var mainMenuButton;
 var outOfChargesButton;
 var chooseLevelButton;
 var restartLevelButton;
+var lastLevelMainMenuButton;
 
 var tutorial_1_1;
 var tutorial_1_2;
