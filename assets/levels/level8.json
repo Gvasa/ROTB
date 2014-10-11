@@ -35,7 +35,7 @@
             [
                 {"type": "BARREL_WIN", "visible": true, "charges": 0},
                 {"type": "BARREL_EMPTY", "visible": false, "charges": 0},
-                {"type": "BARREL_REVEAL_LEFT", "visible": true, "charges": 0},
+                {"type": "BARREL_EMPTY", "visible": false, "charges": 0},
                 {"type": "BARREL_EMPTY", "visible": false, "charges": 0},
                 {"type": "BARREL_MOVE_COL_UP", "visible": false, "charges": 2},
                 {"type": "BARREL_REVEAL_LEFT", "visible": true, "charges": 2}

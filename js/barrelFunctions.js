@@ -190,10 +190,17 @@ function moveRowLeft (tmpBarrel) {
 					gameBoard[rowToMove[i]].spritePosY = tmpPosY;
 					
 				} else if(rowToMove[i-1] == winIndex) {
-					gameBoard[rowToMove[i]].barrelId = gameBoard[rowToMove[i-2]].barrelId;
-					gameBoard[rowToMove[i]].spritePosX = gameBoard[rowToMove[i-2]].spritePosX;
-					gameBoard[rowToMove[i]].spritePosY = gameBoard[rowToMove[i-2]].spritePosY;
-					i--
+					if(winIndex == rowToMove[0]) {
+						gameBoard[rowToMove[i]].barrelId = gameBoard[rowToMove[5]].barrelId;
+						gameBoard[rowToMove[i]].spritePosX = gameBoard[rowToMove[5]].spritePosX;
+						gameBoard[rowToMove[i]].spritePosY = gameBoard[rowToMove[5]].spritePosY;
+						i--;
+					} else {
+						gameBoard[rowToMove[i]].barrelId = gameBoard[rowToMove[i-2]].barrelId;
+						gameBoard[rowToMove[i]].spritePosX = gameBoard[rowToMove[i-2]].spritePosX;
+						gameBoard[rowToMove[i]].spritePosY = gameBoard[rowToMove[i-2]].spritePosY;
+						i--;
+					}
 				} else {
 					gameBoard[rowToMove[i]].barrelId = gameBoard[rowToMove[i-1]].barrelId;
 					gameBoard[rowToMove[i]].spritePosX = gameBoard[rowToMove[i-1]].spritePosX;

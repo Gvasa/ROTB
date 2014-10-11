@@ -92,15 +92,20 @@ function animateRowLeft(rowArray) {
 		else if(rowArray[i-1] == winIndex) {
 			if(gameBoard[rowArray[i]].barrelType != BARREL_EMPTY)
 				moveToXAnimation(gameBoard[rowArray[i]].barrelSprite, gameBoard[rowArray[i]-5].spritePosX, speed);
-			else
-				moveToXAnimation(gameBoard[rowArray[i]].barrelSprite, gameBoard[rowArray[i]-11].spritePosX, speed);
+			else {
+				if(winIndex == rowArray[0])
+					moveToXAnimation(gameBoard[rowArray[i]].barrelSprite, gameBoard[rowArray[5]-1].spritePosX, speed);
+				else	
+					moveToXAnimation(gameBoard[rowArray[i]].barrelSprite, gameBoard[rowArray[i]-11].spritePosX, speed);
+			}
 		}else if(i == 0) {
 			moveToXAnimation(gameBoard[rowArray[0]].barrelSprite, gameBoard[rowArray[5]].spritePosX, speed);
 		} else {
 			moveToXAnimation(gameBoard[rowArray[i]].barrelSprite, gameBoard[rowArray[i]-5].spritePosX, speed);			
 		}
 	}
-	moveToXAnimation(tmpBarrel, -BARREL_WIDTH, speed);
+	if(rowArray[0] != winIndex)
+		moveToXAnimation(tmpBarrel, -BARREL_WIDTH, speed);
 }
 
 function animateRowRight(rowArray) {
