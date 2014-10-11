@@ -25,12 +25,29 @@ function readJson(fileName) {
 				else
 					gameBoard[counter].barrelSprite.loadTexture(gameBoard[counter].barrelType);
 					gameBoard[counter].barrelSprite.inputEnabled = true;
+					addBarrelHover(gameBoard[counter].barrelSprite);
 			}
 			counter++;
+
 		}	
 	}
     console.log('charges: ' + charges);
     updateBarrelVisibility2();
 }
 
+function addBarrelHover(sprite) {
 
+	sprite.events.onInputOver.add(function(){
+
+          console.log('hej');
+          sprite.alpha=false;
+
+        }, this);
+
+    sprite.events.onInputOut.add(function(){
+
+          sprite.alpha=true;
+          console.log('hejdå');
+
+        }, this);
+}

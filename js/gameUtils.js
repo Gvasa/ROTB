@@ -34,7 +34,7 @@ function levelComplete() {
 
 
 function emptyBoard2() {
-var idcounter = 0;
+idcounter = 0;
   for (var i = 0; i < TEST_CONSTANT; i++) {
       for(var j = 0; j < TEST_CONSTANT; j++) {
         var barrel;

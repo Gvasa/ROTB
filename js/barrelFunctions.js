@@ -287,3 +287,18 @@ function compare(barrel1, barrel2) {
 		return 1;
 	return 0;
 }
+/*
+function checkBarrelHover() {
+	for(var i = 0; i < counter; i++) {
+		if(gameBoard[counter].barrelType != BARREL_EMPTY) {
+			gameBoard[counter].barrelSprite.events.onInputOver.add(function(){
+				tintGame(gameBoard[counter].barrelSprite, 0.5, 500);
+			}, this);
+			gameBoard[counter].barrelSprite.events.onInputOver.add(function(){
+				tintGame(gameBoard[counter].barrelSprite, 1.0, 500);
+			}, this);
+		}
+	}
+}
+*/
+

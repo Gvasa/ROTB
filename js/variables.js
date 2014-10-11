@@ -14,6 +14,7 @@ var BARREL_FADED = 'BARREL_FADED';
 var BOARD_COLS;
 var BOARD_ROWS;
 var counter = 0;
+var idcounter = 0;
 
 var TEST_CONSTANT = 6;
 var BARREL_WIDTH = 80*1.05;
