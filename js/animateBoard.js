@@ -68,8 +68,12 @@ function animateColDown(colArray) {
 		} else if(colArray[i+1] == winIndex) {
 			if(gameBoard[colArray[i]].barrelType != BARREL_EMPTY)
 				moveToYAnimation(gameBoard[colArray[i]].barrelSprite, gameBoard[colArray[i]+7].spritePosY, speed);
-			else
-				moveToYAnimation(gameBoard[colArray[i]].barrelSprite, gameBoard[colArray[i]+8].spritePosY, speed);
+			else {
+				if(winIndex == colArray[5])
+					moveToYAnimation(gameBoard[colArray[i]].barrelSprite, gameBoard[colArray[5]+1].spritePosY, speed);
+				else
+					moveToYAnimation(gameBoard[colArray[i]].barrelSprite, gameBoard[colArray[0]+6].spritePosY, speed);
+			}
 		}else if(i == 5) {
 			moveToYAnimation(gameBoard[colArray[5]].barrelSprite, gameBoard[colArray[0]].spritePosY, speed);
 		} else {
