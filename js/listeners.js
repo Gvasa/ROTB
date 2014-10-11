@@ -327,7 +327,7 @@ function readNextLevel() {
 
 
 	var levelNum = parseInt(foo.slice(-1))+1;
-	if(levelNum < 7) {
+	if(levelNum <= NUM_OF_LEVELS) {
 		var tmp = foo.substring(0, 5) + levelNum;
 		currentLevel = foo.substring(0, 5) + levelNum;
 		//animationBoardOut();

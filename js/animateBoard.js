@@ -4,6 +4,7 @@ function animationBoardIn() {
 	for(var i = 0; i < 6; i ++) {
 		for(var j = 0; j < 6; j++) {
 				moveFromXAnimation(gameBoard[counter].barrelSprite, gameBoard[counter].spritePosX, speed);
+				moveFromXAnimation(gameBoard[counter].marking, gameBoard[counter].spritePosX-4, speed);
 				speed = speed+54;
 				counter++;
 		}
@@ -17,6 +18,7 @@ function animationBoardOut() {
 	for(var i = 0; i < 6; i ++) {
 		for(var j = 0; j < 6; j++) {
 				moveFromXAnimation(gameBoard[counter].barrelSprite, -1000, speed);
+				moveFromXAnimation(gameBoard[counter].marking, -1000, speed);
 				speed = speed+54;
 				counter++;
 		}
@@ -27,11 +29,17 @@ function animationBoardOut() {
 
 function animateColUp(colArray) {
 	var speed = 250;
-
+	
+	var tmpMarking = game.add.sprite(gameBoard[colArray[0]].marking.x-4, gameBoard[colArray[0]].marking.y-4, BARREL_MARKING);
 	var tmpBarrel = game.add.sprite(gameBoard[colArray[0]].spritePosX,gameBoard[colArray[0]].spritePosY, gameBoard[colArray[0]].barrelType);
+	
+	if(gameBoard[colArray[0]].barrelType == BARREL_EMPTY)
+		tmpMarking.alpha = false;
+
 	game.world.bringToTop(guiGroup);
 	game.world.bringToTop(gameBoard[winIndex].barrelSprite);	
 	gameBoard[colArray[0]].barrelSprite.y = 960+BARREL_HEIGHT;
+	gameBoard[colArray[0]].marking.y = 960+BARREL_HEIGHT;
 
 	for(var i = 0; i < 6; i++) {
 		if(colArray[i] == winIndex) {
@@ -59,16 +67,25 @@ function animateColUp(colArray) {
 			moveToYAnimation(gameBoard[colArray[i]].marking, gameBoard[colArray[i]+5].marking.y, speed);
 		}
 	}
-	moveToYAnimation(tmpBarrel, -BARREL_HEIGHT, speed);
+	if(colArray[0] != winIndex) {
+		moveToYAnimation(tmpBarrel, -BARREL_HEIGHT, speed);
+		moveToYAnimation(tmpMarking, -BARREL_HEIGHT, speed);
+	}
 }
 
 function animateColDown(colArray) {
 	var speed = 250;
 
+	var tmpMarking = game.add.sprite(gameBoard[colArray[5]].marking.x-4, gameBoard[colArray[5]].marking.y-4, BARREL_MARKING);
 	var tmpBarrel = game.add.sprite(gameBoard[colArray[5]].spritePosX,gameBoard[colArray[5]].spritePosY, gameBoard[colArray[5]].barrelType);
+	
+	if(gameBoard[colArray[5]].barrelType == BARREL_EMPTY)
+		tmpMarking.alpha = false;
+
 	game.world.bringToTop(guiGroup);
 	game.world.bringToTop(gameBoard[winIndex].barrelSprite);
 	gameBoard[colArray[5]].barrelSprite.y = -BARREL_HEIGHT;
+	gameBoard[colArray[5]].marking.y = -BARREL_HEIGHT;
 
 	for(var i = 0; i < 6; i++) {
 		if(colArray[i] == winIndex) {
@@ -96,18 +113,27 @@ function animateColDown(colArray) {
 			moveToYAnimation(gameBoard[colArray[i]].marking, gameBoard[colArray[i]+7].marking.y, speed);			
 		}
 	}
-	moveToYAnimation(tmpBarrel, 960+BARREL_HEIGHT, speed);
+	if(colArray[5] != winIndex) {
+		moveToYAnimation(tmpBarrel, 960+BARREL_HEIGHT, speed);
+		moveToYAnimation(tmpMarking, 960+BARREL_HEIGHT, speed);
+	}
 }
 
 function animateRowLeft(rowArray) {
 	var speed = 250;
 
+	var tmpMarking = game.add.sprite(gameBoard[rowArray[0]].marking.x-4, gameBoard[rowArray[0]].marking.y-4, BARREL_MARKING);
 	var tmpBarrel = game.add.sprite(gameBoard[rowArray[0]].spritePosX, gameBoard[rowArray[0]].spritePosY, gameBoard[rowArray[0]].barrelType);
-	
+
+	if(gameBoard[rowArray[0]].barrelType == BARREL_EMPTY)
+		tmpMarking.alpha = false;
+
+
 	game.world.bringToTop(guiGroup);
 	game.world.bringToTop(gameBoard[winIndex].barrelSprite);
 
 	gameBoard[rowArray[0]].barrelSprite.x = 640+BARREL_WIDTH;
+	gameBoard[rowArray[0]].marking.x = 640+BARREL_WIDTH;
 
 	for(var i = 0; i < 6; i++) {
 		if(rowArray[i] == winIndex)
@@ -135,19 +161,27 @@ function animateRowLeft(rowArray) {
 			moveToXAnimation(gameBoard[rowArray[i]].marking, gameBoard[rowArray[i]-5].marking.x, speed);
 		}
 	}
-	if(rowArray[0] != winIndex)
+	if(rowArray[0] != winIndex) {
 		moveToXAnimation(tmpBarrel, -BARREL_WIDTH, speed);
+		moveToXAnimation(tmpMarking, -BARREL_WIDTH, speed);
+	}
 }
 
 function animateRowRight(rowArray) {
 	var speed = 250;
-
+	
+	var tmpMarking = game.add.sprite(gameBoard[rowArray[5]].marking.x-4, gameBoard[rowArray[5]].marking.y-4, BARREL_MARKING);
 	var tmpBarrel = game.add.sprite(gameBoard[rowArray[5]].spritePosX, gameBoard[rowArray[5]].spritePosY, gameBoard[rowArray[5]].barrelType);
 	
+	if(gameBoard[rowArray[5]].barrelType == BARREL_EMPTY)
+		tmpMarking.alpha = false;
+
+
 	game.world.bringToTop(guiGroup);
 	game.world.bringToTop(gameBoard[winIndex].barrelSprite);
 
 	gameBoard[rowArray[5]].barrelSprite.x = -BARREL_WIDTH;
+	gameBoard[rowArray[5]].marking.x = -BARREL_WIDTH;
 
 	for(var i = 0; i < 6; i++) {
 		if(rowArray[i] == winIndex)
@@ -178,7 +212,11 @@ function animateRowRight(rowArray) {
 				moveToXAnimation(gameBoard[rowArray[i]].marking, gameBoard[rowArray[i]+5].marking.x, speed);			
 		}
 	}
-	moveToXAnimation(tmpBarrel, 640+BARREL_WIDTH, speed);
+	if(rowArray[5] != winIndex) {
+		moveToXAnimation(tmpBarrel, 640+BARREL_WIDTH, speed);
+		moveToXAnimation(tmpMarking, 640+BARREL_WIDTH, speed);
+	}
+	
 }
 
 function moveBarrelsToStartPosition() {
@@ -187,6 +225,7 @@ function moveBarrelsToStartPosition() {
 	for(var i = 0; i < 6; i ++) {
 		for(var j = 0; j < 6; j++) {
 				//console.log(gameBoard[j][i].barrelType);
+				gameBoard[counter].marking.x = 1000;
 				gameBoard[counter].barrelSprite.x = 1000;
 				counter++;
 		}
@@ -198,6 +237,7 @@ function animateWinBarrel() {
     gameBoard[winIndex].barrelSprite.scale.setTo(BARREL_SPRITE_WIDTH/512, BARREL_SPRITE_HEIGHT/651);
     gameBoard[winIndex].barrelSprite.x = tmpX;
     gameBoard[winIndex].barrelSprite.y = tmpY;
+    gameBoard[winIndex].marking.alpha = false;
     scaleXYAnimation(gameBoard[winIndex].barrelSprite, 0.5, 0.5, 700);
     moveToXYAnimation(gameBoard[winIndex].barrelSprite, 200, 420, 700);
 }
