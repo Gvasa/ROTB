@@ -1,4 +1,4 @@
-function Barrel(_barreltype, _id, _sprite, _charge, _visible, _spriteCharge1, _spriteCharge2, _spritePosX, _spritePosY) {
+function Barrel(_barreltype, _id, _sprite, _charge, _visible, _spriteCharge1, _spriteCharge2, _spritePosX, _spritePosY, _marking) {
 	this.barrelType = _barreltype;
 	this.barrelId = _id;
 	this.barrelSprite = _sprite;
@@ -8,6 +8,7 @@ function Barrel(_barreltype, _id, _sprite, _charge, _visible, _spriteCharge1, _s
 	this.chargeSprite2 = _spriteCharge2;
 	this.spritePosX = _spritePosX;
 	this.spritePosY = _spritePosY;
+	this.marking = _marking;
 }
 
 Barrel.prototype.barrelInfo = function() {

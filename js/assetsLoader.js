@@ -15,6 +15,7 @@ function assetsLoader() {
     game.load.image('BARREL_FADED', 'assets/barrels/barrel_tinted_black_76_96.png');
     game.load.image('BARREL_BASE', 'assets/barrels/barrel_base_76_96.png');
     game.load.image('BARREL_WIN_LARGE', 'assets/barrels/barrel_win_512_651.png');
+    game.load.image('BARREL_MARKING', 'assets/barrels/barrel_marking.png');
 
     game.load.audio('sfx', 'assets/sound/barrelclick.wav');
     game.load.audio('sfxLevelComplete', 'assets/sound/levelcomplete.wav')

@@ -66,6 +66,8 @@ var levelButton6;
 var levelButton7;
 var levelButton8;
 
+var barrelMarking;
+
 //var nextLevelButton;
 var levelCompleteButton;
 var resetButton;

@@ -43,17 +43,19 @@ idcounter = 0;
         
         
         //barrel = game.add.sprite(i*BARREL_WIDTH*barrelSpacing+xShift+1000, j*BARREL_HEIGHT*barrelSpacing+yShift, BARREL_EMPTY);
+        barrelMarking = game.add.sprite(i*BARREL_WIDTH+X_SHIFT-4, j*BARREL_HEIGHT+Y_SHIFT-5, 'BARREL_MARKING');
         barrel = game.add.sprite(i*BARREL_WIDTH+X_SHIFT, j*BARREL_HEIGHT+Y_SHIFT, BARREL_EMPTY);
         chargeSprite1 = game.add.sprite(5,0, 'spriteStar');
         chargeSprite2 = game.add.sprite(5*6, 0, 'spriteStar');
+        
 
-
-        gameBoard[idcounter] = new Barrel(BARREL_EMPTY, idcounter, barrel, 2, false, chargeSprite1, chargeSprite2, i*BARREL_WIDTH+X_SHIFT, j*BARREL_HEIGHT+Y_SHIFT);
+        gameBoard[idcounter] = new Barrel(BARREL_EMPTY, idcounter, barrel, 2, false, chargeSprite1, chargeSprite2, i*BARREL_WIDTH+X_SHIFT, j*BARREL_HEIGHT+Y_SHIFT, barrelMarking);
        
         barrel.alpha = true;
         barrel.inputEnabled = true;
         chargeSprite1.alpha = false;
         chargeSprite2.alpha = false;
+        barrelMarking.alpha = false;
       
         barrel.addChild(chargeSprite1);
         barrel.addChild(chargeSprite2);
@@ -102,6 +104,7 @@ function updateBarrelVisibility2() {
             gameBoard[i].chargeSprite1.alpha = false;
             gameBoard[i].chargeSprite2.alpha = false;
           }
+          addBarrelHover(gameBoard[i]);
     } 
   }
   

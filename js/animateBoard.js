@@ -37,18 +37,26 @@ function animateColUp(colArray) {
 		if(colArray[i] == winIndex) {
 			continue;
 		} else if(colArray[i-1] == winIndex) {
-			if(gameBoard[colArray[i]].barrelType != BARREL_EMPTY)
+			if(gameBoard[colArray[i]].barrelType != BARREL_EMPTY) {
 				moveToYAnimation(gameBoard[colArray[i]].barrelSprite, gameBoard[colArray[i]+5].spritePosY, speed);
+				moveToYAnimation(gameBoard[colArray[i]].marking, gameBoard[colArray[i]+5].marking.y, speed);
+			}
 			else {
-				if(winIndex == colArray[0])
+				if(winIndex == colArray[0]) {
 					moveToYAnimation(gameBoard[colArray[i]].barrelSprite, gameBoard[colArray[5]+6].spritePosY, speed);
-				else
+					moveToYAnimation(gameBoard[colArray[i]].marking, gameBoard[colArray[5]+6].marking.y, speed);
+				}
+				else {
 					moveToYAnimation(gameBoard[colArray[i]].barrelSprite, gameBoard[colArray[i]+4].spritePosY, speed);
+					moveToYAnimation(gameBoard[colArray[i]].marking, gameBoard[colArray[i]+4].marking.y, speed);
+				}
 			}
 		}else if(i == 0) {
 			moveToYAnimation(gameBoard[colArray[0]].barrelSprite, gameBoard[colArray[5]].spritePosY, speed);
+			moveToYAnimation(gameBoard[colArray[0]].marking, gameBoard[colArray[5]].marking.y, speed);
 		} else {
-			moveToYAnimation(gameBoard[colArray[i]].barrelSprite, gameBoard[colArray[i]+5].spritePosY, speed);			
+			moveToYAnimation(gameBoard[colArray[i]].barrelSprite, gameBoard[colArray[i]+5].spritePosY, speed);
+			moveToYAnimation(gameBoard[colArray[i]].marking, gameBoard[colArray[i]+5].marking.y, speed);
 		}
 	}
 	moveToYAnimation(tmpBarrel, -BARREL_HEIGHT, speed);
@@ -66,18 +74,26 @@ function animateColDown(colArray) {
 		if(colArray[i] == winIndex) {
 			continue;
 		} else if(colArray[i+1] == winIndex) {
-			if(gameBoard[colArray[i]].barrelType != BARREL_EMPTY)
+			if(gameBoard[colArray[i]].barrelType != BARREL_EMPTY) {
 				moveToYAnimation(gameBoard[colArray[i]].barrelSprite, gameBoard[colArray[i]+7].spritePosY, speed);
+				moveToYAnimation(gameBoard[colArray[i]].marking, gameBoard[colArray[i]+7].marking.y, speed);
+			}
 			else {
-				if(winIndex == colArray[5])
+				if(winIndex == colArray[5]) {
 					moveToYAnimation(gameBoard[colArray[i]].barrelSprite, gameBoard[colArray[5]+1].spritePosY, speed);
-				else
+					moveToYAnimation(gameBoard[colArray[i]].marking, gameBoard[colArray[5]+1].marking.y, speed);
+				}
+				else {
 					moveToYAnimation(gameBoard[colArray[i]].barrelSprite, gameBoard[colArray[0]+6].spritePosY, speed);
+					moveToYAnimation(gameBoard[colArray[i]].marking, gameBoard[colArray[0]+6].marking.y, speed);
+				}
 			}
 		}else if(i == 5) {
 			moveToYAnimation(gameBoard[colArray[5]].barrelSprite, gameBoard[colArray[0]].spritePosY, speed);
+			moveToYAnimation(gameBoard[colArray[5]].marking, gameBoard[colArray[0]].marking.y, speed);
 		} else {
-			moveToYAnimation(gameBoard[colArray[i]].barrelSprite, gameBoard[colArray[i]+7].spritePosY, speed);			
+			moveToYAnimation(gameBoard[colArray[i]].barrelSprite, gameBoard[colArray[i]+7].spritePosY, speed);
+			moveToYAnimation(gameBoard[colArray[i]].marking, gameBoard[colArray[i]+7].marking.y, speed);			
 		}
 	}
 	moveToYAnimation(tmpBarrel, 960+BARREL_HEIGHT, speed);
@@ -97,18 +113,26 @@ function animateRowLeft(rowArray) {
 		if(rowArray[i] == winIndex)
 			continue;
 		else if(rowArray[i-1] == winIndex) {
-			if(gameBoard[rowArray[i]].barrelType != BARREL_EMPTY)
+			if(gameBoard[rowArray[i]].barrelType != BARREL_EMPTY) {
 				moveToXAnimation(gameBoard[rowArray[i]].barrelSprite, gameBoard[rowArray[i]-5].spritePosX, speed);
+				moveToXAnimation(gameBoard[rowArray[i]].marking, gameBoard[rowArray[i]-5].marking.x, speed);
+			}
 			else {
-				if(winIndex == rowArray[0])
+				if(winIndex == rowArray[0]) {
 					moveToXAnimation(gameBoard[rowArray[i]].barrelSprite, gameBoard[rowArray[5]-1].spritePosX, speed);
-				else	
+					moveToXAnimation(gameBoard[rowArray[i]].marking, gameBoard[rowArray[5]-1].marking.x, speed);
+				}
+				else {
 					moveToXAnimation(gameBoard[rowArray[i]].barrelSprite, gameBoard[rowArray[i]-11].spritePosX, speed);
+					moveToXAnimation(gameBoard[rowArray[i]].marking, gameBoard[rowArray[i]-11].marking.x, speed);
+				}
 			}
 		}else if(i == 0) {
 			moveToXAnimation(gameBoard[rowArray[0]].barrelSprite, gameBoard[rowArray[5]].spritePosX, speed);
+			moveToXAnimation(gameBoard[rowArray[0]].marking, gameBoard[rowArray[5]].marking.x, speed);
 		} else {
-			moveToXAnimation(gameBoard[rowArray[i]].barrelSprite, gameBoard[rowArray[i]-5].spritePosX, speed);			
+			moveToXAnimation(gameBoard[rowArray[i]].barrelSprite, gameBoard[rowArray[i]-5].spritePosX, speed);
+			moveToXAnimation(gameBoard[rowArray[i]].marking, gameBoard[rowArray[i]-5].marking.x, speed);
 		}
 	}
 	if(rowArray[0] != winIndex)
@@ -129,21 +153,29 @@ function animateRowRight(rowArray) {
 		if(rowArray[i] == winIndex)
 			continue;
 		else if(rowArray[i+1] == winIndex) {
-			if(gameBoard[rowArray[i]].barrelType != BARREL_EMPTY)
+			if(gameBoard[rowArray[i]].barrelType != BARREL_EMPTY) {
 				moveToXAnimation(gameBoard[rowArray[i]].barrelSprite, gameBoard[rowArray[i]+5].spritePosX, speed);
+				moveToXAnimation(gameBoard[rowArray[i]].marking, gameBoard[rowArray[i]+5].marking.x, speed);
+			}
 			else {
-				if(winIndex == rowArray[5])
+				if(winIndex == rowArray[5]) {
 					moveToXAnimation(gameBoard[rowArray[i]].barrelSprite, gameBoard[rowArray[0]-1].spritePosX, speed);
-				else
+					moveToXAnimation(gameBoard[rowArray[i]].marking, gameBoard[rowArray[0]-1].marking.x, speed);
+				}
+				else {
 					moveToXAnimation(gameBoard[rowArray[i]].barrelSprite, gameBoard[rowArray[i]-4].spritePosX, speed);
+					moveToXAnimation(gameBoard[rowArray[i]].marking, gameBoard[rowArray[i]-4].marking.x, speed);
+				}
 			}
 		}else if(i == 5) {
 			moveToXAnimation(gameBoard[rowArray[5]].barrelSprite, gameBoard[rowArray[0]].spritePosX, speed);
+			moveToXAnimation(gameBoard[rowArray[5]].marking, gameBoard[rowArray[0]].marking.x, speed);
 		} else {
 			/*if(BOTTOM_ROW.indexOf(rowArray[i]))
 				moveToXAnimation(gameBoard[rowArray[i]].barrelSprite, gameBoard[rowArray[i]+1].spritePosX, speed);	
 			else*/
-				moveToXAnimation(gameBoard[rowArray[i]].barrelSprite, gameBoard[rowArray[i]+5].spritePosX, speed);			
+				moveToXAnimation(gameBoard[rowArray[i]].barrelSprite, gameBoard[rowArray[i]+5].spritePosX, speed);
+				moveToXAnimation(gameBoard[rowArray[i]].marking, gameBoard[rowArray[i]+5].marking.x, speed);			
 		}
 	}
 	moveToXAnimation(tmpBarrel, 640+BARREL_WIDTH, speed);

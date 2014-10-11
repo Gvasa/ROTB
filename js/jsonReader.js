@@ -25,7 +25,7 @@ function readJson(fileName) {
 				else
 					gameBoard[counter].barrelSprite.loadTexture(gameBoard[counter].barrelType);
 					gameBoard[counter].barrelSprite.inputEnabled = true;
-					addBarrelHover(gameBoard[counter].barrelSprite);
+					addBarrelHover(gameBoard[counter]);
 			}
 			counter++;
 
@@ -35,19 +35,138 @@ function readJson(fileName) {
     updateBarrelVisibility2();
 }
 
-function addBarrelHover(sprite) {
+function addBarrelHover(barrel) {
+	barrel.barrelSprite.events.onInputOver.add(function(){
 
-	sprite.events.onInputOver.add(function(){
+		switch(barrel.barrelType) {
 
-          console.log('hej');
-          sprite.alpha=false;
+			case BARREL_REVEAL_ABOVE:
+				if(TOP_ROW.indexOf(barrel.barrelId) == -1 && gameBoard[barrel.barrelId-1].barrelType != BARREL_EMPTY && gameBoard[barrel.barrelId-1].barrelSprite != BARREL_FADED) {
+					tintGame(gameBoard[barrel.barrelId-1].marking, 1, 300);
+					//gameBoard[barrel.barrelId-1].barrelSprite.alpha = 1;
+				}
+				break;
+
+			case BARREL_REVEAL_BELOW:
+				if(BOTTOM_ROW.indexOf(barrel.barrelId) == -1  && gameBoard[barrel.barrelId+1].barrelType != BARREL_EMPTY && gameBoard[barrel.barrelId+1].barrelSprite != BARREL_FADED) {
+					//gameBoard[barrel.barrelId+1].barrelSprite.alpha = 1;
+					tintGame(gameBoard[barrel.barrelId+1].marking, 1, 300);
+				}
+				break;
+
+			case BARREL_REVEAL_LEFT:
+				if(LEFT_COL.indexOf(barrel.barrelId) == -1  && gameBoard[barrel.barrelId-6].barrelType != BARREL_EMPTY && gameBoard[barrel.barrelId-6].barrelSprite != BARREL_FADED) {
+					//gameBoard[barrel.barrelId-6].barrelSprite.alpha = 1;
+					tintGame(gameBoard[barrel.barrelId-6].marking, 1, 300);
+				}
+				break;
+
+			case BARREL_REVEAL_RIGHT:
+				if(RIGHT_COL.indexOf(barrel.barrelId) == -1  && gameBoard[barrel.barrelId+6].barrelType != BARREL_EMPTY && gameBoard[barrel.barrelId+6].barrelSprite != BARREL_FADED) {
+					//gameBoard[barrel.barrelId+6].marking.alpha = 1;
+					tintGame(gameBoard[barrel.barrelId+6].marking, 1, 300);
+				}
+				break;
+
+			case BARREL_MOVE_COL_UP: case BARREL_MOVE_COL_DOWN:
+				if(LEFT_COL.indexOf(barrel.barrelId) == -1) {
+					var col = calcCol(barrel.barrelId);
+					for(var i = 0; i <= 5; i++) {
+						if(gameBoard[col[i]].barrelType != BARREL_EMPTY)
+							tintGame(gameBoard[col[i]].marking, 1, 300);
+					}
+				}
+				break;
+
+			case BARREL_MOVE_ROW_RIGHT: case BARREL_MOVE_ROW_LEFT:
+				if(BOTTOM_ROW.indexOf(barrel.barrelId) == -1) {
+					var row = calcRow(barrel.barrelId);
+					for(var i = 0; i <= 5; i++) {
+						if(gameBoard[row[i]].barrelType != BARREL_EMPTY)
+							tintGame(gameBoard[row[i]].marking, 1, 300);
+					}
+				}
+				break;
+
+			case BARREL_CHARGE:
+				if(TOP_ROW.indexOf(barrel.barrelId) == -1 && gameBoard[barrel.barrelId-1].barrelType != BARREL_EMPTY) {
+					tintGame(gameBoard[barrel.barrelId-1].marking, 1, 300);
+				}
+				if(BOTTOM_ROW.indexOf(barrel.barrelId) == -1 && gameBoard[barrel.barrelId+1].barrelType != BARREL_EMPTY) {
+					tintGame(gameBoard[barrel.barrelId+1].marking, 1, 300);	
+				}
+				if(RIGHT_COL.indexOf(barrel.barrelId) == -1 && gameBoard[barrel.barrelId+6].barrelType != BARREL_EMPTY) {
+					tintGame(gameBoard[barrel.barrelId+6].marking, 1, 300);
+				}
+				if(LEFT_COL.indexOf(barrel.barrelId) == -1 && gameBoard[barrel.barrelId-6].barrelType != BARREL_EMPTY) {
+					tintGame(gameBoard[barrel.barrelId-6].marking, 1, 300);
+				}
+				break;
+    	}
 
         }, this);
 
-    sprite.events.onInputOut.add(function(){
+    barrel.barrelSprite.events.onInputOut.add(function(){
 
-          sprite.alpha=true;
-          console.log('hejdå');
+    	switch(barrel.barrelType) {
+
+			case BARREL_REVEAL_ABOVE:
+				if(TOP_ROW.indexOf(barrel.barrelId) == -1)
+					tintGame(gameBoard[barrel.barrelId-1].marking, 0, 300);
+				break;
+
+			case BARREL_REVEAL_BELOW:
+				if(BOTTOM_ROW.indexOf(barrel.barrelId) == -1)
+					tintGame(gameBoard[barrel.barrelId+1].marking, 0, 300);
+				break;
+
+			case BARREL_REVEAL_LEFT:
+				if(LEFT_COL.indexOf(barrel.barrelId) == -1)
+					tintGame(gameBoard[barrel.barrelId-6].marking, 0, 300);
+				break;
+
+			case BARREL_REVEAL_RIGHT:
+				if(RIGHT_COL.indexOf(barrel.barrelId) == -1)
+					tintGame(gameBoard[barrel.barrelId+6].marking, 0, 300);
+				break;
+
+			case BARREL_MOVE_COL_UP: case BARREL_MOVE_COL_DOWN:
+				if(LEFT_COL.indexOf(barrel.barrelId) == -1) {
+					var col = calcCol(barrel.barrelId);
+					//console.log(col);
+					
+					for(var i = 0; i <= 5; i++) {
+						tintGame(gameBoard[col[i]].marking, 0, 300);
+					}
+					
+				}
+				break;
+
+			case BARREL_MOVE_ROW_RIGHT: case BARREL_MOVE_ROW_LEFT:
+				if(BOTTOM_ROW.indexOf(barrel.barrelId) == -1) {
+					var row = calcRow(barrel.barrelId);
+					//console.log(row);
+					for(var i = 0; i <= 5; i++) {
+						tintGame(gameBoard[row[i]].marking, 0, 300);
+					}
+				}
+				break;
+
+			case BARREL_CHARGE:
+				if(TOP_ROW.indexOf(barrel.barrelId) == -1) {
+					tintGame(gameBoard[barrel.barrelId-1].marking, 0, 300);
+				}
+				if(BOTTOM_ROW.indexOf(barrel.barrelId) == -1) {
+					tintGame(gameBoard[barrel.barrelId+1].marking, 0, 300);
+				}
+				if(RIGHT_COL.indexOf(barrel.barrelId) == -1) {
+					tintGame(gameBoard[barrel.barrelId+6].marking, 0, 300);
+				}
+				if(LEFT_COL.indexOf(barrel.barrelId) == -1) {
+					tintGame(gameBoard[barrel.barrelId-6].marking, 0, 300);
+				}
+				break;
+			}
 
         }, this);
 }
