@@ -52,6 +52,8 @@ var levelButton2;
 var levelButton3;
 var levelButton4;
 var levelButton5;
+var levelButton6;
+var levelButton7;
 var header;
 
 //var nextLevelButton;
@@ -70,6 +72,7 @@ var tintBlack;
 var tutorialContinue;
 
 var winBarrelGlow;
+var smokeEmitter;
 
 var tmpX;
 var tmpY;

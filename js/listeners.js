@@ -214,6 +214,13 @@ function levelListener() {
 			hideLevelMenu();
 			break;
 
+        case 'level7':
+            currentLevel = 'level7';
+            readJson('level7');
+            animationBoardIn();
+            hideLevelMenu();
+            break;
+
 		case 'nextLevel':
 			resetWinBarrel();
   			tintGame(tintBlack, 0, 1000);

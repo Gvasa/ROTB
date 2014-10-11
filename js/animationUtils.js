@@ -41,10 +41,31 @@ function pulseScaleXYAnimation(sprite, xScale, yScale, time, repeat) {
     if(repeat == true)
          numRotations = Number.MAX_VALUE;
 
-    TWEENCHECK = game.add.tween(sprite.scale).to({x: xScale, y: yScale}, time, Phaser.Easing.Linear.None, true, 1000 , numRotations, true);
+    TWEENCHECK = game.add.tween(sprite.scale).to({x: xScale, y: yScale}, time, Phaser.Easing.Elastic.Out, true, 0 , numRotations, false);
 }
 
 function createWinBarrelGlow() {
     winBarrelGlow = game.add.sprite(tmpX, tmpY, 'winBarrelGlow');
     winBarrelGlow.alpha = false;
 }
+/*
+function createSmokeParticles() {
+    smokeEmitter = game.add.emitter(game.world.centerX, game.world.centerY, 20);
+    smokeEmitter.makeParticles('smoke', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
+    smokeEmitter.maxParticleScale = 0.6;
+    smokeEmitter.minParticleScale = 0.2;
+    smokeEmitter.setYSpeed(20, 0);
+    smokeEmitter.gravity = -100;
+    smokeEmitter.width = 1;
+    smokeEmitter.minRotation = 20;
+    smokeEmitter.maxRotation = 100;
+    smokeEmitter.setAlpha(0.1, 0, 2000);
+    moveToYAnimation(smokeEmitter, 900, 1000);
+
+    smokeEmitter.start(false, 2000, 10);
+}
+*/
+
+
+
+

@@ -55,9 +55,14 @@ function animateWinBarrelGlow() {
     winBarrelGlow.alpha = true;
     winBarrelGlow.scale.setTo(BARREL_SPRITE_HEIGHT/400, BARREL_SPRITE_HEIGHT/400);
     winBarrelGlow.x = (tmpX - BARREL_SPRITE_WIDTH/2) + BARREL_SPRITE_WIDTH;
-    winBarrelGlow.y = (tmpY - BARREL_SPRITE_WIDTH/2) + BARREL_SPRITE_WIDTH;
-    scaleXYAnimation(winBarrelGlow, 1, 1, 700);
+    winBarrelGlow.y = (tmpY - BARREL_SPRITE_WIDTH/2) + BARREL_SPRITE_WIDTH + 50;
+    scaleXYAnimation(winBarrelGlow, 1.6, 1.6, 700);
     moveToXYAnimation(winBarrelGlow, 320, 560, 700);
     rotateAnimation(winBarrelGlow, 360, 8000, true);
-    //pulseScaleXYAnimation(winBarrelGlow, 0.9, 0.9, 700, true);
+
+    //pulseScaleXYAnimation(winBarrelGlow, 0.9, 0.9, 700, false);
+}
+
+function resetGlowScale() {
+	winBarrelGlow.scale.setTo(2,2);
 }

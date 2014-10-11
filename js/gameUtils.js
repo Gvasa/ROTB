@@ -20,6 +20,7 @@ function levelComplete() {
     tintGame(winBarrelGlow, 1, 700);
 
     animateWinBarrelGlow();
+    //createSmokeParticles();
 
     if(parseInt(currentLevel.slice(-1)) < NUM_OF_LEVELS) {
         showPostGameMenu();
