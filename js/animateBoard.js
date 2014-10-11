@@ -1,13 +1,11 @@
 function animationBoardIn() {
 	var speed = 320;
-	console.log('animationboardin');
 	var counter = 0;
 	for(var i = 0; i < 6; i ++) {
 		for(var j = 0; j < 6; j++) {
 				moveFromXAnimation(gameBoard[counter].barrelSprite, gameBoard[counter].spritePosX, speed);
 				speed = speed+54;
 				counter++;
-				console.log(counter);
 		}
 		speed=320;
 	}
@@ -15,7 +13,6 @@ function animationBoardIn() {
 
 function animationBoardOut() {
 	var speed = 320;
-	console.log('animationBoardOut');
 	var counter = 0;
 	for(var i = 0; i < 6; i ++) {
 		for(var j = 0; j < 6; j++) {
@@ -163,7 +160,6 @@ function animateWinBarrelGlow() {
     scaleXYAnimation(winBarrelGlow, 1.6, 1.6, 700);
     moveToXYAnimation(winBarrelGlow, 320, 560, 700);
     rotateAnimation(winBarrelGlow, 360, 8000, true);
-    //pulseScaleXYAnimation(winBarrelGlow, 0.9, 0.9, 700, false);
 }
 
 function resetGlowScale() {

@@ -173,65 +173,60 @@ function levelListener() {
 
 		case 'level1':
 			currentLevel = 'level1';
+			moveBarrelsToStartPosition();
 			readJson('level1');
-			//hideMenu();
-			//animationBoardIn();
+			animationBoardIn();
 			hideLevelMenu();
 			swapTutorials(1);
 			break;
 
 		case 'level2':
 			currentLevel = 'level2';
+			moveBarrelsToStartPosition();
 			readJson('level2');
-			//animationBoardIn();
-			hideMenu();
+			animationBoardIn();
 			hideLevelMenu();
 			break;
 
 		case 'level3':
 			currentLevel = 'level3';
+			moveBarrelsToStartPosition();
 			readJson('level3');
-			//hideMenu();
-			//animationBoardIn();
+			animationBoardIn();
 			hideLevelMenu();
 			break;
 
 		case 'level4':
 			currentLevel = 'level4';
+			moveBarrelsToStartPosition();
 			readJson('level4');
-			//animationBoardIn();
-			//hideMenu();
+			animationBoardIn();
 			hideLevelMenu();
 			break;
 
 		case 'level5':
 			currentLevel = 'level5';
+			moveBarrelsToStartPosition();
 			readJson('level5');
-			//animationBoardIn();
-			//hideMenu();
+			animationBoardIn();
 			hideLevelMenu();
 			break;
 
 		case 'level6':
 			currentLevel = 'level6';
+			moveBarrelsToStartPosition();
 			readJson('level6');
-			//animationBoardIn();
+			animationBoardIn();
 			hideLevelMenu();
 			break;
 
 		case 'nextLevel':
-			//resetBoard();
-  			//emptyBoard();
   			resetWinBarrel();
   			tintGame(tintBlack, 0, 1000);
 			hidePostGameMenu();
 			animationBoardOut();
 			game.time.events.add(Phaser.Timer.QUARTER*1.9, moveBarrelsToStartPosition, this);
 			game.time.events.add(Phaser.Timer.QUARTER*1.9, readNextLevel, this);
-			//moveBarrelsToStartPosition();
-			//game.time.events.add(Phaser.Timer.SECOND * 1, readNextLevel, this);
-
-			//resetBoard();
 			
 			break;
 	}		
