@@ -127,8 +127,12 @@ function animateRowRight(rowArray) {
 		else if(rowArray[i+1] == winIndex) {
 			if(gameBoard[rowArray[i]].barrelType != BARREL_EMPTY)
 				moveToXAnimation(gameBoard[rowArray[i]].barrelSprite, gameBoard[rowArray[i]+5].spritePosX, speed);
-			else
-				moveToXAnimation(gameBoard[rowArray[i]].barrelSprite, gameBoard[rowArray[i]+11].spritePosX, speed);
+			else {
+				if(winIndex == rowArray[5])
+					moveToXAnimation(gameBoard[rowArray[i]].barrelSprite, gameBoard[rowArray[0]-1].spritePosX, speed);
+				else
+					moveToXAnimation(gameBoard[rowArray[i]].barrelSprite, gameBoard[rowArray[i]-4].spritePosX, speed);
+			}
 		}else if(i == 5) {
 			moveToXAnimation(gameBoard[rowArray[5]].barrelSprite, gameBoard[rowArray[0]].spritePosX, speed);
 		} else {
