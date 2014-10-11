@@ -13,3 +13,14 @@ z = charge
 w = goal/win/victory
 
 0 = empty
+
+
+
+
+
+I VÅR ARRAY:
+
+HÖGER = i+6
+VÄNSTER = i-6
+UPP = i-1
+NER = i+1

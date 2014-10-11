@@ -5,7 +5,7 @@
 
 
 function createMenu() {
-	resetBoard();
+	resetBoard2();
 	header = game.add.sprite(114,-910,'header');
 
 	mainMenuButtonSprite1 = game.add.sprite(256, -465-113, 'playButtonSprite');
@@ -74,7 +74,7 @@ function createLevelMenu() {
 }
 
 function showMenu() {
-	resetBoard();
+	resetBoard2();
 	tintGame(tintBlack, 0, 1000);
 	moveFromYAnimation(header, -20, 700);
 	moveFromYAnimation(menuButton1.buttonSprite, 265, 700);
@@ -169,7 +169,6 @@ function createPostGameMenu() {
 }
 
 function showPostGameMenu() {
-	//resetBoard();
 	moveFromYAnimation(levelCompleteButton, -20, 700);
 	moveFromYAnimation(nextLevelButton.buttonSprite, 265, 700);
 
@@ -177,7 +176,8 @@ function showPostGameMenu() {
 	mainMenuButton.buttonSprite.inputEnabled = false;
 
 	game.world.bringToTop(tintBlack);
-	game.world.bringToTop(gameBoard[winBarrelCol][winBarrelRow].barrelSprite);
+	winBarrelGlow.bringToTop();
+	game.world.bringToTop(gameBoard[winIndex].barrelSprite);
 	game.world.bringToTop(guiGroup);
 	levelCompleteButton.alpha = true;
 	game.world.bringToTop(levelCompleteButton);

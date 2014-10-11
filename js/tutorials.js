@@ -14,6 +14,7 @@ function showTutorials () {
     tutorial_1_2.alpha = false;
     tutorial_1_3.alpha = false;
     tintGame(tintBlack, 1, 1000);
+
     console.log('wtf2');
 }
 
@@ -37,6 +38,8 @@ function swapTutorials(index) {
         gameBoard[2][3].barrelSprite.inputEnabled = false;
         console.log(index);
     } else if(index == 2) {
+        //rollUpMenuAnimation(tutorial_1_1, -910, 700);
+        //dropMenuAnimation(tutorial_1_2, -910, 700);
         tutorial_1_1.alpha = false;
         tutorial_1_2.alpha = true;
         tutorialContinue.alpha = false;
@@ -48,6 +51,8 @@ function swapTutorials(index) {
         gameBoard[2][4].barrelSprite.inputEnabled = true;
         console.log(index);
     } else if(index == 3) {
+        //rollUpMenuAnimation(tutorial_1_2, -910, 700);
+        //dropMenuAnimation(tutorial_1_3, -910, 700);
         tutorial_1_2.alpha = false;
         tutorial_1_3.alpha = true;
         game.world.bringToTop(tintBlack);
@@ -57,6 +62,7 @@ function swapTutorials(index) {
         gameBoard[2][3].barrelSprite.inputEnabled = true;
         console.log(index);
     } else {
+       // rollUpMenuAnimation(tutorial_1_3, -910, 700);
         tintGame(tintBlack, 0, 1000);
         console.log(index);
     }

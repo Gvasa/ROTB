@@ -25,6 +25,7 @@ function assetsLoader() {
     game.load.text('level4', 'assets/levels/level4.json');
     game.load.text('level5', 'assets/levels/level5.json');
     game.load.text('level6', 'assets/levels/level6.json');
+    game.load.text('level7', 'assets/levels/level7.json');
 
     game.load.image('header', 'assets/menu/menu_wood_chains_rotb.png');
     game.load.image('menuLowerButtonSprite', 'assets/menu/menuLowerButton_150_111.png');
@@ -44,8 +45,9 @@ function assetsLoader() {
     game.load.image('tutorial_1_1', 'assets/tutorials/tutorial_1_1_420_310.png');
     game.load.image('tutorial_1_2', 'assets/tutorials/tutorial_1_2_420_310.png');
     game.load.image('tutorial_1_3', 'assets/tutorials/tutorial_1_3_420_310.png');
-    //game.load.image('tutorialFaded', 'assets/tutorials/tutorialFaded.png');
+
     game.load.image('tintBlack', 'assets/splash_screens/tint_game_black.png');
+    game.load.image('winBarrelGlow', 'assets/splash_screens/barrel_aura.png');
 
     game.load.image('spriteStar', 'assets/barrelIcons/chargeFlash_25_37.png');
     game.load.image('spriteChargeUpper', 'assets/barrelIcons/charge_upper_76_96.png');
@@ -57,4 +59,6 @@ function assetsLoader() {
     game.load.spritesheet('levels', 'assets/barrels/levels/levels_spritesheet.png', 77, 98);
 
     game.load.image('levelCompleteButtonSprite', 'assets/menu/level_complete_420_310.png');
+
+    //game.load.spritesheet('smoke', 'assets/particles/smoke_animation.png', 128, 128);
 }

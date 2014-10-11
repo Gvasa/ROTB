@@ -22,17 +22,23 @@ var X_SHIFT = 73;
 var Y_SHIFT = 163;
 var BARREL_SPRITE_WIDTH = 76;
 var BARREL_SPRITE_HEIGHT = 96;
-
 var NUM_OF_LEVELS = 6;
+
+var TOP_ROW = [0, 6, 12, 18, 24, 30];
+var BOTTOM_ROW = [5, 11, 17, 23, 29];
+var LEFT_COL = [0, 1, 2, 3, 4, 5];
+var RIGHT_COL = [30, 31, 32, 33, 34];
 
 var TWEENCHECK;
 
 var guiGroup;
 
 var gameBoard;
+var gameBoard2;
 
 var winBarrelCol;
 var winBarrelRow;
+var winIndex;
 
 var currentLevel = '';
 
@@ -69,5 +75,6 @@ var tutorial_1_3;
 var tintBlack;
 var tutorialContinue;
 
+var winBarrelGlow;
 var tmpX;
 var tmpY;

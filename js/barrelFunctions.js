@@ -1,294 +1,266 @@
 
 function showBarrelRight(tmpBarrel) {
-	var row = tmpBarrel.posX;
-    var col = tmpBarrel.posY;
 
-   	gameBoard[col+1][row].barrelSprite.loadTexture(gameBoard[col+1][row].barrelType);
-    gameBoard[col+1][row].visible = true;
-    gameBoard[col+1][row].barrelInfo();
-    uppdateBarrelVisibility(col, true);
-    uppdateBarrelVisibility(col+1, true);
+	var currentBarrel = tmpBarrel.barrelId;
+	var rightBarrel = currentBarrel+6;
+
+   	gameBoard[rightBarrel].barrelSprite.loadTexture(gameBoard[rightBarrel].barrelType);
+    gameBoard[rightBarrel].visible = true;
+    gameBoard[rightBarrel].barrelInfo();
+    updateBarrelVisibility2();
 }
 
 function showBarrelLeft(tmpBarrel) {
-	var row = tmpBarrel.posX;
-    var col = tmpBarrel.posY;
+	
+	var currentBarrel = tmpBarrel.barrelId;
+	var leftBarrel = currentBarrel-6;
    	
-   	gameBoard[col-1][row].barrelSprite.loadTexture(gameBoard[col-1][row].barrelType);
-    gameBoard[col-1][row].visible = true;
-    gameBoard[col-1][row].barrelInfo();
-    uppdateBarrelVisibility(col, true);
-    uppdateBarrelVisibility(col-1, true);
+   	gameBoard[leftBarrel].barrelSprite.loadTexture(gameBoard[leftBarrel].barrelType);
+    gameBoard[leftBarrel].visible = true;
+    gameBoard[leftBarrel].barrelInfo();
+  	updateBarrelVisibility2();
 }
 
 function showBarrelAbove(tmpBarrel) {
     console.log('shwo above!');
-    var row = tmpBarrel.posX;
-    var col = tmpBarrel.posY;
+    var currentBarrel = tmpBarrel.barrelId;
+    var aboveBarrel = currentBarrel-1;
 
-   	gameBoard[col][row-1].barrelSprite.loadTexture(gameBoard[col][row-1].barrelType);
-    gameBoard[col][row-1].visible = true;
-    gameBoard[col][row-1].barrelInfo();
-    uppdateBarrelVisibility(row, false);
-    uppdateBarrelVisibility(row-1, false);
+   	gameBoard[aboveBarrel].barrelSprite.loadTexture(gameBoard[aboveBarrel].barrelType);
+    gameBoard[aboveBarrel].visible = true;
+    gameBoard[aboveBarrel].barrelInfo();
+    updateBarrelVisibility2();
 }
 
-function showBarrelBellow (tmpBarrel) {
+function showBarrelBelow (tmpBarrel) {
 	console.log('show bellow!');
-	var row = tmpBarrel.posX;
-	var col = tmpBarrel.posY;
+	var currentBarrel = tmpBarrel.barrelId;
+	var belowBarrel = currentBarrel+1;
 
-   	gameBoard[col][row+1].barrelSprite.loadTexture(gameBoard[col][row+1].barrelType);
-	gameBoard[col][row+1].visible = true;
-	gameBoard[col][row+1].barrelInfo();
-	uppdateBarrelVisibility(row, false);
-	uppdateBarrelVisibility(row+1, false);
+   	gameBoard[belowBarrel].barrelSprite.loadTexture(gameBoard[belowBarrel].barrelType);
+	gameBoard[belowBarrel].visible = true;
+	gameBoard[belowBarrel].barrelInfo();
+	updateBarrelVisibility2();
 }
 
 function moveColUp (tmpBarrel) {
-	var col = tmpBarrel.posY-1;
-	var row = tmpBarrel.posX;
-	var text = gameBoard[col][0].barrelSprite.key;
-	var barrel = gameBoard[col][0];
-	
-	if(winBarrelCol == col && gameBoard[winBarrelCol][winBarrelRow+1].barrelType != BARREL_EMPTY) {
-		console.log('WINGINGINGIGNG');
-		gameBoard[winBarrelCol][winBarrelRow+1].barrelSprite.loadTexture(BARREL_EMPTY);
-		levelComplete();
-		return;
+	var currentBarrel = tmpBarrel.barrelId;
+	var colToMove = calcCol(tmpBarrel.barrelId);
+	var winBarrelInArray = colToMove.indexOf(winIndex);
+
+	animateColUp(colToMove);
+	if(winBarrelInArray != -1 && gameBoard[colToMove[winBarrelInArray+1]].barrelType != BARREL_EMPTY) {
+			levelComplete();
+			return;
 	}
 
-	for(var i = 0; i <TEST_CONSTANT-1 ; i++) {
-		if(i == TEST_CONSTANT-1) 
-			gameBoard[col][i].barrelSprite.loadTexture(text);
-		else if(gameBoard[col][i+1].barrelType == BARREL_WIN) {
-			gameBoard[col][i].barrelSprite.loadTexture(gameBoard[col][i+2].barrelSprite.key);
-			i++;
-		} else 
-			gameBoard[col][i].barrelSprite.loadTexture(gameBoard[col][i+1].barrelSprite.key);
-	}
+	updateBarrelVisibility2();
+	game.time.events.add(Phaser.Timer.QUARTER, function() {
+		var tmpId = gameBoard[colToMove[5]].barrelId;
+		var tmpPosX = gameBoard[colToMove[5]].spritePosX;
+		var tmpPosY = gameBoard[colToMove[5]].spritePosY;
 
-	var fooType = gameBoard[col][0].barrelType;
-    var fooId = gameBoard[col][0].barrelId;
-    var fooSprite = gameBoard[col][0].barrelSprite; 
-    var fooCharges = gameBoard[col][0].charges;
-    var fooVisible = gameBoard[col][0].visible;
-
-    for(var i = 0; i < TEST_CONSTANT; i++) {
-		if(i == TEST_CONSTANT-1) {
-			gameBoard[col][5].barrelType = fooType;
-			gameBoard[col][5].barrelId = fooId;
-			gameBoard[col][5].charges = fooCharges;
-            gameBoard[col][5].visible = fooVisible;
-		} else if(gameBoard[col][i+1].barrelType == BARREL_WIN) {	
-        	gameBoard[col][i].barrelType = gameBoard[col][i+2].barrelType;
-			gameBoard[col][i].barrelId = gameBoard[col][i+2].barrelId;
-			gameBoard[col][i].charges = gameBoard[col][i+2].charges;
-            gameBoard[col][i].visible = gameBoard[col][i+2].visible;
-            i++;
-        }else {
-			gameBoard[col][i].barrelType = gameBoard[col][i+1].barrelType;
-			gameBoard[col][i].barrelId = gameBoard[col][i+1].barrelId;
-			gameBoard[col][i].charges = gameBoard[col][i+1].charges;
-            gameBoard[col][i].visible = gameBoard[col][i+1].visible;
+		for(var i = 5; i >= 0; i--) {
+			if(i == 0) {
+				gameBoard[colToMove[i]].barrelId = tmpId;
+				gameBoard[colToMove[i]].spritePosX = tmpPosX;
+				gameBoard[colToMove[i]].spritePosY = tmpPosY;
+			} else if(colToMove[i-1] == winIndex) {
+				gameBoard[colToMove[i]].barrelId = gameBoard[colToMove[i-2]].barrelId;
+				gameBoard[colToMove[i]].spritePosX = gameBoard[colToMove[i-2]].spritePosX;
+				gameBoard[colToMove[i]].spritePosY = gameBoard[colToMove[i-2]].spritePosY;
+				i--;
+			} else {
+				gameBoard[colToMove[i]].barrelId = gameBoard[colToMove[i-1]].barrelId;
+				gameBoard[colToMove[i]].spritePosX = gameBoard[colToMove[i-1]].spritePosX;
+				gameBoard[colToMove[i]].spritePosY = gameBoard[colToMove[i-1]].spritePosY;
+			}
 		}
-	}
-	uppdateBarrelVisibility(col+1, true/*this is col*/);
-    uppdateBarrelVisibility(col, true/*this is col*/);
+		gameBoard.sort(compare);
+		updateBarrelVisibility2();
+	}, this);
+
+	
 }
 
 function moveColDown (tmpBarrel) {
-	var col = tmpBarrel.posY-1;
-	var row = tmpBarrel.posX;
-	var text = gameBoard[col][5].barrelSprite.key;
-	var barrel = gameBoard[col][5];
+	var currentBarrel = tmpBarrel.barrelId;
+	var colToMove = calcCol(tmpBarrel.barrelId);
+	var winBarrelInArray = colToMove.indexOf(winIndex);
 	
-	if(winBarrelCol == col && gameBoard[winBarrelCol][winBarrelRow-1].barrelType != BARREL_EMPTY) {
-		console.log('WINGINGINGIGNG');
-		gameBoard[winBarrelCol][winBarrelRow-1].barrelSprite.loadTexture(BARREL_EMPTY);
+	animateColDown(colToMove);
+	if(winBarrelInArray != -1 && gameBoard[colToMove[winBarrelInArray-1]].barrelType != BARREL_EMPTY) {
 		levelComplete();
 		return;
 	}
-	for(var i = 5; i >= 0; i--) {
-		if(i == 0) 
-			gameBoard[col][i].barrelSprite.loadTexture(text);
-		else if(gameBoard[col][i-1].barrelType == BARREL_WIN) {
-			gameBoard[col][i].barrelSprite.loadTexture(gameBoard[col][i-2].barrelSprite.key);
-			i--;
-		} else 
-			gameBoard[col][i].barrelSprite.loadTexture(gameBoard[col][i-1].barrelSprite.key);
-	}
 
-	var fooType = gameBoard[col][5].barrelType;
-    var fooId = gameBoard[col][5].barrelId;
-    var fooSprite = gameBoard[col][5].barrelSprite; 
-    var fooCharges = gameBoard[col][5].charges;
-    var fooVisible = gameBoard[col][5].visible;
+	game.time.events.add(Phaser.Timer.QUARTER, function() {
+			var tmpId = gameBoard[colToMove[0]].barrelId;
+			var tmpPosX = gameBoard[colToMove[0]].spritePosX;
+			var tmpPosY = gameBoard[colToMove[0]].spritePosY;
 
-    for(var i = 5; i >= 0; i--) {
-		if(i == 0) {
-			gameBoard[col][0].barrelType = fooType;
-			gameBoard[col][0].barrelId = fooId;
-			gameBoard[col][0].charges = fooCharges;
-            gameBoard[col][0].visible = fooVisible;
-		} else if(gameBoard[col][i-1].barrelType == BARREL_WIN) {	
-        	gameBoard[col][i].barrelType = gameBoard[col][i-2].barrelType;
-			gameBoard[col][i].barrelId = gameBoard[col][i-2].barrelId;
-			gameBoard[col][i].charges = gameBoard[col][i-2].charges;
-            gameBoard[col][i].visible = gameBoard[col][i-2].visible;
-            i--;
-        }else {
-			gameBoard[col][i].barrelType = gameBoard[col][i-1].barrelType;
-			gameBoard[col][i].barrelId = gameBoard[col][i-1].barrelId;
-			gameBoard[col][i].charges = gameBoard[col][i-1].charges;
-            gameBoard[col][i].visible = gameBoard[col][i-1].visible;
-		}
-	}
-	uppdateBarrelVisibility(col+1, true/*this is col*/);
-    uppdateBarrelVisibility(col, true/*this is col*/);
+			for(var i = 0; i <= 5; i++) {
+				if(i == 5) {
+					gameBoard[colToMove[i]].barrelId = tmpId;
+					gameBoard[colToMove[i]].spritePosX = tmpPosX;
+					gameBoard[colToMove[i]].spritePosY = tmpPosY;
+				} else if(colToMove[i+1] == winIndex) {
+					gameBoard[colToMove[i]].barrelId = gameBoard[colToMove[i+2]].barrelId;
+					gameBoard[colToMove[i]].spritePosX = gameBoard[colToMove[i+2]].spritePosX;
+					gameBoard[colToMove[i]].spritePosY = gameBoard[colToMove[i+2]].spritePosY;
+					i++;
+				} else {
+					gameBoard[colToMove[i]].barrelId = gameBoard[colToMove[i+1]].barrelId;
+					gameBoard[colToMove[i]].spritePosX = gameBoard[colToMove[i+1]].spritePosX;
+					gameBoard[colToMove[i]].spritePosY = gameBoard[colToMove[i+1]].spritePosY;
+				}
+			}
+			gameBoard.sort(compare);
+			updateBarrelVisibility2();
+		}, this);
+
 }
 
 function moveRowRight (tmpBarrel) {
 
-
-	var col = tmpBarrel.posY;
-	var row = tmpBarrel.posX+1;
-	var text = gameBoard[5][row].barrelSprite.key;
-	var barrelSprite = gameBoard[5][row];
+	var currentBarrel = tmpBarrel.barrelId;
+	var rowToMove = calcRow(tmpBarrel.barrelId);
+	var winBarrelInArray = rowToMove.indexOf(winIndex);
 	
-	//animateRowRight(row);
-
-	console.log('right');
-	if(winBarrelRow == row && gameBoard[winBarrelCol-1][winBarrelRow].barrelType != BARREL_EMPTY) {
-		console.log('WINGINGINGIGNG');
-		gameBoard[winBarrelCol-1][winBarrelRow].barrelSprite.loadTexture(BARREL_EMPTY);
-		levelComplete();
-		return;
-	}
-	
-	for(var i = 5; i >= 0; i--) {
-		if(i == 0) 
-			gameBoard[i][row].barrelSprite.loadTexture(text);
-		else if(gameBoard[i-1][row].barrelType == BARREL_WIN) {
-			gameBoard[i][row].barrelSprite.loadTexture(gameBoard[i-2][row].barrelSprite.key);
-			i--;
-		} else 
-			gameBoard[i][row].barrelSprite.loadTexture(gameBoard[i-1][row].barrelSprite.key);
+	animateRowRight(rowToMove);
+	if(winBarrelInArray != -1 && gameBoard[rowToMove[winBarrelInArray-1]].barrelType != BARREL_EMPTY) {
+			levelComplete();
+			return;
 	}
 
-	var fooType = gameBoard[5][row].barrelType;
-    var fooId = gameBoard[5][row].barrelId;
-    var fooSprite = gameBoard[5][row].barrelSprite;
-    var fooCharges = gameBoard[5][row].charges;
-    var fooVisible = gameBoard[5][row].visible;
+	game.time.events.add(Phaser.Timer.QUARTER, function() {
+		var tmpId = gameBoard[rowToMove[0]].barrelId;
+		var tmpPosX = gameBoard[rowToMove[0]].spritePosX;
+		var tmpPosY = gameBoard[rowToMove[0]].spritePosY;
 
-    for(var i = 5; i >= 0; i--) {
-    	
-    	if(i == 0) {
-    		gameBoard[0][row].barrelType = fooType;
-			gameBoard[0][row].barrelId = fooId;
-			gameBoard[0][row].charges = fooCharges;
-            gameBoard[0][row].visible = fooVisible;
-        } else if(gameBoard[i-1][row].barrelType == BARREL_WIN) {	
-        	gameBoard[i][row].barrelType = gameBoard[i-2][row].barrelType;
-			gameBoard[i][row].barrelId = gameBoard[i-2][row].barrelId;
-			gameBoard[i][row].charges = gameBoard[i-2][row].charges;
-            gameBoard[i][row].visible = gameBoard[i-2][row].visible;
-            i--;
-        } else {
-        	gameBoard[i][row].barrelType = gameBoard[i-1][row].barrelType;
-			gameBoard[i][row].barrelId = gameBoard[i-1][row].barrelId;
-			gameBoard[i][row].charges = gameBoard[i-1][row].charges;
-            gameBoard[i][row].visible = gameBoard[i-1][row].visible;
-        }
-    
-    }
-    uppdateBarrelVisibility(row-1, false/*this is col*/);
-    uppdateBarrelVisibility(row, false);
+		for(var i = 0; i <= 5; i++) {
+			if(i == 5) {
+				gameBoard[rowToMove[i]].barrelId = tmpId;
+				gameBoard[rowToMove[i]].spritePosX = tmpPosX;
+				gameBoard[rowToMove[i]].spritePosY = tmpPosY;
+			} else if (rowToMove[i+1] == winIndex) {
+				gameBoard[rowToMove[i]].barrelId = gameBoard[rowToMove[i+2]].barrelId;
+				gameBoard[rowToMove[i]].spritePosX = gameBoard[rowToMove[i+2]].spritePosX;
+				gameBoard[rowToMove[i]].spritePosY = gameBoard[rowToMove[i+2]].spritePosY;
+				i++;
+			} else {
+				gameBoard[rowToMove[i]].barrelId = gameBoard[rowToMove[i+1]].barrelId;
+				gameBoard[rowToMove[i]].spritePosX = gameBoard[rowToMove[i+1]].spritePosX;
+				gameBoard[rowToMove[i]].spritePosY = gameBoard[rowToMove[i+1]].spritePosY;
+			}
+		}
+		gameBoard.sort(compare);
+		updateBarrelVisibility2();
+	}, this);
+
+	
 
 }
 function moveRowLeft (tmpBarrel) {
-	var col = tmpBarrel.posY;
-	var row = tmpBarrel.posX+1;
-	var text = gameBoard[0][row].barrelSprite.key;
-	var barrel = gameBoard[0][row];
-	
-	console.log('left');
-	if(winBarrelRow == row && gameBoard[winBarrelCol+1][winBarrelRow].barrelType != BARREL_EMPTY) {
-		console.log('WINGINGINGIGNG');
-		gameBoard[winBarrelCol+1][winBarrelRow].barrelSprite.loadTexture(BARREL_EMPTY);
-		levelComplete();
-		return;
+	var currentBarrel = tmpBarrel.barrelId;
+	var rowToMove = calcRow(tmpBarrel.barrelId);
+	var winBarrelInArray = rowToMove.indexOf(winIndex);
+
+	animateRowLeft(rowToMove);
+	if(winBarrelInArray != -1 && gameBoard[rowToMove[winBarrelInArray+1]].barrelType != BARREL_EMPTY) {
+			levelComplete();
+			return;
 	}
 
-	for(var i = 0; i < TEST_CONSTANT; i++) {
-		if(i == 5) {
-			console.log('if-for');
-			gameBoard[i][row].barrelSprite.loadTexture(text);
-		}
-		else if(gameBoard[i+1][row].barrelType == BARREL_WIN) {
-			gameBoard[i][row].barrelSprite.loadTexture(gameBoard[i+2][row].barrelSprite.key);
-			i++;
-		} else 
-			gameBoard[i][row].barrelSprite.loadTexture(gameBoard[i+1][row].barrelSprite.key);
-	}
+	game.time.events.add(Phaser.Timer.QUARTER, function() {
+		
+			var tmpId = gameBoard[rowToMove[5]].barrelId;
+			var tmpPosX = gameBoard[rowToMove[5]].spritePosX;
+			var tmpPosY = gameBoard[rowToMove[5]].spritePosY;
+				
+			for(var i = 5; i >= 0; i--) {
+				if(i == 0) {
+					gameBoard[rowToMove[i]].barrelId = tmpId;
+					gameBoard[rowToMove[i]].spritePosX = tmpPosX;
+					gameBoard[rowToMove[i]].spritePosY = tmpPosY;
+					
+				} else if(rowToMove[i-1] == winIndex) {
+					gameBoard[rowToMove[i]].barrelId = gameBoard[rowToMove[i-2]].barrelId;
+					gameBoard[rowToMove[i]].spritePosX = gameBoard[rowToMove[i-2]].spritePosX;
+					gameBoard[rowToMove[i]].spritePosY = gameBoard[rowToMove[i-2]].spritePosY;
+					i--
+				} else {
+					gameBoard[rowToMove[i]].barrelId = gameBoard[rowToMove[i-1]].barrelId;
+					gameBoard[rowToMove[i]].spritePosX = gameBoard[rowToMove[i-1]].spritePosX;
+					gameBoard[rowToMove[i]].spritePosY = gameBoard[rowToMove[i-1]].spritePosY;
+					
+				}
+			}
+			gameBoard.sort(compare);
+			updateBarrelVisibility2();
 
-    var fooType = gameBoard[0][row].barrelType;
-    var fooId = gameBoard[0][row].barrelId;
-    var fooSprite = gameBoard[0][row].barrelSprite;
-    var fooCharges = gameBoard[0][row].charges;
-    var fooVisible = gameBoard[0][row].visible;
-
-	for(var i = 0; i < TEST_CONSTANT; i++) {
-		if(i == TEST_CONSTANT-1) {
-			gameBoard[5][row].barrelType = fooType;
-			gameBoard[5][row].barrelId = fooId;
-			gameBoard[5][row].charges = fooCharges;
-            gameBoard[5][row].visible = fooVisible;
-		} else if(gameBoard[i+1][row].barrelType == BARREL_WIN) {	
-        	gameBoard[i][row].barrelType = gameBoard[i+2][row].barrelType;
-			gameBoard[i][row].barrelId = gameBoard[i+2][row].barrelId;
-			gameBoard[i][row].charges = gameBoard[i+2][row].charges;
-            gameBoard[i][row].visible = gameBoard[i+2][row].visible;
-            i++;
-        } else {
-			gameBoard[i][row].barrelType = gameBoard[i+1][row].barrelType;
-			gameBoard[i][row].barrelId = gameBoard[i+1][row].barrelId;
-			gameBoard[i][row].charges = gameBoard[i+1][row].charges;
-            gameBoard[i][row].visible = gameBoard[i+1][row].visible;
-		}
-	}
-	uppdateBarrelVisibility(row-1, false/*this is col*/);
-    uppdateBarrelVisibility(row, false/*this is row*/);
+		}, this);	
 }
 
 function addCharge (tmpBarrel) {
 	console.log('add charge!');
-	col = tmpBarrel.posY;
-	row = tmpBarrel.posX;
+	
+	if(TOP_ROW.indexOf(tmpBarrel.barrelId)) {
+		gameBoard[tmpBarrel.barrelId-1].charges++;
+		charges++;
+	}
+	if(BOTTOM_ROW.indexOf(tmpBarrel.barrelId)) {
+		gameBoard[tmpBarrel.barrelId+1].charges++;
+        charges++;
+	}
+	if(RIGHT_COL.indexOf(tmpBarrel.barrelId)) {
+		gameBoard[tmpBarrel.barrelId-6].charges++;
+        charges++;
+	}
+	if(LEFT_COL.indexOf(tmpBarrel.barrelId)) {
+		console.log(gameBoard[tmpBarrel.barrelId+6]);
+		gameBoard[tmpBarrel.barrelId+6].charges++;
+		console.log(gameBoard[tmpBarrel.barrelId+6]);
+        charges++;
+	}
+	updateBarrelVisibility2();
 
-	if(row > 0) {
-		gameBoard[col][row-1].charges++;
-		console.log('barrel over: ' + col + ',' + (row-1));
-        charges++;
-	}
-	if(row < 5) {
-		gameBoard[col][row+1].charges++;
-		console.log('barrel under: ' + col + ',' + (row+1));
-        charges++;
-	}
-	if(col > 0) {
-		gameBoard[col-1][row].charges++;
-		console.log('barrel venster: ' + (col-1) + ',' + row);
-        charges++;
-	}
-	if(col < 5) {
-		gameBoard[col+1][row].charges++;
-		console.log('barrel hoeger: ' + (col+1) + ',' + row);
-        charges++;
-	}
+}
 
-	uppdateBarrelVisibility(col,true);
-	uppdateBarrelVisibility(row, false);
 
+function calcCol(barrelId) {
+	switch(barrelId) {
+		case 6: case 7: case 8: case 9: case 10: case 11:
+			return [0, 1, 2, 3, 4, 5]; break;
+		case 12: case 13: case 14: case 15: case 16: case 17:
+			return [6, 7, 8, 9, 10, 11]; break; 
+		case 18: case 19: case 20: case 21: case 22: case 23:
+			return [12, 13, 14, 15, 16, 17]; break; 
+		case 24: case 25: case 26: case 27: case 28: case 29:
+			return [18, 19, 20, 21, 22, 23]; 
+		case 30: case 31: case 32: case 33: case 34: case 35:
+			return [24, 25, 26, 27, 28, 29];
+	}
+}
+function calcRow(barrelId) {
+	switch(barrelId) {
+		case 0: case 6: case 12: case 18: case 24: case 30:
+			return [1, 7, 13, 19, 25, 31]; break;
+		case 1: case 7: case 13: case 19: case 25: case 31:
+			return [2, 8, 14, 20, 26, 32]; break;
+		case 2: case 8: case 14: case 20: case 26: case 32:
+			return [3, 9, 15, 21, 27, 33]; break;
+		case 3: case 9: case 15: case 21: case 27: case 33:
+			return [4, 10, 16, 22, 28, 34]; break;
+		case 4: case 10: case 16: case 22: case 28: case 34:
+			return [5, 11, 17, 23, 29, 35]; break;	
+	}
+}
+
+function compare(barrel1, barrel2) {
+	if(barrel1.barrelId < barrel2.barrelId)
+		return -1;
+	if(barrel1.barrelId > barrel2.barrelId)
+		return 1;
+	return 0;
 }
