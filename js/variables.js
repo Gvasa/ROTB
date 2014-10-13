@@ -16,6 +16,7 @@ var BOARD_COLS;
 var BOARD_ROWS;
 var counter = 0;
 var idcounter = 0;
+var numOfMovesIndicator = 0;
 
 var TEST_CONSTANT = 6;
 var BARREL_WIDTH = 80*1.05;
@@ -71,8 +72,15 @@ var barrelMarking;
 
 //var nextLevelButton;
 var levelCompleteButton;
+
+// Lower GUI
 var resetButton;
 var mainMenuButton;
+
+// Upper GUI
+var levelIndicator;
+var numOfMovesIndicator;
+var movesIndicatorText;
 
 var outOfChargesButton;
 var chooseLevelButton;
