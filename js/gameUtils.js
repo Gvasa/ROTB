@@ -84,6 +84,7 @@ function resetBoard2() {
         gameBoard[counter].charges = 2;
         gameBoard[counter].marking.x = i*BARREL_WIDTH+X_SHIFT-4;
         gameBoard[counter].marking.y = j*BARREL_HEIGHT+Y_SHIFT-4;
+        gameBoard[counter].marking.alpha = false;
         counter++;
     }
     updateBarrelVisibility2();

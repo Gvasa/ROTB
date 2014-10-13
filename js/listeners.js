@@ -18,6 +18,7 @@ function listener() {
 			showBarrelAbove(this);
             this.barrelInfo();
             charges--;
+            setNumberOfMoves(numOfMovesIndicator = numOfMovesIndicator+1);
 
             if(charges == 0 && complete == false) {
             	showFailMenu();
@@ -36,6 +37,7 @@ function listener() {
 			showBarrelBelow(this);
             this.barrelInfo();
             charges--;
+            setNumberOfMoves(numOfMovesIndicator = numOfMovesIndicator+1);
 
             if(charges == 0 && complete == false) {
             	showFailMenu();
@@ -58,6 +60,7 @@ function listener() {
 			showBarrelRight(this);
             this.barrelInfo();
             charges--;
+            setNumberOfMoves(numOfMovesIndicator = numOfMovesIndicator+1);
 
             if(charges == 0 && complete == false) {
             	showFailMenu();
@@ -76,6 +79,7 @@ function listener() {
 			showBarrelLeft(this);
             this.barrelInfo();
             charges--;
+            setNumberOfMoves(numOfMovesIndicator = numOfMovesIndicator+1);
 
             if(charges == 0 && complete == false) {
             	showFailMenu();
@@ -91,6 +95,7 @@ function listener() {
 			moveColUp(this);
             this.barrelInfo();
             charges--;
+            setNumberOfMoves(numOfMovesIndicator = numOfMovesIndicator+1);
 
             if(charges == 0 && complete == false) {
             	showFailMenu();
@@ -106,6 +111,7 @@ function listener() {
 			moveColDown(this);
 			this.barrelInfo();
 			charges--;
+            setNumberOfMoves(numOfMovesIndicator = numOfMovesIndicator+1);
 
 			if(charges == 0 && complete == false) {
             	showFailMenu();
@@ -122,6 +128,7 @@ function listener() {
 			moveRowLeft(this);
            // this.barrelInfo();
             charges--;
+            setNumberOfMoves(numOfMovesIndicator = numOfMovesIndicator+1);
 
             if(charges == 0 && complete == false) {
             	showFailMenu();
@@ -140,6 +147,7 @@ function listener() {
 			moveRowRight(this);
 			this.barrelInfo();
 			charges--;
+            setNumberOfMoves(numOfMovesIndicator = numOfMovesIndicator+1);
 
 			if(charges == 0 && complete == false) {
             	showFailMenu();
@@ -157,6 +165,7 @@ function listener() {
 			addCharge(this);
             this.barrelInfo();
             charges--;
+            setNumberOfMoves(numOfMovesIndicator = numOfMovesIndicator+1);
 
             if(charges == 0 && complete == false) {
             	showFailMenu();
@@ -241,6 +250,7 @@ function levelListener() {
   			tintGame(tintBlack, 0, 1000);
 			hidePostGameMenu();
 			animationBoardOut();
+            setNumberOfMoves(numOfMovesIndicator = 0);
 			game.time.events.add(Phaser.Timer.QUARTER*1.9, moveBarrelsToStartPosition, this);
 			game.time.events.add(Phaser.Timer.QUARTER*1.9, readNextLevel, this);
 			
@@ -281,10 +291,12 @@ function guiListener() {
 			resetBoard2();
 			readJson(currentLevel);
 			hideMenu();
+            setNumberOfMoves(numOfMovesIndicator = 0);
 			break;
 
 		case 'menuButton':
 			//resetBoard();
+            setNumberOfMoves(numOfMovesIndicator = 0);
 			showMenu();
 			break;
 	}

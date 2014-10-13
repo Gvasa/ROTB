@@ -3,3 +3,13 @@
 	right:35%;
 	width: 640px;
 }
+/*
+@font-face {
+    font-family: "TitanOne";
+    src: url('assets/fonts/TitanOne-Regular.ttf') format("truetype");
+}
+
+.fontPreload {
+    position: absolute;
+    left: -100px;
+}*/
