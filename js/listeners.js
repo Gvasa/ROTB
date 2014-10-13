@@ -183,6 +183,7 @@ function levelListener() {
 		case 'level1':
 			currentLevel = 'level1';
 			moveBarrelsToStartPosition();
+            setCurrentLevelIndicator(levelCounter = 1);
 			readJson('level1');
 			animationBoardIn();
 			hideLevelMenu();
@@ -192,6 +193,7 @@ function levelListener() {
 		case 'level2':
 			currentLevel = 'level2';
 			moveBarrelsToStartPosition();
+            setCurrentLevelIndicator(levelCounter = 2);
 			readJson('level2');
 			animationBoardIn();
 			hideLevelMenu();
@@ -200,6 +202,7 @@ function levelListener() {
 		case 'level3':
 			currentLevel = 'level3';
 			moveBarrelsToStartPosition();
+            setCurrentLevelIndicator(levelCounter = 3);
 			readJson('level3');
 			animationBoardIn();
 			hideLevelMenu();
@@ -208,6 +211,7 @@ function levelListener() {
 		case 'level4':
 			currentLevel = 'level4';
 			moveBarrelsToStartPosition();
+            setCurrentLevelIndicator(levelCounter = 4);
 			readJson('level4');
 			animationBoardIn();
 			hideLevelMenu();
@@ -216,6 +220,7 @@ function levelListener() {
 		case 'level5':
 			currentLevel = 'level5';
 			moveBarrelsToStartPosition();
+            setCurrentLevelIndicator(levelCounter = 5);
 			readJson('level5');
 			animationBoardIn();
 			hideLevelMenu();
@@ -224,6 +229,7 @@ function levelListener() {
 		case 'level6':
 			currentLevel = 'level6';
 			moveBarrelsToStartPosition();
+            setCurrentLevelIndicator(levelCounter = 6);
 			readJson('level6');
 			animationBoardIn();
 			hideLevelMenu();
@@ -232,6 +238,7 @@ function levelListener() {
 		case 'level7':
 			currentLevel = 'level7';
 			moveBarrelsToStartPosition();
+            setCurrentLevelIndicator(levelCounter = 7);
 			readJson('level7');
 			animationBoardIn();
 			hideLevelMenu();
@@ -240,6 +247,7 @@ function levelListener() {
         case 'level8':
             currentLevel = 'level8';
             moveBarrelsToStartPosition();
+            setCurrentLevelIndicator(levelCounter = 8);
             readJson('level8');
             animationBoardIn();
             hideLevelMenu();
@@ -251,6 +259,7 @@ function levelListener() {
 			hidePostGameMenu();
 			animationBoardOut();
             setNumberOfMoves(numOfMovesIndicator = 0);
+            setCurrentLevelIndicator(levelCounter = levelCounter + 1);
 			game.time.events.add(Phaser.Timer.QUARTER*1.9, moveBarrelsToStartPosition, this);
 			game.time.events.add(Phaser.Timer.QUARTER*1.9, readNextLevel, this);
 			
@@ -266,6 +275,7 @@ function menuListener() {
 
 		case 'play':
 			currentLevel = 'level1';
+            setCurrentLevelIndicator(levelCounter = 1);
 			readJson('level1');
 			hideMenu();
 			//animationBoardIn();
@@ -296,6 +306,7 @@ function guiListener() {
 
 		case 'menuButton':
 			//resetBoard();
+            clearTutorials();
             setNumberOfMoves(numOfMovesIndicator = 0);
 			showMenu();
 			break;

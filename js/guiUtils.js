@@ -1,8 +1,11 @@
 function setUpGui() {
 	console.log('set up gui here');
 	guiGroup = game.add.group();
-    var text = "Moves: " + numOfMovesIndicator;
-    var style = {font: "30pt Titan One", fill: "#ffffff"};
+    var textMoves = "Moves: " + numOfMovesIndicator;
+    var styleMoves = {font: "30pt Titan One", fill: "#ffffff"};
+
+    var textLevel = "Level " + levelCounter;
+    var styleLevel = {font: "30pt Titan One", fill: "#ffffff"};
 
 
 	var guiUpper = guiGroup.create(0, 0, 'spriteGuiUpper');
@@ -11,13 +14,16 @@ function setUpGui() {
     var spriteMainMenuButton = guiGroup.create(374 ,895, 'mainMenuButtonSprite');
 
 
-    movesIndicatorText = game.add.text(30, 20, text, style, guiGroup);
-    //movesIndicatorText.blendSoftLight();
+    movesIndicatorText = game.add.text(30, 20, textMoves, styleMoves, guiGroup);
     var grad = movesIndicatorText.context.createLinearGradient(0, 0, 0, movesIndicatorText.canvas.height);
     grad.addColorStop(0, '#a3a3a3');
     grad.addColorStop(0.6, '#ffffff');
     movesIndicatorText.fill = grad;
     movesIndicatorText.setShadow(5, 5, 'rgba(0,0,0,0.5)', 5);
+
+    levelIndicatorText = game.add.text(380, 20, textLevel, styleLevel, guiGroup);
+    levelIndicatorText.fill = grad;
+    levelIndicatorText.setShadow(5, 5, 'rgba(0,0,0,0.5)', 5);
 
 	resetButton = new Button('resetButton', spriteResetButton);
     mainMenuButton = new Button('menuButton', spriteMainMenuButton);
@@ -38,6 +44,10 @@ function setNumberOfMoves(moves) {
 
 }
 
-function setCurrentLevelIndicator() {
-    
+function setCurrentLevelIndicator(level) {
+    var text  = "Level " + level;
+    levelIndicatorText.text = text;
+    text = "";
 }
+
+function foo(){}
