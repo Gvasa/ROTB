@@ -11,7 +11,13 @@ function setUpGui() {
     var spriteMainMenuButton = guiGroup.create(374 ,895, 'mainMenuButtonSprite');
 
 
-    movesIndicatorText = game.add.text(10, 0, text, style, guiGroup);
+    movesIndicatorText = game.add.text(30, 20, text, style, guiGroup);
+    //movesIndicatorText.blendSoftLight();
+    var grad = movesIndicatorText.context.createLinearGradient(0, 0, 0, movesIndicatorText.canvas.height);
+    grad.addColorStop(0, '#a3a3a3');
+    grad.addColorStop(0.6, '#ffffff');
+    movesIndicatorText.fill = grad;
+    movesIndicatorText.setShadow(5, 5, 'rgba(0,0,0,0.5)', 5);
 
 	resetButton = new Button('resetButton', spriteResetButton);
     mainMenuButton = new Button('menuButton', spriteMainMenuButton);
@@ -30,4 +36,8 @@ function setNumberOfMoves(moves) {
     movesIndicatorText.preUpdate();
     text = "";
 
+}
+
+function setCurrentLevelIndicator() {
+    
 }
