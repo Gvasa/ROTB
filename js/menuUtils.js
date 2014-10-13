@@ -44,18 +44,18 @@ function createLevelMenu() {
 	button3.animations.add('3', [2], true);
 	button4.animations.add('4', [3], true);
 	button5.animations.add('5', [4], true);
-	button6.animations.add('5', [4], true);
-	button7.animations.add('5', [4], true);
-	button8.animations.add('5', [4], true);
+	button6.animations.add('6', [5], true);
+	button7.animations.add('7', [6], true);
+	button8.animations.add('8', [7], true);
 
 	button1.animations.play('1');
 	button2.animations.play('2');
 	button3.animations.play('3');
 	button4.animations.play('4');
 	button5.animations.play('5');
-	button6.animations.play('5');
-	button7.animations.play('5');
-	button8.animations.play('5');
+	button6.animations.play('6');
+	button7.animations.play('7');
+	button8.animations.play('8');
 
 	levelButton1 = new Button('level1', button1);
 	levelButton2 = new Button('level2', button2);
