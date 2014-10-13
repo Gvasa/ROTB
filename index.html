@@ -59,6 +59,9 @@ function create() {
     
 	bClick = game.add.audio('sfx');
     sfxLevelComplete = game.add.audio('sfxLevelComplete');
+    sfxBgSound = game.add.audio('sfxBgSound');
+    sfxBgSound.loop = true;
+    sfxBgSound.play();
 
     text = game.add.text(250, 16, '', { fill: '#ffffff' });
     gameBoard = new Array(6);
