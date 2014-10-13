@@ -47,7 +47,7 @@ function moveColUp (tmpBarrel) {
 	var currentBarrel = tmpBarrel.barrelId;
 	var colToMove = calcCol(tmpBarrel.barrelId);
 	var winBarrelInArray = colToMove.indexOf(winIndex);
-
+	tmpBarrel.barrelSprite.inputEnabled = false;
 	animateColUp(colToMove);
 	if(winBarrelInArray != -1 && gameBoard[colToMove[winBarrelInArray+1]].barrelType != BARREL_EMPTY) {
 			console.log(colToMove);
@@ -83,6 +83,7 @@ function moveColUp (tmpBarrel) {
 		}
 		gameBoard.sort(compare);
 		updateBarrelVisibility2();
+		tmpBarrel.barrelSprite.inputEnabled = true;
 	}, this);
 
 	
@@ -92,7 +93,7 @@ function moveColDown (tmpBarrel) {
 	var currentBarrel = tmpBarrel.barrelId;
 	var colToMove = calcCol(tmpBarrel.barrelId);
 	var winBarrelInArray = colToMove.indexOf(winIndex);
-	
+	tmpBarrel.barrelSprite.inputEnabled = false;
 	animateColDown(colToMove);
 	if(winBarrelInArray != -1 && gameBoard[colToMove[winBarrelInArray-1]].barrelType != BARREL_EMPTY) {
 		levelComplete();
@@ -122,6 +123,7 @@ function moveColDown (tmpBarrel) {
 			}
 			gameBoard.sort(compare);
 			updateBarrelVisibility2();
+			tmpBarrel.barrelSprite.inputEnabled = true;
 		}, this);
 
 }
@@ -131,6 +133,8 @@ function moveRowRight (tmpBarrel) {
 	var currentBarrel = tmpBarrel.barrelId;
 	var rowToMove = calcRow(tmpBarrel.barrelId);
 	var winBarrelInArray = rowToMove.indexOf(winIndex);
+
+	tmpBarrel.barrelSprite.inputEnabled = false;
 	
 	animateRowRight(rowToMove);
 	if(winBarrelInArray != -1 && gameBoard[rowToMove[winBarrelInArray-1]].barrelType != BARREL_EMPTY) {
@@ -161,6 +165,7 @@ function moveRowRight (tmpBarrel) {
 		}
 		gameBoard.sort(compare);
 		updateBarrelVisibility2();
+		tmpBarrel.barrelSprite.inputEnabled = true;
 	}, this);
 
 	
@@ -170,6 +175,7 @@ function moveRowLeft (tmpBarrel) {
 	var currentBarrel = tmpBarrel.barrelId;
 	var rowToMove = calcRow(tmpBarrel.barrelId);
 	var winBarrelInArray = rowToMove.indexOf(winIndex);
+	tmpBarrel.barrelSprite.inputEnabled = false;
 
 	animateRowLeft(rowToMove);
 	if(winBarrelInArray != -1 && gameBoard[rowToMove[winBarrelInArray+1]].barrelType != BARREL_EMPTY) {
@@ -210,6 +216,7 @@ function moveRowLeft (tmpBarrel) {
 			}
 			gameBoard.sort(compare);
 			updateBarrelVisibility2();
+			tmpBarrel.barrelSprite.inputEnabled = true;
 
 			for(var j = 0; j < 6; j++)
 				console.log(gameBoard[rowToMove[j]])
