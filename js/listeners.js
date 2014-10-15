@@ -337,6 +337,7 @@ function postGameMenuListener() {
             resetBoard2();
             hideLastLevelMenu();
             showMenu();
+            resetBoard2();
 	}
 }
 
@@ -348,6 +349,7 @@ function tutorialListener() {
 
 function resetLevel() {
 	console.log('ven');
+    resetBoard2();
 	moveBarrelsToStartPosition();
 	readJson(currentLevel);
 	animationBoardIn();
