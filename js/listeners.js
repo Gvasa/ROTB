@@ -336,6 +336,7 @@ function postGameMenuListener() {
             resetWinBarrel();
             resetBoard2();
             hideLastLevelMenu();
+            setNumberOfMoves(numOfMovesIndicator = 0);
             showMenu();
             resetBoard2();
 	}

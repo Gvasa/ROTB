@@ -274,12 +274,15 @@ function hideFailMenu() {
 }
 
 function createLastLevelMenu() {
-	var button1 = game.add.sprite(254, -465-113, 'chooseLevelSprite');
+	gameComplete = game.add.sprite(114, -910, 'gameCompleteSprite');
+
+	var button1 = game.add.sprite(254, -465-113, 'mainMenuGameCompleteSprite');
 
 	button1.inputEnabled = true;
 
 	lastLevelMainMenuButton = new Button('lastLevelMainMenu', button1);
 
+	gameComplete.alpha = false;
 	lastLevelMainMenuButton.buttonSprite.alpha = false;
 	lastLevelMainMenuButton.buttonSprite.inputEnabled = false;
 
@@ -287,7 +290,7 @@ function createLastLevelMenu() {
 }
 
 function showLastLevelMenu() {
-	moveToYAnimation(outOfChargesButton, -20, 700);
+	moveToYAnimation(gameComplete, -20, 700);
 	moveToYAnimation(lastLevelMainMenuButton.buttonSprite, 265, 700);
 
 	resetButton.buttonSprite.inputEnabled = false;
@@ -296,8 +299,8 @@ function showLastLevelMenu() {
 	tintGame(tintBlack, 1, 1000);
 	game.world.bringToTop(guiGroup);
 
-	outOfChargesButton.alpha = true;
-	game.world.bringToTop(outOfChargesButton);
+	gameComplete.alpha = true;
+	game.world.bringToTop(gameComplete);
 
 	lastLevelMainMenuButton.buttonSprite.alpha = true;
 	lastLevelMainMenuButton.buttonSprite.inputEnabled = true;
@@ -308,7 +311,7 @@ function showLastLevelMenu() {
 function hideLastLevelMenu() {
 	tintGame(tintBlack, 0, 1000);
 
-	moveToYAnimation(outOfChargesButton, -910, 700);
+	moveToYAnimation(gameComplete, -910, 700);
 	moveToYAnimation(lastLevelMainMenuButton.buttonSprite, -498-113, 700);
 
 	resetButton.buttonSprite.inputEnabled = true;

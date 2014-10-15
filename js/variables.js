@@ -87,7 +87,9 @@ var levelIndicatorText;
 var outOfChargesButton;
 var chooseLevelButton;
 var restartLevelButton;
+
 var lastLevelMainMenuButton;
+var gameComplete;
 
 var tutorial_1_1;
 var tutorial_1_2;
