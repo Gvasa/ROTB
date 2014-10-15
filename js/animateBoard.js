@@ -1,34 +1,31 @@
 function animationBoardIn() {
 	var speed = 320;
-	var counter = 0;
-	for(var i = 0; i < 6; i ++) {
-		for(var j = 0; j < 6; j++) {
-				moveFromXAnimation(gameBoard[counter].barrelSprite, gameBoard[counter].spritePosX, speed);
-				moveFromXAnimation(gameBoard[counter].marking, gameBoard[counter].spritePosX-4, speed);
-				speed = speed+54;
-				counter++;
-		}
-		speed=320;
+
+	for(var i = 1; i <= 36; i ++) {
+		moveFromXAnimation(gameBoard[i-1].barrelSprite, gameBoard[i-1].spritePosX, speed);
+		moveFromXAnimation(gameBoard[i-1].marking, gameBoard[i-1].spritePosX-4, speed);
+		speed = speed + 54;
+
+		if(i%6 == 0)
+			speed = 320;
 	}
 }
 
 function animationBoardOut() {
 	var speed = 320;
-	var counter = 0;
-	for(var i = 0; i < 6; i ++) {
-		for(var j = 0; j < 6; j++) {
-				moveFromXAnimation(gameBoard[counter].barrelSprite, -1000, speed);
-				moveFromXAnimation(gameBoard[counter].marking, -1000, speed);
-				speed = speed+54;
-				counter++;
-		}
-		speed=320;
-	}
 
+	for(var i = 1; i <= 36; i ++) {
+		moveFromXAnimation(gameBoard[i-1].barrelSprite, -1000, speed);
+		moveFromXAnimation(gameBoard[i-1].marking, -1000, speed);
+		speed = speed + 54;
+
+		if(i%6 == 0)
+			speed = 320;
+	}
 }
 
 function animateColUp(colArray) {
-	var speed = 250;
+	var speed = 150;
 	
 	var tmpMarking = game.add.sprite(gameBoard[colArray[0]].marking.x-4, gameBoard[colArray[0]].marking.y-4, BARREL_MARKING);
 	var tmpBarrel = game.add.sprite(gameBoard[colArray[0]].spritePosX,gameBoard[colArray[0]].spritePosY, gameBoard[colArray[0]].barrelType);
@@ -74,7 +71,7 @@ function animateColUp(colArray) {
 }
 
 function animateColDown(colArray) {
-	var speed = 250;
+	var speed = 150;
 
 	var tmpMarking = game.add.sprite(gameBoard[colArray[5]].marking.x-4, gameBoard[colArray[5]].marking.y-4, BARREL_MARKING);
 	var tmpBarrel = game.add.sprite(gameBoard[colArray[5]].spritePosX,gameBoard[colArray[5]].spritePosY, gameBoard[colArray[5]].barrelType);
@@ -120,7 +117,7 @@ function animateColDown(colArray) {
 }
 
 function animateRowLeft(rowArray) {
-	var speed = 250;
+	var speed = 150;
 
 	var tmpMarking = game.add.sprite(gameBoard[rowArray[0]].marking.x-4, gameBoard[rowArray[0]].marking.y-4, BARREL_MARKING);
 	var tmpBarrel = game.add.sprite(gameBoard[rowArray[0]].spritePosX, gameBoard[rowArray[0]].spritePosY, gameBoard[rowArray[0]].barrelType);
@@ -168,7 +165,7 @@ function animateRowLeft(rowArray) {
 }
 
 function animateRowRight(rowArray) {
-	var speed = 250;
+	var speed = 150;
 	
 	var tmpMarking = game.add.sprite(gameBoard[rowArray[5]].marking.x-4, gameBoard[rowArray[5]].marking.y-4, BARREL_MARKING);
 	var tmpBarrel = game.add.sprite(gameBoard[rowArray[5]].spritePosX, gameBoard[rowArray[5]].spritePosY, gameBoard[rowArray[5]].barrelType);
@@ -221,14 +218,10 @@ function animateRowRight(rowArray) {
 
 function moveBarrelsToStartPosition() {
 	resetBoard2();
-	var counter = 0;
-	for(var i = 0; i < 6; i ++) {
-		for(var j = 0; j < 6; j++) {
-				//console.log(gameBoard[j][i].barrelType);
-				gameBoard[counter].marking.x = 1000;
-				gameBoard[counter].barrelSprite.x = 1000;
-				counter++;
-		}
+
+	for(var i = 0; i < 36; i ++) {
+		gameBoard[i].marking.x = 1000;
+		gameBoard[i].barrelSprite.x = 1000;
 	}
 }
 
