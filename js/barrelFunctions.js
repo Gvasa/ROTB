@@ -6,7 +6,7 @@ function showBarrelRight(tmpBarrel) {
 
    	gameBoard[rightBarrel].barrelSprite.loadTexture(gameBoard[rightBarrel].barrelType);
     gameBoard[rightBarrel].visible = true;
-    gameBoard[rightBarrel].barrelInfo();
+    //gameBoard[rightBarrel].barrelInfo();
     updateBarrelVisibility2();
 }
 
@@ -17,7 +17,7 @@ function showBarrelLeft(tmpBarrel) {
    	
    	gameBoard[leftBarrel].barrelSprite.loadTexture(gameBoard[leftBarrel].barrelType);
     gameBoard[leftBarrel].visible = true;
-    gameBoard[leftBarrel].barrelInfo();
+    //gameBoard[leftBarrel].barrelInfo();
   	updateBarrelVisibility2();
 }
 
@@ -28,7 +28,7 @@ function showBarrelAbove(tmpBarrel) {
 
    	gameBoard[aboveBarrel].barrelSprite.loadTexture(gameBoard[aboveBarrel].barrelType);
     gameBoard[aboveBarrel].visible = true;
-    gameBoard[aboveBarrel].barrelInfo();
+    //gameBoard[aboveBarrel].barrelInfo();
     updateBarrelVisibility2();
 }
 
@@ -39,7 +39,7 @@ function showBarrelBelow (tmpBarrel) {
 
    	gameBoard[belowBarrel].barrelSprite.loadTexture(gameBoard[belowBarrel].barrelType);
 	gameBoard[belowBarrel].visible = true;
-	gameBoard[belowBarrel].barrelInfo();
+	//gameBoard[belowBarrel].barrelInfo();
 	updateBarrelVisibility2();
 }
 
@@ -62,8 +62,8 @@ function moveColUp (tmpBarrel) {
 		var tmpPosX = gameBoard[colToMove[5]].spritePosX;
 		var tmpPosY = gameBoard[colToMove[5]].spritePosY;
 		console.log(colToMove);
-		for (var j = 0; j <=5; j++)
-			console.log(gameBoard[colToMove[j]]);
+		//for (var j = 0; j <=5; j++)
+			//console.log(gameBoard[colToMove[j]]);
 
 		for(var i = 5; i >= 0; i--) {
 			if(i == 0) {
@@ -218,8 +218,8 @@ function moveRowLeft (tmpBarrel) {
 			updateBarrelVisibility2();
 			tmpBarrel.barrelSprite.inputEnabled = true;
 
-			for(var j = 0; j < 6; j++)
-				console.log(gameBoard[rowToMove[j]])
+			//for(var j = 0; j < 6; j++)
+				//console.log(gameBoard[rowToMove[j]])
 ;
 		}, this);	
 }
@@ -231,19 +231,19 @@ function addCharge (tmpBarrel) {
 		gameBoard[tmpBarrel.barrelId-1].charges++;
 		charges++;
         console.log('CHARGE UP!');
-        console.log(gameBoard[tmpBarrel.barrelId-1]);
+        //console.log(gameBoard[tmpBarrel.barrelId-1]);
 	}
 	if(BOTTOM_ROW.indexOf(tmpBarrel.barrelId) == -1 && gameBoard[tmpBarrel.barrelId+1].barrelType != BARREL_EMPTY) {
 		gameBoard[tmpBarrel.barrelId+1].charges++;
         charges++;
         console.log('CHARGE DOWN!');
-        console.log(gameBoard[tmpBarrel.barrelId+1]);
+        //console.log(gameBoard[tmpBarrel.barrelId+1]);
 	}
 	if(RIGHT_COL.indexOf(tmpBarrel.barrelId) == -1 && gameBoard[tmpBarrel.barrelId+6].barrelType != BARREL_EMPTY) {
 		gameBoard[tmpBarrel.barrelId+6].charges++;
         charges++;
         console.log('CHARGE RIGHT!');
-        console.log(gameBoard[tmpBarrel.barrelId+6]);
+        //console.log(gameBoard[tmpBarrel.barrelId+6]);
 	}
 	if(LEFT_COL.indexOf(tmpBarrel.barrelId) == -1 && gameBoard[tmpBarrel.barrelId-6].barrelType != BARREL_EMPTY) {
 		//console.log(gameBoard[tmpBarrel.barrelId+6]);
@@ -251,7 +251,7 @@ function addCharge (tmpBarrel) {
 		//console.log(gameBoard[tmpBarrel.barrelId+6]);
         charges++;
         console.log('CHARGE LEFT!');
-        console.log(gameBoard[tmpBarrel.barrelId-6]);
+        //console.log(gameBoard[tmpBarrel.barrelId-6]);
 	}
 	updateBarrelVisibility2();
 

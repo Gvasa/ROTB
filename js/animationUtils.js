@@ -1,11 +1,11 @@
 function moveFromYAnimation(sprite, fromY, speed) {
     game.add.tween(sprite).to({y: fromY}, speed, Phaser.Easing.Linear.None, true);
-    console.log('to:' + fromY);
+    //console.log('to:' + fromY);
 }
 
 function moveToYAnimation(sprite, toY, speed) {
     game.add.tween(sprite).to({y: toY}, speed, Phaser.Easing.Linear.None, true);
-    console.log('to:' + toY);
+    //console.log('to:' + toY);
 }
 
 function moveFromXAnimation(sprite, fromX, speed) {
@@ -45,7 +45,7 @@ function pulseScaleXYAnimation(sprite, xScale, yScale, time, repeat) {
 }
  
 function createWinBarrelGlow() {
-    console.log('asdasd');
+    //console.log('asdasd');
     winBarrelGlow = game.add.sprite(tmpX, tmpY, 'winBarrelGlow');
     winBarrelGlow.alpha = false;
 }

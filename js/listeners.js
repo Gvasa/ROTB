@@ -6,7 +6,7 @@ function listener() {
 		case BARREL_REVEAL_ABOVE:
             if(this.posX == 0 || this.charges <= 0 || gameBoard[this.barrelId-1].visible == true || gameBoard[this.barrelId-1].barrelType == BARREL_EMPTY) {
                 console.log('If barrel reveal above');
-                this.barrelInfo();
+                //this.barrelInfo();
                 gameBoard[this.barrelId-1].barrelInfo();
                 break;
             }
@@ -16,7 +16,7 @@ function listener() {
             bClick.play();
             this.charges--;
 			showBarrelAbove(this);
-            this.barrelInfo();
+            //this.barrelInfo();
             charges--;
             setNumberOfMoves(numOfMovesIndicator = numOfMovesIndicator+1);
 
@@ -35,7 +35,7 @@ function listener() {
 			bClick.play();
 			this.charges--;
 			showBarrelBelow(this);
-            this.barrelInfo();
+            //this.barrelInfo();
             charges--;
             setNumberOfMoves(numOfMovesIndicator = numOfMovesIndicator+1);
 
@@ -49,7 +49,7 @@ function listener() {
 		case BARREL_REVEAL_RIGHT:
 			if(this.posY == TEST_CONSTANT-1 || this.charges <= 0 || gameBoard[this.barrelId+6].visible == true || gameBoard[this.barrelId+6].barrelType == BARREL_EMPTY) {
 				console.log('If barrel reveal RIGHT');
-				this.barrelInfo();
+				//this.barrelInfo();
 				gameBoard[this.barrelId+6].barrelInfo();
 				console.log(gameBoard[this.barrelId+6].visible);
 				console.log(gameBoard[this.barrelId+6].barrelType);
@@ -58,7 +58,7 @@ function listener() {
 			bClick.play();
 			this.charges--;
 			showBarrelRight(this);
-            this.barrelInfo();
+            //this.barrelInfo();
             charges--;
             setNumberOfMoves(numOfMovesIndicator = numOfMovesIndicator+1);
 
@@ -77,7 +77,7 @@ function listener() {
 			bClick.play();
 			this.charges--;
 			showBarrelLeft(this);
-            this.barrelInfo();
+            //this.barrelInfo();
             charges--;
             setNumberOfMoves(numOfMovesIndicator = numOfMovesIndicator+1);
 
@@ -93,7 +93,7 @@ function listener() {
 				break;
 			this.charges--;
 			moveColUp(this);
-            this.barrelInfo();
+            //this.barrelInfo();
             charges--;
             setNumberOfMoves(numOfMovesIndicator = numOfMovesIndicator+1);
 
@@ -109,7 +109,7 @@ function listener() {
 				break;
 			this.charges--;
 			moveColDown(this);
-			this.barrelInfo();
+			//this.barrelInfo();
 			charges--;
             setNumberOfMoves(numOfMovesIndicator = numOfMovesIndicator+1);
 
@@ -126,7 +126,7 @@ function listener() {
 
 			this.charges--;
 			moveRowLeft(this);
-           // this.barrelInfo();
+           // //this.barrelInfo();
             charges--;
             setNumberOfMoves(numOfMovesIndicator = numOfMovesIndicator+1);
 
@@ -145,7 +145,7 @@ function listener() {
 
 			this.charges--;
 			moveRowRight(this);
-			this.barrelInfo();
+			//this.barrelInfo();
 			charges--;
             setNumberOfMoves(numOfMovesIndicator = numOfMovesIndicator+1);
 
@@ -163,7 +163,7 @@ function listener() {
 			}
 			this.charges--;
 			addCharge(this);
-            this.barrelInfo();
+            //this.barrelInfo();
             charges--;
             setNumberOfMoves(numOfMovesIndicator = numOfMovesIndicator+1);
 
