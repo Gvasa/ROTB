@@ -323,12 +323,14 @@ function postGameMenuListener() {
 		case 'chooseLevel':
 			resetBoard2();
 			showLevelMenu();
+            setNumberOfMoves(numOfMovesIndicator = 0);
 			hideFailMenu();
 			break;
 
 		case 'restartLevel':
 			resetBoard2();
 			readJson(currentLevel);
+            setNumberOfMoves(numOfMovesIndicator = 0);
 			hideFailMenu();
 			break;
 
