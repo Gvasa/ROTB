@@ -298,10 +298,12 @@ function guiListener() {
 	switch(type) {
 
 		case 'resetButton':
-			resetBoard2();
-			readJson(currentLevel);
+			//resetBoard2();
 			hideMenu();
-            setNumberOfMoves(numOfMovesIndicator = 0);
+			animationBoardOut();
+			console.log('wtfff');
+			game.time.events.add(Phaser.Timer.QUARTER*1.9, resetLevel, this);
+			
 			break;
 
 		case 'menuButton':
@@ -342,6 +344,15 @@ function tutorialListener() {
 	console.log(this);
 	swapTutorials(2);
 	this.inputEnabled = false;
+}
+
+function resetLevel() {
+	console.log('ven');
+	moveBarrelsToStartPosition();
+	readJson(currentLevel);
+	animationBoardIn();
+
+	setNumberOfMoves(numOfMovesIndicator = 0);
 }
 
 function readNextLevel() {

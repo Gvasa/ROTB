@@ -220,7 +220,7 @@ function moveRowLeft (tmpBarrel) {
 
 			//for(var j = 0; j < 6; j++)
 				//console.log(gameBoard[rowToMove[j]])
-;
+
 		}, this);	
 }
 
