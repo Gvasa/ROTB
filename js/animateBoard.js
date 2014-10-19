@@ -34,7 +34,7 @@ function animateColUp(colArray) {
 		tmpMarking.alpha = false;
 
 	game.world.bringToTop(guiGroup);
-	game.world.bringToTop(gameBoard[winIndex].barrelSprite);	
+	game.world.bringToTop(gameBoard[winIndex].barrelSprite);
 	gameBoard[colArray[0]].barrelSprite.y = 960+BARREL_HEIGHT;
 	gameBoard[colArray[0]].marking.y = 960+BARREL_HEIGHT;
 
