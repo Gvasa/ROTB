@@ -29,7 +29,7 @@
 
 <script type="text/javascript">
 
-var game = new Phaser.Game(640, 960, Phaser.AUTO, 'gameCentered', { preload: preload, create: create, update: update });
+var game = new Phaser.Game(640, 1152, Phaser.AUTO, 'gameCentered', { preload: preload, create: create, update: update });
 
 WebFontConfig = {
 
@@ -55,7 +55,8 @@ function preload() {
 function create() {
 
 	console.log('create');
-    game.add.sprite(0,0, 'background');
+    //game.add.sprite(0,0, 'background');
+    game.add.sprite(0,0, 'screencastbg');
     
 	bClick = game.add.audio('sfx');
     sfxLevelComplete = game.add.audio('sfxLevelComplete');

@@ -1,6 +1,7 @@
 function assetsLoader() {
 
     game.load.image('background', 'assets/backgrounds/bg_copy.jpg');
+    game.load.image('screencastbg', 'assets/backgrounds/screencast_bg.jpg');
     game.load.image('BARREL_EMPTY', 'assets/barrels/barrel_invis_76_96.png');
     game.load.image('BARREL_WIN', 'assets/barrels/barrel_win_76_96.png');
     game.load.image('BARREL_MOVE_ROW_LEFT', 'assets/barrels/barrel_move_row_left_76_96.png');

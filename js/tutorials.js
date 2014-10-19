@@ -1,8 +1,8 @@
 function loadTutorials() {
     tintBlack = game.add.sprite(0,0, 'tintBlack');
     tutorial_1_1 = game.add.sprite(115,-960,'tutorial_1_1');
-    tutorial_1_2 = game.add.sprite(115,-20,'tutorial_1_2');
-    tutorial_1_3 = game.add.sprite(115,-20,'tutorial_1_3');
+    tutorial_1_2 = game.add.sprite(115,-960,'tutorial_1_2');
+    tutorial_1_3 = game.add.sprite(115,-960,'tutorial_1_3');
     tutorialContinue = game.add.sprite(256,-1000, 'continueButtonSprite');
    
     console.log('wtf');
