@@ -1,3 +1,42 @@
+/* This file handles all the listeners in the game
+	it's quite large so all listeners are split up 
+	to have some kind of structure and to make it
+	easier to read.
+	
+	the functions you'll find are the following:
+
+		listener - handles all the events that occurs when 
+				   a barrel(reveal, movement, charge etc) is clicked
+				   if you are adding a new barrel that affects the gameplay
+				   check out listener
+
+		levelListener - this function takes care of all the events that occurs
+						when something from the "levelMenu" has been clicked.
+						It makes sure the right level gets loaded etc.
+						If you are adding a new level check out levelListener
+
+		menuListener - takes care of the events that occur from the main menu
+					   this function has very little in it at the moment
+					   if you want to add new features such as options / credits
+					   do it in this function.
+
+		guiListener - this function handles the resetbutton and "go to menu"-button.
+					  not much to say, could probably be incorperated into another function
+
+		posgGameListener - depending on where in the game you are this function
+							will do one of the following
+								- restart the level you are currently at
+								- show the level menu
+								- send you to the main menu if you have completed
+								  the last level
+
+		tutorialListener - only used once, to get the tutorials rolling
+
+		resetLevel - cleans the board and reloads the level
+
+		readNextLevel - checks wich is the current level and loads the next level
+					
+*/
 
 function listener() {
 	var expr = this.barrelType;
@@ -16,7 +55,6 @@ function listener() {
             bClick.play();
             this.charges--;
 			showBarrelAbove(this);
-            //this.barrelInfo();
             charges--;
             setNumberOfMoves(numOfMovesIndicator = numOfMovesIndicator+1);
 
@@ -29,13 +67,11 @@ function listener() {
 
 		case BARREL_REVEAL_BELOW:
 			if(this.posX == TEST_CONSTANT-1 || this.charges <= 0 || gameBoard[this.barrelId+1].visible == true || gameBoard[this.barrelId+1].barrelType == BARREL_EMPTY) {
-				console.log('If barrel reveal below');
 				break;
 			}
 			bClick.play();
 			this.charges--;
 			showBarrelBelow(this);
-            //this.barrelInfo();
             charges--;
             setNumberOfMoves(numOfMovesIndicator = numOfMovesIndicator+1);
 
@@ -43,7 +79,6 @@ function listener() {
             	showFailMenu();
             	break;
             }
-            console.log('charges: ' + charges);
 			break;
 		
 		case BARREL_REVEAL_RIGHT:
@@ -126,7 +161,6 @@ function listener() {
 
 			this.charges--;
 			moveRowLeft(this);
-           // //this.barrelInfo();
             charges--;
             setNumberOfMoves(numOfMovesIndicator = numOfMovesIndicator+1);
 
@@ -134,7 +168,6 @@ function listener() {
             	showFailMenu();
             	break;
             }
-            //console.log('charges: ' + charges);
 			break;
 
 		case BARREL_MOVE_ROW_RIGHT:
@@ -361,16 +394,13 @@ function resetLevel() {
 }
 
 function readNextLevel() {
-	//resetBoard2();
 	var foo = currentLevel;
-
-
 	var levelNum = parseInt(foo.slice(-1))+1;
+
 	if(levelNum <= NUM_OF_LEVELS) {
 		var tmp = foo.substring(0, 5) + levelNum;
 		currentLevel = foo.substring(0, 5) + levelNum;
-		//animationBoardOut();
-		//while(game.time.now - timeCheck > 2000) { }
+
 		readJson(currentLevel);
 		animationBoardIn();
 		console.log(currentLevel);

@@ -1,3 +1,28 @@
+/*This file handles the animations in a way. 
+The animations are created in another file but should be called from here
+since we want to keep it easy to read and structured.
+
+be carefull if you change something in these functions because they are quite
+easy to screw up.
+
+    You'll find following functions:
+		
+		animationBoardIn - Animates the gameboard in from the right
+		animationBoardOut - Animates the gameboard ou to the left
+		
+		animateColUp - animates the column to the left of the selected barrel one step UP
+		animateColDown - animates the column to the left of the seleceted barrel one step DOWN
+		animateRowLeft - animates the row below the selected barrel one step LEFT
+		animateRowRight - animates the row below the selected barrel one step RIGHT
+		
+		moveBarrelToStartPosition - will move barrels far to the right and 
+									prepare them for when needed to be animated in
+
+		animateWinBarrel - will animate the winBarrel to the center of the screen
+		animateWinBarrelGlow - animates the glow behind the winBarrel
+		resetGlowScale -
+*/
+
 function animationBoardIn() {
 	var speed = 320;
 
@@ -202,9 +227,6 @@ function animateRowRight(rowArray) {
 			moveToXAnimation(gameBoard[rowArray[5]].barrelSprite, gameBoard[rowArray[0]].spritePosX, speed);
 			moveToXAnimation(gameBoard[rowArray[5]].marking, gameBoard[rowArray[0]].marking.x, speed);
 		} else {
-			/*if(BOTTOM_ROW.indexOf(rowArray[i]))
-				moveToXAnimation(gameBoard[rowArray[i]].barrelSprite, gameBoard[rowArray[i]+1].spritePosX, speed);	
-			else*/
 				moveToXAnimation(gameBoard[rowArray[i]].barrelSprite, gameBoard[rowArray[i]+5].spritePosX, speed);
 				moveToXAnimation(gameBoard[rowArray[i]].marking, gameBoard[rowArray[i]+5].marking.x, speed);			
 		}

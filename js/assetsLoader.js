@@ -1,6 +1,10 @@
+//This is just a "pre-loader" 
+//as the function name states just load in all our assets that we need
+
 function assetsLoader() {
 
     game.load.image('background', 'assets/backgrounds/bg_copy.jpg');
+    game.load.image('screencastbg', 'assets/backgrounds/screencast_bg.jpg');
     game.load.image('BARREL_EMPTY', 'assets/barrels/barrel_invis_76_96.png');
     game.load.image('BARREL_WIN', 'assets/barrels/barrel_win_76_96.png');
     game.load.image('BARREL_MOVE_ROW_LEFT', 'assets/barrels/barrel_move_row_left_76_96.png');
@@ -20,7 +24,6 @@ function assetsLoader() {
     
     game.load.audio('sfx', 'assets/sound/barrelclick.wav');
     game.load.audio('sfxLevelComplete', 'assets/sound/levelcomplete.wav');
-    //game.load.audio('sfxBgSound', 'assets/sound/bgsound.wav');
 
     game.load.text('level1', 'assets/levels/level1.json');
     game.load.text('level2', 'assets/levels/level2.json');

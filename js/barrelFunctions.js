@@ -1,4 +1,27 @@
+/* This file has all functions that handles
+ 	all the barrels different interactions with eachother.
 
+ 	You'll find following functions:
+	
+		showBarrelRight void - shows the barrel to the RIGHT of the selected barrel
+		showBarrelLeft - shows the barrel to the LEFT of the selected barrel
+		showBarrelAbove - shows the barrel ABOVE the selected barrel
+		showBarrelBelow - shows the barrel BELOW the selected barrel
+
+		moveColUp - moves the column to the left of the selected barrel UP
+		moveColDown - moves the column to the left of the selected barrel DOWN
+		
+		moveRowRight - moves the row below the selected barrel RIGHT
+		moveRowLeft - moves the row below the selected barrel LEFT
+
+		addCharge - will add a CHARGE to the barrel surrounding the selected barrel
+					above, below, right & left
+
+		calcCol - returns the column that is supposed to be moved
+		calcRow - returns the row that is supposed to be moved
+
+		compare - small comparement function used by the built in sorting functions for arrays
+*/
 function showBarrelRight(tmpBarrel) {
 
 	var currentBarrel = tmpBarrel.barrelId;
@@ -6,7 +29,6 @@ function showBarrelRight(tmpBarrel) {
 
    	gameBoard[rightBarrel].barrelSprite.loadTexture(gameBoard[rightBarrel].barrelType);
     gameBoard[rightBarrel].visible = true;
-    //gameBoard[rightBarrel].barrelInfo();
     updateBarrelVisibility2();
 }
 
@@ -17,7 +39,7 @@ function showBarrelLeft(tmpBarrel) {
    	
    	gameBoard[leftBarrel].barrelSprite.loadTexture(gameBoard[leftBarrel].barrelType);
     gameBoard[leftBarrel].visible = true;
-    //gameBoard[leftBarrel].barrelInfo();
+
   	updateBarrelVisibility2();
 }
 
@@ -28,7 +50,7 @@ function showBarrelAbove(tmpBarrel) {
 
    	gameBoard[aboveBarrel].barrelSprite.loadTexture(gameBoard[aboveBarrel].barrelType);
     gameBoard[aboveBarrel].visible = true;
-    //gameBoard[aboveBarrel].barrelInfo();
+
     updateBarrelVisibility2();
 }
 
@@ -39,7 +61,7 @@ function showBarrelBelow (tmpBarrel) {
 
    	gameBoard[belowBarrel].barrelSprite.loadTexture(gameBoard[belowBarrel].barrelType);
 	gameBoard[belowBarrel].visible = true;
-	//gameBoard[belowBarrel].barrelInfo();
+
 	updateBarrelVisibility2();
 }
 
@@ -61,9 +83,6 @@ function moveColUp (tmpBarrel) {
 		var tmpId = gameBoard[colToMove[5]].barrelId;
 		var tmpPosX = gameBoard[colToMove[5]].spritePosX;
 		var tmpPosY = gameBoard[colToMove[5]].spritePosY;
-		console.log(colToMove);
-		//for (var j = 0; j <=5; j++)
-			//console.log(gameBoard[colToMove[j]]);
 
 		for(var i = 5; i >= 0; i--) {
 			if(i == 0) {
@@ -218,9 +237,6 @@ function moveRowLeft (tmpBarrel) {
 			updateBarrelVisibility2();
 			tmpBarrel.barrelSprite.inputEnabled = true;
 
-			//for(var j = 0; j < 6; j++)
-				//console.log(gameBoard[rowToMove[j]])
-
 		}, this);	
 }
 
@@ -294,18 +310,3 @@ function compare(barrel1, barrel2) {
 		return 1;
 	return 0;
 }
-/*
-function checkBarrelHover() {
-	for(var i = 0; i < counter; i++) {
-		if(gameBoard[counter].barrelType != BARREL_EMPTY) {
-			gameBoard[counter].barrelSprite.events.onInputOver.add(function(){
-				tintGame(gameBoard[counter].barrelSprite, 0.5, 500);
-			}, this);
-			gameBoard[counter].barrelSprite.events.onInputOver.add(function(){
-				tintGame(gameBoard[counter].barrelSprite, 1.0, 500);
-			}, this);
-		}
-	}
-}
-*/
-

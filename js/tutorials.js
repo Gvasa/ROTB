@@ -1,8 +1,21 @@
+/* This file has all functions that takes care of the tutorials shown at the start
+
+    You'll find following functions:
+
+        loadTutorials - Creates and places our gui-elements
+        showTutorials - sets the alpha to true so the tutorial is shown
+        swapTutorial - big function that swaps between the different 
+                        "stages" in the tutorial. it will hide / show the correct gui-elements
+                        and bring the nessecary parts to the front.
+                        this function should probably be rewritten in a better way. 
+
+        clearTutorials - hides the tutorials from the board
+*/
 function loadTutorials() {
     tintBlack = game.add.sprite(0,0, 'tintBlack');
-    tutorial_1_1 = game.add.sprite(115,-960,'tutorial_1_1');
-    tutorial_1_2 = game.add.sprite(115,-20,'tutorial_1_2');
-    tutorial_1_3 = game.add.sprite(115,-20,'tutorial_1_3');
+    tutorial_1_1 = game.add.sprite(115, -960,'tutorial_1_1');
+    tutorial_1_2 = game.add.sprite(115, -20,'tutorial_1_2');
+    tutorial_1_3 = game.add.sprite(115, -20,'tutorial_1_3');
     tutorialContinue = game.add.sprite(256,-1000, 'continueButtonSprite');
    
     console.log('wtf');
@@ -38,8 +51,6 @@ function swapTutorials(index) {
         gameBoard[15].barrelSprite.inputEnabled = false;
         console.log(index);
     } else if(index == 2) {
-        //rollUpMenuAnimation(tutorial_1_1, -910, 700);
-        //dropMenuAnimation(tutorial_1_2, -910, 700);
         tutorial_1_1.alpha = false;
         tutorial_1_2.alpha = true;
         tutorialContinue.alpha = false;
@@ -51,8 +62,6 @@ function swapTutorials(index) {
         gameBoard[16].barrelSprite.inputEnabled = true;
         console.log(index);
     } else if(index == 3) {
-        //rollUpMenuAnimation(tutorial_1_2, -910, 700);
-        //dropMenuAnimation(tutorial_1_3, -910, 700);
         tutorial_1_2.alpha = false;
         tutorial_1_3.alpha = true;
         game.world.bringToTop(tintBlack);

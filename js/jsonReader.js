@@ -1,3 +1,11 @@
+/* this file handles the creation of the levels
+   the levels are created as json-files and then parsed into phaser
+   and added into arrays where we store them so they can easily be loaded later on
+	
+	readJson - reads a json file and stores the level.
+	addBarrelHover - checks if we should also add a hover effect to certain barrels
+					 depending on the level and barrels in that level.
+*/
 function readJson(fileName) {
 		
 	var parsedJsonData = JSON.parse(game.cache.getText(fileName));

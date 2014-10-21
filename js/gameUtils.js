@@ -1,15 +1,43 @@
+/* this file handles all game utils such as reset board, create empty board etc.
+    
+    you'll find the following functions:
+
+      levelComplete - animates the board and checks wether to show the postgamemenu
+                      or send the player to the main menu (if last level completed)
+
+      emptyBoard2 - creates our gameboard and places all barrels at the correct
+                    position and gives all the barrels a start value. this will 
+                    only contain empty barrels at the start. this is needed because we need to 
+                    initiate our gameboard somewhere, and later on only change the sprite and values
+                    of a barrel instead of calculating the new position for every time we change something
+                    int the game.
+
+      resetBoard2 - resets the gameboard and fills all slots with empty barrels and standard values.
+
+      uppdateBarrelVisibility2 - checks if a barrel should be tinted or not depending on a visibility boolean
+
+      printRow - prints the row a barrel is currently in if you give it it's barrel-ID
+
+      printCol - pritns the col a barrel is currently in, needs barrel-ID
+
+      printBoard - prints the whole Board
+
+      calculateXindex - calculates the x-pos of a barrel (not used)
+
+      calculateYindex - calculates the y-pos of a barrel (not used)
+
+      resetWinBarrel - resets the winBarrel after it has been animated when
+                       a level has been completed
+*/
+
 function levelComplete() {
  
-    //var text = "- Gratz! -\n Level Complete";
-    //var style = { font: "65px Arial", fill: "#ffd700", align: "center" };
-    //var t = game.add.text(game.world.centerX-280, 0, text, style);
     sfxLevelComplete.play();
     complete = true;
     updateBarrelVisibility2(); 
     clearTutorials();
     tintGame(tintBlack, 1, 1000);
  
-    //game.world.bringToTop(gameBoard[winBarrelCol][winBarrelRow].barrelSprite);
     tmpX = gameBoard[winIndex].barrelSprite.x;
     tmpY = gameBoard[winIndex].barrelSprite.y;
  
@@ -18,17 +46,11 @@ function levelComplete() {
     tintGame(winBarrelGlow, 1, 700);
  
     animateWinBarrelGlow();
-    //createSmokeParticles();
  
     if(parseInt(currentLevel.slice(-1)) < NUM_OF_LEVELS) {
         showPostGameMenu();
-        console.log('FORTSATT');
     } else {
-        /* DO SOMETHING HERE */
-
         showLastLevelMenu();
-        
-        console.log('MENU PLS');
     }
 }
 

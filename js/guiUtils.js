@@ -1,3 +1,5 @@
+/* creates and sets up gui at correct positions*/
+
 function setUpGui() {
 	console.log('set up gui here');
 	guiGroup = game.add.group();
@@ -11,17 +13,17 @@ function setUpGui() {
 	var guiUpper = guiGroup.create(0, 0, 'spriteGuiUpper');
 	var guiLower = guiGroup.create(0, 877, 'spriteGuiLower' );
 	var spriteResetButton = guiGroup.create(70, 895, 'resetButtonSprite');
-    var spriteMainMenuButton = guiGroup.create(374 ,895, 'mainMenuButtonSprite');
+    var spriteMainMenuButton = guiGroup.create(374, 895, 'mainMenuButtonSprite');
 
 
-    movesIndicatorText = game.add.text(30, 20, textMoves, styleMoves, guiGroup);
+    movesIndicatorText = game.add.text(30, 15, textMoves, styleMoves, guiGroup);
     var grad = movesIndicatorText.context.createLinearGradient(0, 0, 0, movesIndicatorText.canvas.height);
     grad.addColorStop(0, '#a3a3a3');
     grad.addColorStop(0.6, '#ffffff');
     movesIndicatorText.fill = grad;
     movesIndicatorText.setShadow(5, 5, 'rgba(0,0,0,0.5)', 5);
 
-    levelIndicatorText = game.add.text(380, 20, textLevel, styleLevel, guiGroup);
+    levelIndicatorText = game.add.text(380, 15, textLevel, styleLevel, guiGroup);
     levelIndicatorText.fill = grad;
     levelIndicatorText.setShadow(5, 5, 'rgba(0,0,0,0.5)', 5);
 
@@ -50,4 +52,4 @@ function setCurrentLevelIndicator(level) {
     text = "";
 }
 
-function foo(){}
+

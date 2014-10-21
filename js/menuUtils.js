@@ -1,3 +1,32 @@
+ /* this file handles everything that has to do with the menus
+ 	which menu should be shown at which part of the game
+
+ 	you'll find the following functions:
+
+ 	Button - a class for the button, has a buttonType and a sprite
+
+ 	createMenu - creates the mainMenu 
+	showMenu - shows the main menu
+ 	hideMenu - hides the main menu
+ 	
+ 	createLevelMenu - creates the levelMenu
+	showLevelMenu - 
+ 	hideLevelMenu - 
+
+ 	createPostGameMenu -
+ 	showPostGameMenu - 
+ 	hidePostGameMenu - 
+
+ 	createFailMenu - 
+ 	showFailMenu - 
+ 	hideFailMenu - 
+
+ 	createLastLevelMenu - 
+ 	showLastLevelMenu -
+ 	hideLastLevelMenu -
+ */
+
+
  function Button(_buttonType, _sprite) {
 	this.buttonType = _buttonType;
 	this.buttonSprite = _sprite;

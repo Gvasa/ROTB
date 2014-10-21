@@ -1,3 +1,5 @@
+/*	this is the barrel class and all its private members */
+
 function Barrel(_barreltype, _id, _sprite, _charge, _visible, _spriteCharge1, _spriteCharge2, _spritePosX, _spritePosY, _marking) {
 	this.barrelType = _barreltype;
 	this.barrelId = _id;
